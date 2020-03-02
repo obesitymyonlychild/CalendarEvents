@@ -2,6 +2,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+
 //import java.io.Serializable
 
 public class Series implements java.io.Serializable {
