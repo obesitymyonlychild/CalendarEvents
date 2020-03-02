@@ -4,6 +4,7 @@ public enum Unit {
         DAY,
         WEEK,
         MONTH,
-        YEAR
+        YEAR,
+        ONETIME
     }
 
