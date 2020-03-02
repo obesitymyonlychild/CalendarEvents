@@ -79,11 +79,16 @@ public class User implements Serializable {
     }
 
     public void deleteMemo(String name){
+        boolean res = false;
         for (int i=0; i < this.memo.size(); i++){
             if(this.memo.get(i).getName().equals(name)){
                 this.memo.remove(i);
+                res = true;
                 break;
             }
+        }
+        if (!res){
+            System.out.println("No such memo exists!");
         }
     }
 
@@ -108,23 +113,30 @@ public class User implements Serializable {
     }
 
     public void deleteEvent(String name){
+        boolean res = false;
         for (int i=0; i < this.ongoingEvent.size(); i++){
             if (this.ongoingEvent.get(i).getName().equals(name)){
                 this.ongoingEvent.remove(i);
+                res = true;
                 break;
             }
         }
         for (int i=0; i < this.pastEvent.size(); i++){
             if (this.pastEvent.get(i).getName().equals(name)){
                 this.pastEvent.remove(i);
+                res = true;
                 break;
             }
         }
         for (int i=0; i < this.futureEvent.size(); i++){
             if (this.futureEvent.get(i).getName().equals(name)){
                 this.futureEvent.remove(i);
+                res = true;
                 break;
             }
+        }
+        if (!res){
+            System.out.println("No such event exists!");
         }
     }
 
