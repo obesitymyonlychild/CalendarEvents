@@ -5,7 +5,7 @@ public class User implements Serializable {
     private String name;
     private String password;
     private ArrayList<Event> pastEvent;
-    private Arraylist<Event> futureEvent;
+    private ArrayList<Event> futureEvent;
     private ArrayList<Event> ongoingEvent;
     private ArrayList<Memo> memo;
     boolean alertOn;
@@ -40,11 +40,11 @@ public class User implements Serializable {
         this.pastEvent = pastEvent;
     }
 
-    public Arraylist<Event> getFutureEvent() {
+    public ArrayList<Event> getFutureEvent() {
         return futureEvent;
     }
 
-    public void setFutureEvent(Arraylist<Event> futureEvent) {
+    public void setFutureEvent(ArrayList<Event> futureEvent) {
         this.futureEvent = futureEvent;
     }
 
@@ -72,18 +72,23 @@ public class User implements Serializable {
         this.memo = mem;
     }
 
-    public Memo createMemo(String name, List<String> content){
+    public Memo createMemo(String name, String content){
         Memo mm = new Memo(name, content);
         this.memo.add(mm);
         return mm;
     }
 
     public void deleteMemo(String name){
+        boolean res = false;
         for (int i=0; i < this.memo.size(); i++){
             if(this.memo.get(i).getName().equals(name)){
                 this.memo.remove(i);
+                res = true;
                 break;
             }
+        }
+        if (!res){
+            System.out.println("No such memo exists!");
         }
     }
 
@@ -108,30 +113,31 @@ public class User implements Serializable {
     }
 
     public void deleteEvent(String name){
+        boolean res = false;
         for (int i=0; i < this.ongoingEvent.size(); i++){
             if (this.ongoingEvent.get(i).getName().equals(name)){
                 this.ongoingEvent.remove(i);
+                res = true;
                 break;
             }
         }
         for (int i=0; i < this.pastEvent.size(); i++){
             if (this.pastEvent.get(i).getName().equals(name)){
                 this.pastEvent.remove(i);
+                res = true;
                 break;
             }
         }
         for (int i=0; i < this.futureEvent.size(); i++){
             if (this.futureEvent.get(i).getName().equals(name)){
                 this.futureEvent.remove(i);
+                res = true;
                 break;
             }
         }
+        if (!res){
+            System.out.println("No such event exists!");
+        }
     }
-
-    public static void main(String[] args) {
-
-
-    }
-
 
 }

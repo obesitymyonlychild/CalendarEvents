@@ -24,7 +24,7 @@ public class Event implements java.io.Serializable {
     ArrayList<Memo> memos;
 
     //the alert of the event
-    Alert alert = null;
+    ArrayList<Alert> alerts = new ArrayList<Alert>();
 
     //a boolean indicates whether the alert of the event is on or off
     boolean alertOn = true;
@@ -63,8 +63,8 @@ public class Event implements java.io.Serializable {
         return memos;
     }
 
-    public Alert getAlert() {
-        return alert;
+    public ArrayList<Alert> getAlerts() {
+        return alerts;
     }
 
     public void setName(String name) {
@@ -85,9 +85,8 @@ public class Event implements java.io.Serializable {
     }
 
     public void setAlert(String startTime, int num, Unit unit) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-        LocalDateTime t = LocalDateTime.parse(startTime, formatter);
-        Alert a = new Alert(this, t, num, unit);
+
+        Alert a = new Alert(this, startTime, num, unit);
     }
 
     public void deleteAlert(){
@@ -119,13 +118,13 @@ public class Event implements java.io.Serializable {
     public void addNewMemo(String name, String content){
         Memo m = new Memo(name, content);
         memos.add(m);
-        m.events.add(this);
+        m.addEvent(this);
     }
 
     public void deleteMemo(String nameOfMemo) {
         for (Memo m : memos){
-            if (m.name == nameOfMemo){
-                m.events.remove(this)
+            if (m.getName() == nameOfMemo){
+                m.deleteEvent(this.name, this.startTime.toString().replace("T", " "), duration, address);
                 memos.remove(m);
             }
         }
