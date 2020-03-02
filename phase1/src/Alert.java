@@ -6,17 +6,17 @@ import java.time.format.DateTimeFormatter;
 public class Alert implements java.io.Serializable {
     private Event event;
     private LocalDateTime startTime;
-    private Frequency frequency;
+//    private Frequency frequency;
     private  int num;
     private Unit unit;
-    public enum Unit {
-        MINUTE,
-        HOUR,
-        DAY,
-        WEEK,
-        MONTH,
-        YEAR
-    }
+//    public enum Unit {
+//        MINUTE,
+//        HOUR,
+//        DAY,
+//        WEEK,
+//        MONTH,
+//        YEAR
+//    }
 
 
     //Constructor
