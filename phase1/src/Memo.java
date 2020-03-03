@@ -40,11 +40,10 @@ public class Memo implements java.io.Serializable{
         return events;
     }
 
-    public void addEvent(String event_name, String startTime, long duration, String address,
-                         String memo_name, String content){
+    public void addEvent(String event_name, String startTime, long duration, String address){
 
         Event event1 = new Event(event_name, startTime, duration, address);
-        event1.addNewMemo(memo_name, content);
+        event1.addNewMemo(this.name, this.content);
         this.events.add(event1);
     }
 
