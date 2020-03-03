@@ -157,7 +157,7 @@ public class Event implements java.io.Serializable, Comparable<Event> {
     public void addNewMemo(String name, String content){
         Memo m = new Memo(name, content);
         memos.add(m);
-        m.addEvent(this);
+        m.addEvent(this.name, this.startTime.toString().replace("T", " "), this.duration, this.address);
     }
 
     public void deleteMemo(String nameOfMemo) {
@@ -176,7 +176,7 @@ public class Event implements java.io.Serializable, Comparable<Event> {
         return result;
     }
 
-    public ArrayList<Alert> OrdereAlert(){
+    public void orderAlert(){
         Collections.sort(this.alerts);
     }
 
