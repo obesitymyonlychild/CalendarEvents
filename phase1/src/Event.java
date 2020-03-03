@@ -7,28 +7,28 @@ import java.util.Collections;
 public class Event implements java.io.Serializable, Comparable<Event> {
 
     //name of the event
-    String name;
+    private String name;
 
     //start time of the event
-    LocalDateTime startTime;
+    private LocalDateTime startTime;
 
     //duration of the event in minute
-    long duration;
+    private long duration;
 
     //address of the event
-    String address;
+    private String address;
 
     //list of tags of the event
-    ArrayList<String> tags;
+    private ArrayList<String> tags;
 
     //list of memos of the event
-    ArrayList<Memo> memos;
+    private ArrayList<Memo> memos;
 
     //the alert of the event
-    ArrayList<Alert> alerts = new ArrayList<Alert>();
+    private ArrayList<Alert> alerts = new ArrayList<Alert>();
 
     //a boolean indicates whether the alert of the event is on or off
-    boolean alertOn = true;
+    private boolean alertOn = true;
 
     public Event(String name, String startTime, long duration, String address){
         this.name = name;
