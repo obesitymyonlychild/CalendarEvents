@@ -2,12 +2,13 @@ import java.io.EOFException;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.*;
-public class User implements Serializable {
+public class User implements Serializable{
     private String name;
     private String password;
     private ArrayList<Event> pastEvents;
     private ArrayList<Event> futureEvents;
     private ArrayList<Event> ongoingEvents;
+    private ArrayList<Event> events;
     private ArrayList<Memo> memos;
     boolean alertOn;
     private ArrayList<Alert> alertList;
@@ -59,11 +60,11 @@ public class User implements Serializable {
     }
 
     public ArrayList<Event> getEvents(){
-        ArrayList<Event> all = new ArrayList<>();
-        all.addAll(this.pastEvents);
-        all.addAll(this.ongoingEvents);
-        all.addAll(this.futureEvents);
-        return all;
+        return this.events;
+    }
+
+    public void setEvents(ArrayList<Event> evts){
+        this.events = evts;
     }
 
     public ArrayList<Alert> getAlertList() {
@@ -90,24 +91,28 @@ public class User implements Serializable {
         this.series = series;
     }
 
-    public ArrayList<Event> getOrder(ArrayList<Event> events){
-        ArrayList<Event> res = new ArrayList<>();
-        for (Event event : events) {
-            if (res.size() == 0) {
-                res.add(events.get(0));
-            } else {
-                for (int s = 0; s < res.size(); s++) {
-                    if (event.getStartTime().isBefore(res.get(s).getStartTime())) {
-                        res.add(s, event);
-                    }
-                }
-                if (!res.contains(event)) {
-                    res.add(event);
-                }
-            }
-        }
-        return res;
+    public void OrderEvent(){
+        Collections.sort(this.events);
     }
+
+//    public ArrayList<Event> getOrder(ArrayList<Event> events){
+//        ArrayList<Event> res = new ArrayList<>();
+//        for (Event event : events) {
+//            if (res.size() == 0) {
+//                res.add(events.get(0));
+//            } else {
+//                for (int s = 0; s < res.size(); s++) {
+//                    if (event.getStartTime().isBefore(res.get(s).getStartTime())) {
+//                        res.add(s, event);
+//                    }
+//                }
+//                if (!res.contains(event)) {
+//                    res.add(event);
+//                }
+//            }
+//        }
+//        return res;
+//    }
 
     public void createMemo(String name, String content){
         Memo mm = new Memo(name, content);
