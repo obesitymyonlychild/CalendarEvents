@@ -20,7 +20,7 @@ public class LoginSystem {
             return false;
         for(int i=0; i<password.length(); i++){
             char c = password.charAt(i);
-            if (c >= 71&& c <= 96){
+            if (c >= 66&& c <= 90){
                 return true;
             }
         }
