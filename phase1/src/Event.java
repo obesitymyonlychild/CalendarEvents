@@ -1,9 +1,10 @@
 import java.util.ArrayList;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-//import java.io.Serializable
+import java.util.Collections;
 
-public class Event implements java.io.Serializable {
+
+public class Event implements java.io.Serializable, Comparable<Event> {
 
     //name of the event
     String name;
@@ -84,14 +85,41 @@ public class Event implements java.io.Serializable {
         this.address = address;
     }
 
-    public void setAlert(String startTime, int num, Unit unit) {
-
-        Alert a = new Alert(this, startTime, num, unit);
+    private LocalDateTime getStartTimeForAlert(LocalDateTime t, int increment, Unit unit){
+        switch (unit){
+            case MINUTE:
+                return t.plusMinutes(increment);
+            case HOUR:
+                return t.plusHours(increment);
+            case DAY:
+            case WEEK:
+                return t.plusWeeks(increment);
+            case MONTH:
+                return t.plusMonths(increment);
+            case YEAR:
+                return t.plusYears(increment);
+            default:
+                return t;
+        }
     }
 
-    public void deleteAlert(){
+    public void setAlert(String startTime, int num, Unit unit) {
+        // no alert at same time
+        Alert a;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        LocalDateTime t = LocalDateTime.parse(startTime, formatter);
+        for (int i = 0; i<num; i++){
+            t = getStartTimeForAlert(t, i, unit);
+            a = new Alert(this, t);
+            alerts.add(a);
+        }
+    }
+
+    public void deleteAlert(String startTime){
         //leads to unreferenced Alert object?
-        alert = null;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        LocalDateTime t = LocalDateTime.parse(startTime, formatter);
+        alerts.removeIf(a -> t.isEqual(a.getStartTime()));
     }
 
     public void turnOnAlert(){
@@ -118,12 +146,12 @@ public class Event implements java.io.Serializable {
     public void addNewMemo(String name, String content){
         Memo m = new Memo(name, content);
         memos.add(m);
-        m.addEvent(this);
+        m.addEvent(this.name, this.startTime.toString().replace("T", " "), this.duration, this.address);
     }
 
     public void deleteMemo(String nameOfMemo) {
         for (Memo m : memos){
-            if (m.getName() == nameOfMemo){
+            if (m.getName().equals(nameOfMemo)){
                 m.deleteEvent(this.name, this.startTime.toString().replace("T", " "), duration, address);
                 memos.remove(m);
             }
@@ -135,6 +163,26 @@ public class Event implements java.io.Serializable {
         LocalDateTime endTime = startTime.plusMinutes(duration);
         result = result + endTime.toString() + " at " + address;
         return result;
+    }
+
+    public void orderAlert(){
+        Collections.sort(this.alerts);
+    }
+
+    public LocalDateTime getEndTime(){
+        return startTime.plusMinutes(duration);
+    }
+
+    @Override
+    public int compareTo(Event e1) {
+        if (this.startTime.isEqual(e1.startTime)) {
+            return 0;
+        }else if (this.startTime.isBefore(e1.startTime)) {
+            return -1;
+        }else{
+            return 1;
+        }
+
     }
 
 }

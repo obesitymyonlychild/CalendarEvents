@@ -1,10 +1,8 @@
-
 //package ???
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Comparator;
 
-public class Alert implements java.io.Serializable, Comparable<Alert>{
+import java.time.LocalDateTime;
+
+public class Alert implements java.io.Serializable, Comparable<Alert> {
     private Event event;
     private LocalDateTime startTime;
 //    private Frequency frequency;
@@ -25,7 +23,7 @@ public class Alert implements java.io.Serializable, Comparable<Alert>{
     //setter and getter
     //toString
 
-    public Alert(Event event, LocalDateTime startTime){
+    public Alert(Event event, LocalDateTime startTime) {
 //        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 //        LocalDateTime t = LocalDateTime.parse(startTime, formatter);
         this.event = event;
@@ -33,7 +31,6 @@ public class Alert implements java.io.Serializable, Comparable<Alert>{
 //        this.num = num;
 //        this.unit = unit;
     }
-
 
 
     public Event getEvent() {
@@ -48,7 +45,7 @@ public class Alert implements java.io.Serializable, Comparable<Alert>{
         return this.startTime;
     }
 
-    public void setStartTime(LocalDateTime t){
+    public void setStartTime(LocalDateTime t) {
         this.startTime = t;
     }
 
@@ -70,21 +67,19 @@ public class Alert implements java.io.Serializable, Comparable<Alert>{
 
 
     // toString example: workout on 2020-March-1 13:00
-    public String toString(){
+    public String toString() {
         String s = this.event.name + " " + "on" + " " + this.event.startTime;
-        return String.format("Alert: %s",s);
+        return String.format("Alert: %s", s);
 
     }
 
     @Override
     public int compareTo(Alert a) {
-        if(this.startTime.isBefore(a.startTime)){
+        if (this.startTime.isBefore(a.startTime)) {
             return -1;
-        }
-        else if(this.startTime.isEqual(a.startTime)){
+        } else if (this.startTime.isEqual(a.startTime)) {
             return 0;
-        }
-        else(this.startTime.isAfter(a.startTime)){
+        } else  {
             return 1;
         }
     }
