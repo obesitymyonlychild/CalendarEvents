@@ -67,7 +67,9 @@ public class Memo implements java.io.Serializable{
 
     }
 
-    
+    //public void checkAssociation()
+
+
     public String toString(){
 
         StringBuilder s = new StringBuilder();
