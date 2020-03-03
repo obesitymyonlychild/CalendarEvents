@@ -92,19 +92,13 @@ public class Event implements java.io.Serializable, Comparable<Event> {
                 return t.plusMinutes(increment);
             case HOUR:
                 return t.plusHours(increment);
-                break;
             case DAY:
-                return t.plusDays(increment);
-                break;
             case WEEK:
                 return t.plusWeeks(increment);
-                break;
             case MONTH:
                 return t.plusMonths(increment);
-                break;
             case YEAR:
                 return t.plusYears(increment);
-                break;
             default:
                 return t;
         }
