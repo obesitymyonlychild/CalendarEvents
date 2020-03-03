@@ -162,7 +162,7 @@ public class Event implements java.io.Serializable, Comparable<Event> {
 
     public void deleteMemo(String nameOfMemo) {
         for (Memo m : memos){
-            if (m.getName() == nameOfMemo){
+            if (m.getName().equals(nameOfMemo)){
                 m.deleteEvent(this.name, this.startTime.toString().replace("T", " "), duration, address);
                 memos.remove(m);
             }
