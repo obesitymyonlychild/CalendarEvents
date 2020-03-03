@@ -16,6 +16,8 @@ public class Calendar {
         Calendar.currentUser = para;
     }
 
+    // Call all the methods of Event
+
     // Constructor
     public Calendar(){
         // no requirement
@@ -29,16 +31,20 @@ public class Calendar {
     }
 
     public static void updater(){
-        // Not sure what the func of update
-        //ArrayList<Event> events = currentUser.getEvents();
+
         LocalDateTime now = LocalDateTime.now();
 
         for (Event event: currentUser.getEvents()){
             LocalDateTime startTime = event.getStartTime();
             LocalDateTime endTime = event.getEndTime();
 
+            // case1 move futureEvent
+            if (startTime.compareTo(now) <= 0 && currentUser.getFutureEvents().contains(event))
+                currentUser.moveToNow(event);
+            // case2 move ongoingEvent
+            if (endTime.compareTo(now) <=0 && currentUser.getOngoingEvents().contains(event))
+                currentUser.moveToNow(event);
         }
-
 
     }
 
@@ -74,8 +80,26 @@ public class Calendar {
     }
 
     public static ArrayList<Event> showTodayEvents(){
-        // edit
-        return currentUser.getPastEvents();
+
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String nowString = now.format(formatter);
+        ArrayList<Event> events = new ArrayList<Event>();
+        boolean detective = false;
+
+        for (Event event: currentUser.getOngoingEvents()) {
+            if (event.getStartTime().format(formatter).equals(nowString)) {
+                detective = true;
+                System.out.println(event);
+                events.add(event);
+            }
+        }
+
+        if (!detective){
+            System.out.println("No task today");
+            return null;
+        } else
+            return events;
 
     }
 
@@ -87,24 +111,27 @@ public class Calendar {
     }
 
     public static void showSeries(){
-        System.out.println("haha");
+
+        for(Series series: currentUser.getSeries())
+            System.out.println(series);
 
     }
 
 
     public static void alert(){
 
-        // check user alert on and event alert on
-
         LocalDateTime now = LocalDateTime.now();
         boolean detective = false;
-        for(Alert alert: currentUser.getAlertList()){
-            if (alert.getStartTime().compareTo(now) == 0) {
-                System.out.println(alert);
-                detective = true;
-            }else {
-                if (detective)
-                    break;
+        // check user alert on and event alert on
+        if (currentUser.getAlertOn()){
+            for(Alert alert: currentUser.getAlertList()){
+                if (alert.getStartTime().compareTo(now) == 0) {
+                    System.out.println(alert);
+                    detective = true;
+                }else {
+                    if (detective)
+                        break;
+                }
             }
         }
 
@@ -114,60 +141,123 @@ public class Calendar {
 
         return currentUser.getEvents();
 
-
     }
 
-    public static Event searchEventByTag(){
+    public static ArrayList<Event> searchEventByTag(){
+
         Scanner scan = new Scanner(System.in);
         String input = scan.nextLine();
+        ArrayList<Event> events = new ArrayList<Event>();
+        boolean detective = false;
         for(Event event: currentUser.getEvents()){
-            if(event.getTags().contains(input))
-                System.out.println(event);
-            else
-                System.out.println("No result");
+            if(event.getTags().contains(input)){
+                detective = true;
+                events.add(event);
+            }
         }
+        if (!detective){
+            System.out.println("No event with this tag");
+            return null;
+        } else
+            for (Event event: events)
+                System.out.println(event);
+            return events;
+
     }
 
-    public static Event searchEventByDate(){
-        // how to compare
+    public static ArrayList<Event> searchEventByDate(){
+
         System.out.println("Please enter a date with the format yyyy-MM-dd HH:mm");
         Scanner scan = new Scanner(System.in);
         String input = scan.nextLine();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         LocalDateTime search = LocalDateTime.parse(input, formatter);
+        ArrayList<Event> events = new ArrayList<Event>();
+        boolean detective = false;
         for(Event event: currentUser.getEvents()){
             if(event.getStartTime().compareTo(search) >= 0  &&  event.getEndTime().compareTo(search) <= 0){
-                System.out.println(event);
-                return event;
+                detective = true;
+                events.add(event);
             }
-            else
-                System.out.println("No result");
         }
+        if (!detective){
+            System.out.println("No event with this date");
+            return null;
+        } else
+            for (Event event: events)
+                System.out.println(event);
+            return events;
+
     }
 
 
-//    public static Event searchEventByDuration(){
-//        no requirement
-//    }
-
-    public static Memo searchEventByMemo(){
+    public static ArrayList<Event> searchEventByMemo(){
         System.out.println("Please enter a keyword to search memo");
         Scanner scan = new Scanner(System.in);
         String input = scan.nextLine();
-        //ArrayList memoList = currentUser.getMemo();
+        ArrayList<Event> events = new ArrayList<Event>();
+        boolean detective = false;
         for(Memo memo: currentUser.getMemos()){
             if(memo.getContent().contains(input)){
-                System.out.println(memo);
-                return memo;
+                detective = true;
+                events.addAll(memo.getEvents());
             }
-            else
-                System.out.println("No result");
         }
+        if (!detective){
+            System.out.println("No event with this memo");
+            return null;
+        } else
+            for (Event event: events)
+                System.out.println(event);
+            return events;
     }
 
-    public static Event searchEventByName(){
-        // edit
-        return currentUser.getPastEvents().get(0);
+    public static ArrayList<Event> searchEventByName(){
+
+        Scanner scan = new Scanner(System.in);
+        String input = scan.nextLine();
+        ArrayList<Event> events = new ArrayList<Event>();
+        boolean detective = false;
+
+        for (Event event: currentUser.getEvents()){
+            if (event.getName().contains(input))
+                detective = true;
+                events.add(event);
+        }
+        if (!detective){
+            System.out.println("No event with this name");
+            return null;
+        } else
+            for (Event event: events)
+                System.out.println(event);
+        return events;
+
+    }
+
+
+    public static ArrayList<Event> searchEventBySeriesName(){
+
+        // get rid of repetitive ele in arraylist
+
+        Scanner scan = new Scanner(System.in);
+        String input = scan.nextLine();
+        ArrayList<Event> events = new ArrayList<Event>();
+        boolean detective = false;
+        for(Series series: currentUser.getSeries()){
+            if(series.getName().contains(input)){
+                detective = true;
+                events.addAll(series.getEvents());
+            }
+        }
+        if (!detective){
+            System.out.println("No event with this name");
+            return null;
+        } else
+            for (Event event: events)
+                System.out.println(event);
+        return events;
+
+
     }
 
     public static void searchAlerts(){
@@ -182,18 +272,12 @@ public class Calendar {
 
         for(Alert alert: currentUser.getAlertList()){
             if (alert.getStartTime().compareTo(startTime) >= 0  &&  alert.getStartTime().compareTo(endTime) <= 0)
-                System.out.println();
-
+                System.out.println(alert);
         }
 
     }
 
-    public static Event searchEventBySeriesName(){
-        // From User get the Arraylist of series
 
-        return currentUser.getPastEvents().get(0);
-
-    }
 
 
 
