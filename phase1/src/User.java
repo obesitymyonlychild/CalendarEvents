@@ -194,7 +194,6 @@ public class User implements Serializable{
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         String str =  formatter.format(evt.getStartTime());
         createEvent(evt.getName(), str, evt.getDuration(), evt.getAddress());
-
     }
 
     public void createSeries(String name){
@@ -211,12 +210,4 @@ public class User implements Serializable{
         System.out.println("Series does not exists!");
         return null;
     }
-
-    public static void main(String[] args) {
-        User usb = new User("snoopy", "100086");
-        System.out.println(usb.getPastEvents());
-
-    }
-
-
 }
