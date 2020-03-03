@@ -107,25 +107,6 @@ public class User implements Serializable{
         Collections.sort(this.events);
     }
 
-//    public ArrayList<Event> getOrder(ArrayList<Event> events){
-//        ArrayList<Event> res = new ArrayList<>();
-//        for (Event event : events) {
-//            if (res.size() == 0) {
-//                res.add(events.get(0));
-//            } else {
-//                for (int s = 0; s < res.size(); s++) {
-//                    if (event.getStartTime().isBefore(res.get(s).getStartTime())) {
-//                        res.add(s, event);
-//                    }
-//                }
-//                if (!res.contains(event)) {
-//                    res.add(event);
-//                }
-//            }
-//        }
-//        return res;
-//    }
-
     public void createMemo(String name, String content){
         Memo mm = new Memo(name, content);
         this.memos.add(mm);
