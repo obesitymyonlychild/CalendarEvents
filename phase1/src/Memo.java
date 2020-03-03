@@ -1,21 +1,24 @@
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.List;
+import java.io.Serializable;
 
 
 
-public class Memo {
+public class Memo implements java.io.Serializable{
 
     private String name;
     private String content;
-    private ArrayList<Event> event;
+    private ArrayList<Event> events;
 
 
 
     public Memo(String name, String content){
         this.name = name;
         this.content = content;
-
+        this.events = new ArrayList<Event>();
     }
+
 
     public void setName(String name){
         this.name = name;
@@ -33,45 +36,46 @@ public class Memo {
         return content;
     }
 
-    public void addEvent(Event event){
-        if(User.getPastEvent.contain(event) ||
-                User.getFutureEvent.contain(event) ||
-                User.getOngoingEvent.contain(event) ){
+    public ArrayList<Event> getEvents(){
+        return events;
+    }
 
-            event.addMemos(); // here is so strange
-            event.getMemos().content.add(event);
+    public void addEvent(String event_name, String startTime, long duration, String address){
+
+        Event event1 = new Event(event_name, startTime, duration, address);
+        event1.addNewMemo(this.name, this.content);
+        this.events.add(event1);
+    }
+
+    public void deleteEvent(String event_name, String startTime, long duration, String address,
+                            String memo_name, User user){
+
+        Event event2 = new Event(event_name, startTime, duration, address);
+        if (user.getEvents().contains(event2)){
+            event2.deleteMemo(memo_name);
+            this.events.remove(event2);
         }else{
-            System.out.println("No such event! Please try again.");
+            System.out.println("No such event! Please try again");
         }
     }
 
-    public void deleteEvent(Event event){
-        if(User.getPastEvent.contain(event) ||
-                User.getFutureEvent.contain(event) ||
-                User.getOngoingEvent.contain(event) ){
-
-            event.getMemos().content.remove(event);
-            event.deleteMemos();
-        }else{
-            System.out.println("No such event! Please try again.");
-        }
-    }
-
-    public void modifyNote(Event original_event, Event new_event){
-        if(User.getPastEvent.contain(original_event) ||
-                User.getFutureEvent.contain(original_event) ||
-                User.getOngoingEvent.contain(original_event) ){
-
-            original_event.getMemos().content.remove(original_event);
-            original_event.getMemos().content.add(new_event);
-        }else{
-            System.out.println("No such event! Please try again.");
+    public void modifyContent(Event event, String new_note){
+        for (int  i = 0; i < event.memos.size(); i++){
+            if (event.memos.contains(this)) {
+                this.content = new_note;
+                break;
+            }
         }
     }
 
     public String toString(){
 
-        return "This is a memo named as" + name + "with content" + content +".";
+        StringBuilder s = new StringBuilder();
+        for (Event event : this.events) {
+            s.append(event.toString()).append("\n");
+        }
+
+        return "This is a memo named as" + name + "with content" + content + "about" + s;
 
     }
 
