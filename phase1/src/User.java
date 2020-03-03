@@ -103,8 +103,20 @@ public class User implements Serializable{
         this.series = series;
     }
 
-    public void OrderEvent(){
+    public void OrderEvents(){
         Collections.sort(this.events);
+    }
+
+    public void OrderPastEvents(){
+        Collections.sort(this.pastEvents);
+    }
+
+    public void OrderFutureEvents(){
+        Collections.sort(this.futureEvents);
+    }
+
+    public void OrderOngoingEvents(){
+        Collections.sort(this.ongoingEvents);
     }
 
     public void createMemo(String name, String content){
@@ -128,6 +140,7 @@ public class User implements Serializable{
 
     public void createEvent(String name, String startTime, long duration, String address){
         Event evt = new Event(name, startTime, duration, address);
+        this.events.add(evt);
         LocalDateTime start = evt.getStartTime();
         LocalDateTime end = start.plusMinutes(duration);
         LocalDateTime now = LocalDateTime.now();
@@ -148,24 +161,26 @@ public class User implements Serializable{
 
     public void deleteEvent(String name){
         boolean res = false;
+        for (Event evt: this.events)
+            if (evt.getName().equals(name)) {
+                this.events.remove(evt);
+                res = true;
+            }
         for (int i=0; i < this.ongoingEvents.size(); i++){
             if (this.ongoingEvents.get(i).getName().equals(name)){
                 this.ongoingEvents.remove(i);
-                res = true;
                 break;
             }
         }
         for (int i=0; i < this.pastEvents.size(); i++){
             if (this.pastEvents.get(i).getName().equals(name)){
                 this.pastEvents.remove(i);
-                res = true;
                 break;
             }
         }
         for (int i=0; i < this.futureEvents.size(); i++){
             if (this.futureEvents.get(i).getName().equals(name)){
                 this.futureEvents.remove(i);
-                res = true;
                 break;
             }
         }
