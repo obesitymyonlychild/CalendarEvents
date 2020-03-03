@@ -1,18 +1,18 @@
-import java.io.EOFException;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 public class User implements Serializable{
     private String name;
     private String password;
-    private ArrayList<Event> pastEvents;
-    private ArrayList<Event> futureEvents;
-    private ArrayList<Event> ongoingEvents;
-    private ArrayList<Event> events;
-    private ArrayList<Memo> memos;
+    private ArrayList<Event> pastEvents = new ArrayList<>();
+    private ArrayList<Event> futureEvents = new ArrayList<>();
+    private ArrayList<Event> ongoingEvents = new ArrayList<>();
+    private ArrayList<Event> events = new ArrayList<>();
+    private ArrayList<Memo> memos = new ArrayList<>();
     private boolean alertOn;
-    private ArrayList<Alert> alertList;
-    private ArrayList<Series> series;
+    private ArrayList<Alert> alertList = new ArrayList<>();
+    private ArrayList<Series> series = new ArrayList<>();
 
     public User(String name, String psw){
         this.name = name;
@@ -36,7 +36,7 @@ public class User implements Serializable{
     }
 
     public ArrayList<Event> getPastEvents() {
-        return pastEvents;
+        return this.pastEvents;
     }
 
     public void setPastEvents(ArrayList<Event> pastEvents) {
@@ -44,7 +44,7 @@ public class User implements Serializable{
     }
 
     public ArrayList<Event> getFutureEvents() {
-        return futureEvents;
+        return this.futureEvents;
     }
 
     public void setFutureEvents(ArrayList<Event> futureEvents) {
@@ -189,6 +189,14 @@ public class User implements Serializable{
         }
     }
 
+    public void moveToNow(Event evt) {
+        deleteEvent(evt.getName());
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        String str =  formatter.format(evt.getStartTime());
+        createEvent(evt.getName(), str, evt.getDuration(), evt.getAddress());
+
+    }
+
     public void createSeries(String name){
         Series sir  = new Series(name);
         this.series.add(sir);
@@ -198,10 +206,17 @@ public class User implements Serializable{
         for(Series series: this.series){
             if (series.getName().equals(name)){
                 return series.getEvents();
-            };
+            }
         }
         System.out.println("Series does not exists!");
         return null;
     }
+
+    public static void main(String[] args) {
+        User usb = new User("snoopy", "100086");
+        System.out.println(usb.getPastEvents());
+
+    }
+
 
 }

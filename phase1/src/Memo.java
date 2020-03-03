@@ -40,7 +40,7 @@ public class Memo implements java.io.Serializable{
         return events;
     }
 
-    
+
     public void addEvent(String event_name, String startTime, long duration, String address){
 
         Event event1 = new Event(event_name, startTime, duration, address);
@@ -67,16 +67,7 @@ public class Memo implements java.io.Serializable{
 
     }
 
-
-    public void modifyContent(Event event, String new_note){
-        for (int  i = 0; i < event.memos.size(); i++){
-            if (event.memos.contains(this)) {
-                this.content = new_note;
-                break;
-            }
-        }
-    }
-
+    
     public String toString(){
 
         StringBuilder s = new StringBuilder();

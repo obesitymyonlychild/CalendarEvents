@@ -22,10 +22,12 @@ public class Main {
         }
         System.out.println("Successfully log in\n\n\n");
         System.out.println("Today's Event!!!");
-        ArrayList todayEvent = Calendar.showTodayEvent;
-        for (int i=0;i<todayEvent.size();i++){
-            System.out.println(todayEvent.get(i));
-        }
+        ArrayList todayEvent = Calendar.showTodayEvents();
+        System.out.println(todayEvent);
+        if (todayEvent.size()>0){
+            for (Object o : todayEvent) {
+                System.out.println(o);
+            }}
         System.out.println("Category\n");
         for (int i=0;i<20;i++){
             System.out.println("=");
@@ -47,7 +49,7 @@ public class Main {
             case "Future Event": case "futureevent": case "FutureEvent": case "future event":
                 Calendar.showFutureEvent();
             case "All Event": case "allevent": case "AllEvent": case "all event":
-                    Calendar.showEvents();
+                Calendar.showEvents();
             case "Series": case "series":
                 Calendar.showSeries();
             case "Memo": case"memo":
@@ -69,12 +71,14 @@ public class Main {
                     case "memo":
                         Calendar.searchEventByMemo();
                     case"eventname": case"event name":
-                        Calendar.searchEventByEventName();
+                        Calendar.searchEventByName();
                     case"series":
                         Calendar.searchEventBySeriesName();
                 }
 
             }
+            default:
+                System.out.println("Wrong input!!!");
 
 
         }
