@@ -40,6 +40,7 @@ public class Memo implements java.io.Serializable{
         return events;
     }
 
+    
     public void addEvent(String event_name, String startTime, long duration, String address){
 
         Event event1 = new Event(event_name, startTime, duration, address);
@@ -47,17 +48,25 @@ public class Memo implements java.io.Serializable{
         this.events.add(event1);
     }
 
-    public void deleteEvent(String event_name, String startTime, long duration, String address,
-                            String memo_name, User user){
 
-        Event event2 = new Event(event_name, startTime, duration, address);
-        if (user.getEvents().contains(event2)){
-            event2.deleteMemo(memo_name);
-            this.events.remove(event2);
-        }else{
-            System.out.println("No such event! Please try again");
+    public void deleteEvent(String event_name, String startTime, long duration, String address){
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        LocalDateTime t = LocalDateTime.parse(startTime, formatter);
+
+        for (int i=0; i < this.events.size(); i++){
+            if(this.events.get(i).getName().equals(event_name) &&
+                    this.events.get(i).getStartTime() == t &&
+                    this.events.get(i).getDuration() == duration &&
+                    this.events.get(i).getAddress().equals(address)){
+
+                this.events.get(i).deleteMemo(this.name);
+                this.events.remove(this.events.get(i));
+            }
         }
+
     }
+
 
     public void modifyContent(Event event, String new_note){
         for (int  i = 0; i < event.memos.size(); i++){
@@ -74,7 +83,6 @@ public class Memo implements java.io.Serializable{
         for (Event event : this.events) {
             s.append(event.toString()).append("\n");
         }
-
         return "This is a memo named as" + name + "with content" + content + "about" + s;
 
     }
