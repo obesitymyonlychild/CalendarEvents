@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
@@ -19,6 +20,11 @@ public class Main {
                 } else System.out.println("wrong input");
             }
         }
-        System.out.println("Successfully log in");
+        System.out.println("Successfully log in\n\n\n");
+        System.out.println("Today's Event!!!");
+        ArrayList todayEvent = Calendar.showTodayEvent;
+        for (int i=0,i<todayEvent)
+        System.out.println("Category\n");
     }
+
 }

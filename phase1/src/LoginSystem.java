@@ -110,6 +110,9 @@ public class LoginSystem {
             }
             if (name == "Esc")
                  return false;
+        ObjectInputStream is = new ObjectInputStream(new FileInputStream(name));
+        User user = (User) is.readObject();
+        Calendar.setCurrentUser(user);
             return true;
     }
 
