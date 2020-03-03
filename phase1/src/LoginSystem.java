@@ -91,29 +91,29 @@ public class LoginSystem {
 
 
     public static boolean login() throws IOException, ClassNotFoundException {
-            Scanner input = new Scanner(System.in);
+        Scanner input = new Scanner(System.in);
+        System.out.println("Please type in your account name(Type Esc to exit):");
+        String name = input.next();
+        while (!whetherUserExit(name)){
+            System.out.println("This account does not exist");
             System.out.println("Please type in your account name(Type Esc to exit):");
-            String name = input.next();
-            while (!whetherUserExit(name)){
-                System.out.println("This account does not exist");
-                System.out.println("Please type in your account name(Type Esc to exit):");
-                name = input.next();
-            }
-            if (name.equals("Esc"))
-                return false;
-            System.out.println("Please type in your password:");
-            String password = input.next();
-            while (!whetherPasswordMatch(name,password)){
-                System.out.println("Password is not correct");
-                System.out.println("Please type in your password(Type Esc to exit):");
-                password = input.next();
-            }
-            if (name == "Esc")
-                 return false;
+            name = input.next();
+        }
+        if (name.equals("Esc"))
+            return false;
+        System.out.println("Please type in your password:");
+        String password = input.next();
+        while (!whetherPasswordMatch(name,password)){
+            System.out.println("Password is not correct");
+            System.out.println("Please type in your password(Type Esc to exit):");
+            password = input.next();
+        }
+        if (name == "Esc")
+            return false;
         ObjectInputStream is = new ObjectInputStream(new FileInputStream(name));
         User user = (User) is.readObject();
         Calendar.setCurrentUser(user);
-            return true;
+        return true;
     }
 
 

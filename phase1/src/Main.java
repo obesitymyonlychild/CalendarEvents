@@ -25,9 +25,9 @@ public class Main {
         ArrayList todayEvent = Calendar.showTodayEvents();
         System.out.println(todayEvent);
         if (todayEvent.size()>0){
-        for (Object o : todayEvent) {
-            System.out.println(o);
-        }}
+            for (Object o : todayEvent) {
+                System.out.println(o);
+            }}
         System.out.println("Category\n");
         for (int i=0;i<20;i++){
             System.out.println("=");
@@ -49,7 +49,7 @@ public class Main {
             case "Future Event": case "futureevent": case "FutureEvent": case "future event":
                 Calendar.showFutureEvent();
             case "All Event": case "allevent": case "AllEvent": case "all event":
-                    Calendar.showEvents();
+                Calendar.showEvents();
             case "Series": case "series":
                 Calendar.showSeries();
             case "Memo": case"memo":
