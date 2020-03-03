@@ -34,7 +34,6 @@ public class CalendarSearch {
     }
 
     public static ArrayList<Event> searchEventByDate(){
-
         System.out.println("Please enter a date with the format yyyy-MM-dd HH:mm");
         Scanner scan = new Scanner(System.in);
         String input = scan.nextLine();
@@ -43,7 +42,7 @@ public class CalendarSearch {
         ArrayList<Event> events = new ArrayList<Event>();
         boolean detective = false;
         for(Event event: currentUser.getEvents()){
-            if(event.getStartTime().compareTo(search) >= 0  &&  event.getEndTime().compareTo(search) <= 0){
+            if(event.getStartTime().isBefore(search)  &&  event.getEndTime().isAfter(search)){
                 detective = true;
                 events.add(event);
             }
@@ -55,7 +54,6 @@ public class CalendarSearch {
             for (Event event: events)
                 System.out.println(event);
         return events;
-
     }
 
 
@@ -139,7 +137,7 @@ public class CalendarSearch {
         LocalDateTime endTime = LocalDateTime.parse(scan.nextLine(), formatter);
 
         for(Alert alert: currentUser.getAlertList()){
-            if (alert.getStartTime().compareTo(startTime) >= 0  &&  alert.getStartTime().compareTo(endTime) <= 0)
+            if (alert.getStartTime().isAfter(startTime) &&  alert.getStartTime().isBefore(endTime))
                 System.out.println(alert);
         }
 

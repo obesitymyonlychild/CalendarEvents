@@ -40,10 +40,10 @@ public class CalendarFacade {
             LocalDateTime endTime = event.getEndTime();
 
             // case1 move futureEvent
-            if (startTime.compareTo(now) <= 0 && currentUser.getFutureEvents().contains(event))
+            if (startTime.isAfter(now) && currentUser.getFutureEvents().contains(event))
                 currentUser.moveToNow(event);
             // case2 move ongoingEvent
-            if (endTime.compareTo(now) <=0 && currentUser.getOngoingEvents().contains(event))
+            if (endTime.isBefore(now) && currentUser.getOngoingEvents().contains(event))
                 currentUser.moveToNow(event);
         }
 

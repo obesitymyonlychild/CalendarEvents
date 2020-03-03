@@ -9,28 +9,48 @@ public class CalendarShow {
         currentUser = user;
     }
 
-    public static void showOngoingEvent(){
-        for(Event event: currentUser.getOngoingEvents())
-            System.out.println(event);
+    public static ArrayList<Event> showOngoingEvent(){
+
+        ArrayList<Event> events = currentUser.getOngoingEvents();
+        int index = 0;
+        for(Event event: currentUser.getOngoingEvents()){
+            System.out.println(index + event.toString());
+            index++;
+        }
+        return events;
     }
 
-    public static void showPastEvent(){
-        for(Event event: currentUser.getPastEvents())
-            System.out.println(event);
+    public static ArrayList<Event> showPastEvent(){
+        ArrayList<Event> events = currentUser.getOngoingEvents();
+        int index = 0;
+        for(Event event: currentUser.getPastEvents()){
+            System.out.println(index + event.toString());
+            index++;
+        }
+        return events;
     }
 
-    public static void showFutureEvent(){
-        for(Event event: currentUser.getFutureEvents())
-            System.out.println(event);
+    public static ArrayList<Event> showFutureEvent(){
+        ArrayList<Event> events = currentUser.getOngoingEvents();
+        int index = 0;
+        for(Event event: currentUser.getFutureEvents()){
+            System.out.println(index + event.toString());
+            index++;
+        }
+        return events;
     }
 
-    public static void showEvents(){
-        for(Event event: currentUser.getEvents())
-            System.out.println(event);
+    public static ArrayList<Event> showEvents(){
+        ArrayList<Event> events = currentUser.getOngoingEvents();
+        int index = 0;
+        for(Event event: currentUser.getEvents()){
+            System.out.println(index + event.toString());
+            index++;
+        }
+        return events;
     }
 
     public static ArrayList<Event> showTodayEvents(){
-
         LocalDateTime now = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         String nowString = now.format(formatter);
@@ -40,7 +60,6 @@ public class CalendarShow {
         for (Event event: currentUser.getOngoingEvents()) {
             if (event.getStartTime().format(formatter).equals(nowString)) {
                 detective = true;
-                System.out.println(event);
                 events.add(event);
             }
         }
@@ -48,17 +67,23 @@ public class CalendarShow {
         if (!detective){
             System.out.println("No task today");
             return null;
-        } else
+        } else{
+            int index = 0;
+            for (Event event: events){
+                System.out.println(index + event.toString());
+                index++;
+            }
             return events;
+        }
     }
 
-    public static void showMemo() {
+    public static void showMemo(){
         // border
         for(Memo memo: currentUser.getMemos())
             System.out.println(memo);
     }
 
-    public static void showSeries() {
+    public static void showSeries(){
         for(Series series: currentUser.getSeries())
             System.out.println(series);
     }
