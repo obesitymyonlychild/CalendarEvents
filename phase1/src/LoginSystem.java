@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class LoginSystem {
 
-    static ArrayList Users = new ArrayList();
+    static ArrayList<String> Users = new ArrayList<String>();
 
     public static void main(String[] args) throws IOException {
         ObjectOutputStream users = new ObjectOutputStream(new FileOutputStream("Users"));
@@ -27,12 +27,12 @@ public class LoginSystem {
         return false;
     }
 
-    private static ArrayList openUpUsersFile() throws IOException, ClassNotFoundException {
+    private static ArrayList<String> openUpUsersFile() throws IOException, ClassNotFoundException {
         ObjectInputStream is = new ObjectInputStream(new FileInputStream("Users"));
-        return (ArrayList) is.readObject();
+        return (ArrayList<String>) is.readObject();
     }
 
-    private static void writeInUsersFile(ArrayList Users) throws IOException {
+    private static void writeInUsersFile(ArrayList<String> Users) throws IOException {
         ObjectOutputStream userList = new ObjectOutputStream(new FileOutputStream("Users"));
         userList.writeObject(Users);
         userList.close();
@@ -41,7 +41,7 @@ public class LoginSystem {
 
     public static void createAccount() throws IOException, ClassNotFoundException {
         ObjectInputStream is = new ObjectInputStream(new FileInputStream("Users"));
-        Users = (ArrayList) is.readObject();
+        Users = (ArrayList<String>) is.readObject();
         Scanner input = new Scanner(System.in);
         System.out.println("Type in your name:");
         String name = input.next();
@@ -91,29 +91,29 @@ public class LoginSystem {
 
 
     public static boolean login() throws IOException, ClassNotFoundException {
-            Scanner input = new Scanner(System.in);
+        Scanner input = new Scanner(System.in);
+        System.out.println("Please type in your account name(Type Esc to exit):");
+        String name = input.next();
+        while (!whetherUserExit(name)){
+            System.out.println("This account does not exist");
             System.out.println("Please type in your account name(Type Esc to exit):");
-            String name = input.next();
-            while (!whetherUserExit(name)){
-                System.out.println("This account does not exist");
-                System.out.println("Please type in your account name(Type Esc to exit):");
-                name = input.next();
-            }
-            if (name.equals("Esc"))
-                return false;
-            System.out.println("Please type in your password:");
-            String password = input.next();
-            while (!whetherPasswordMatch(name,password)){
-                System.out.println("Password is not correct");
-                System.out.println("Please type in your password(Type Esc to exit):");
-                password = input.next();
-            }
-            if (name == "Esc")
-                 return false;
+            name = input.next();
+        }
+        if (name.equals("Esc"))
+            return false;
+        System.out.println("Please type in your password:");
+        String password = input.next();
+        while (!whetherPasswordMatch(name,password)){
+            System.out.println("Password is not correct");
+            System.out.println("Please type in your password(Type Esc to exit):");
+            password = input.next();
+        }
+        if (name == "Esc")
+            return false;
         ObjectInputStream is = new ObjectInputStream(new FileInputStream(name));
         User user = (User) is.readObject();
         Calendar.setCurrentUser(user);
-            return true;
+        return true;
     }
 
 
