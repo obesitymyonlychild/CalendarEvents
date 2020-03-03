@@ -108,9 +108,10 @@ public class Event implements java.io.Serializable, Comparable<Event> {
         Alert a;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         LocalDateTime t = LocalDateTime.parse(startTime, formatter);
+        LocalDateTime time;
         for (int i = 0; i<num; i++){
-            t = getStartTimeForAlert(t, i, unit);
-            a = new Alert(this, t);
+            time = getStartTimeForAlert(t, i, unit);
+            a = new Alert(this, time);
             alerts.add(a);
         }
     }
