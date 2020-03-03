@@ -2,8 +2,7 @@ import java.util.ArrayList;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Collections;
-import java.util.Comparator;
-//import java.io.Serializable
+
 
 public class Event implements java.io.Serializable, Comparable<Event> {
 
@@ -120,11 +119,7 @@ public class Event implements java.io.Serializable, Comparable<Event> {
         //leads to unreferenced Alert object?
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         LocalDateTime t = LocalDateTime.parse(startTime, formatter);
-        for (Alert a : alerts) {
-            if (t.isEqual(a.getStartTime())) {
-                alerts.remove(a);
-            }
-        }
+        alerts.removeIf(a -> t.isEqual(a.getStartTime()));
     }
 
     public void turnOnAlert(){
@@ -172,6 +167,10 @@ public class Event implements java.io.Serializable, Comparable<Event> {
 
     public void orderAlert(){
         Collections.sort(this.alerts);
+    }
+
+    public LocalDateTime getEndTime(){
+        return startTime.plusMinutes(duration);
     }
 
     @Override
