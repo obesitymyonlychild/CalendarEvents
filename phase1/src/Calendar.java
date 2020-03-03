@@ -39,10 +39,10 @@ public class Calendar {
             LocalDateTime endTime = event.getEndTime();
 
             // case1 move futureEvent
-            if (startTime.compareTo(now) <= 0 && currentUser.getFutureEvents().contains(event))
+            if (startTime.isAfter(now) && currentUser.getFutureEvents().contains(event))
                 currentUser.moveToNow(event);
             // case2 move ongoingEvent
-            if (endTime.compareTo(now) <=0 && currentUser.getOngoingEvents().contains(event))
+            if (endTime.isBefore(now) && currentUser.getOngoingEvents().contains(event))
                 currentUser.moveToNow(event);
         }
 
@@ -52,30 +52,51 @@ public class Calendar {
         setCurrentUser(null);
     }
 
-    public static void showOngoingEvent(){
+    public static ArrayList<Event> showOngoingEvent(){
 
-        for(Event event: currentUser.getOngoingEvents())
-            System.out.println(event);
-
-    }
-
-    public static void showPastEvent(){
-
-        for(Event event: currentUser.getPastEvents())
-            System.out.println(event);
+        ArrayList<Event> events = currentUser.getOngoingEvents();
+        int index = 0;
+        for(Event event: currentUser.getOngoingEvents()){
+            System.out.println(index + event.toString());
+            index++;
+        }
+        return events;
 
     }
 
-    public static void showFutureEvent(){
+    public static ArrayList<Event> showPastEvent(){
 
-        for(Event event: currentUser.getFutureEvents())
-            System.out.println(event);
+        ArrayList<Event> events = currentUser.getOngoingEvents();
+        int index = 0;
+        for(Event event: currentUser.getPastEvents()){
+            System.out.println(index + event.toString());
+            index++;
+        }
+        return events;
+
     }
 
-    public static void showEvents(){
+    public static ArrayList<Event> showFutureEvent(){
 
-        for(Event event: currentUser.getEvents())
-            System.out.println(event);
+        ArrayList<Event> events = currentUser.getOngoingEvents();
+        int index = 0;
+        for(Event event: currentUser.getFutureEvents()){
+            System.out.println(index + event.toString());
+            index++;
+        }
+        return events;
+
+    }
+
+    public static ArrayList<Event> showEvents(){
+
+        ArrayList<Event> events = currentUser.getOngoingEvents();
+        int index = 0;
+        for(Event event: currentUser.getEvents()){
+            System.out.println(index + event.toString());
+            index++;
+        }
+        return events;
 
     }
 
@@ -90,7 +111,6 @@ public class Calendar {
         for (Event event: currentUser.getOngoingEvents()) {
             if (event.getStartTime().format(formatter).equals(nowString)) {
                 detective = true;
-                System.out.println(event);
                 events.add(event);
             }
         }
@@ -98,8 +118,15 @@ public class Calendar {
         if (!detective){
             System.out.println("No task today");
             return null;
-        } else
+        } else{
+            int index = 0;
+            for (Event event: events){
+                System.out.println(index + event.toString());
+                index++;
+            }
             return events;
+
+        }
 
     }
 
@@ -175,7 +202,7 @@ public class Calendar {
         ArrayList<Event> events = new ArrayList<Event>();
         boolean detective = false;
         for(Event event: currentUser.getEvents()){
-            if(event.getStartTime().compareTo(search) >= 0  &&  event.getEndTime().compareTo(search) <= 0){
+            if(event.getStartTime().isBefore(search)  &&  event.getEndTime().isAfter(search)){
                 detective = true;
                 events.add(event);
             }
@@ -271,7 +298,7 @@ public class Calendar {
         LocalDateTime endTime = LocalDateTime.parse(scan.nextLine(), formatter);
 
         for(Alert alert: currentUser.getAlertList()){
-            if (alert.getStartTime().compareTo(startTime) >= 0  &&  alert.getStartTime().compareTo(endTime) <= 0)
+            if (alert.getStartTime().isAfter(startTime) &&  alert.getStartTime().isBefore(endTime))
                 System.out.println(alert);
         }
 
