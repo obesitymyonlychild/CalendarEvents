@@ -188,6 +188,7 @@ public class User implements Serializable {
             };
         }
         System.out.println("Series does not exists!");
+        return null;
     }
 
 }
