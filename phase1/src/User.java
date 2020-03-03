@@ -122,6 +122,7 @@ public class User implements Serializable{
     public void createMemo(String name, String content){
         Memo mm = new Memo(name, content);
         this.memos.add(mm);
+        System.out.println("Memo added successfully!");
     }
 
     public void deleteMemos(String name){
@@ -135,6 +136,9 @@ public class User implements Serializable{
         }
         if (!res){
             System.out.println("No such memo exists!");
+        }
+        else{
+            System.out.println("Memo added successfully!");
         }
     }
 
@@ -157,6 +161,7 @@ public class User implements Serializable{
         else{
             this.ongoingEvents.add(evt);
         }
+        System.out.println("Event added successfully!");
     }
 
     public void deleteEvent(String name){
@@ -184,8 +189,12 @@ public class User implements Serializable{
                 break;
             }
         }
+
         if (!res){
             System.out.println("No such event exists!");
+        }
+        else{
+            System.out.println("Event added successfully!");
         }
     }
 
