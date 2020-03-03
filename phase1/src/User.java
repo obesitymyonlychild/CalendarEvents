@@ -10,7 +10,7 @@ public class User implements Serializable{
     private ArrayList<Event> ongoingEvents;
     private ArrayList<Event> events;
     private ArrayList<Memo> memos;
-    boolean alertOn;
+    private boolean alertOn;
     private ArrayList<Alert> alertList;
     private ArrayList<Series> series;
 
