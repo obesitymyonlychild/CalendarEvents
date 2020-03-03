@@ -118,6 +118,7 @@ public class Series implements java.io.Serializable {
         for (Event e : events){
             result = result + e.getName() + " ";
         }
+        return result;
     }
 
 }
