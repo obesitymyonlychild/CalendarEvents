@@ -68,7 +68,8 @@ public class Alert implements java.io.Serializable, Comparable<Alert> {
 
     // toString example: workout on 2020-March-1 13:00
     public String toString() {
-        String s = this.event.name + " " + "on" + " " + this.event.startTime;
+        String s1 = this.event.toString().replace("T", " ");
+        String s = this.event.getName() + " " + "on" + " " + s1;
         return String.format("Alert: %s", s);
 
     }
