@@ -8,10 +8,10 @@ import java.util.ArrayList;
 public class Series implements java.io.Serializable {
 
     //name of the Series
-    String name;
+    private String name;
 
     //list of events in this series
-    ArrayList<Event> events;
+    private ArrayList<Event> events;
 
     public Series(String name){
         this.name = name;
@@ -77,6 +77,8 @@ public class Series implements java.io.Serializable {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         LocalDateTime t = LocalDateTime.parse(startTime, formatter);
         switch (unit){
+            case MINUTE:
+                createEventInMiniute(nameOfEvent, t, duration, address, num);
             case HOUR:
                 createEventInHour(nameOfEvent, t, duration,  address, num);
                 break;
@@ -93,13 +95,22 @@ public class Series implements java.io.Serializable {
                 createEventInYear(nameOfEvent, t, duration,  address, num);
                 break;
             default:
-                createEventInMiniute(nameOfEvent, t, duration, address, num);
+                Event e = new Event(nameOfEvent, t.toString().replace("T", " "), duration, address);
+                events.add(e);
         }
     }
 
     public void addToSeries(String nameOfEvent, String startTime, long duration, String address){
         Event e = new Event(nameOfEvent, startTime, duration, address);
         events.add(e);
+    }
+
+    public String getName(){
+        return this.name;
+    }
+
+    public ArrayList<Event> getEvents(){
+        return this.events;
     }
 
 }

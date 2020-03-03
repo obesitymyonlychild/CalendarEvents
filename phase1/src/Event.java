@@ -1,9 +1,11 @@
 import java.util.ArrayList;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Collections;
+import java.util.Comparator;
 //import java.io.Serializable
 
-public class Event implements java.io.Serializable {
+public class Event implements java.io.Serializable, Comparable<Event> {
 
     //name of the event
     String name;
@@ -84,14 +86,51 @@ public class Event implements java.io.Serializable {
         this.address = address;
     }
 
-    public void setAlert(String startTime, int num, Unit unit) {
-
-        Alert a = new Alert(this, startTime, num, unit);
+    private LocalDateTime getStartTimeForAlert(LocalDateTime t, int increment, Unit unit){
+        switch (unit){
+            case MINUTE:
+                return t.plusMinutes(increment);
+            case HOUR:
+                return t.plusHours(increment);
+                break;
+            case DAY:
+                return t.plusDays(increment);
+                break;
+            case WEEK:
+                return t.plusWeeks(increment);
+                break;
+            case MONTH:
+                return t.plusMonths(increment);
+                break;
+            case YEAR:
+                return t.plusYears(increment);
+                break;
+            default:
+                return t;
+        }
     }
 
-    public void deleteAlert(){
+    public void setAlert(String startTime, int num, Unit unit) {
+        // no alert at same time
+        Alert a;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        LocalDateTime t = LocalDateTime.parse(startTime, formatter);
+        for (int i = 0; i<num; i++){
+            t = getStartTimeForAlert(t, i, unit);
+            a = new Alert(this, t);
+            alerts.add(a);
+        }
+    }
+
+    public void deleteAlert(String startTime){
         //leads to unreferenced Alert object?
-        alert = null;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        LocalDateTime t = LocalDateTime.parse(startTime, formatter);
+        for (Alert a : alerts) {
+            if (t.isEqual(a.getStartTime())) {
+                alerts.remove(a);
+            }
+        }
     }
 
     public void turnOnAlert(){
@@ -135,6 +174,22 @@ public class Event implements java.io.Serializable {
         LocalDateTime endTime = startTime.plusMinutes(duration);
         result = result + endTime.toString() + " at " + address;
         return result;
+    }
+
+    public ArrayList<Alert> OrdereAlert(){
+        Collections.sort(this.alerts);
+    }
+
+    @Override
+    public int compareTo(Event e1) {
+        if (this.startTime.isEqual(e1.startTime)) {
+            return 0;
+        }else if (this.startTime.isBefore(e1.startTime)) {
+            return -1;
+        }else{
+            return 1;
+        }
+
     }
 
 }
