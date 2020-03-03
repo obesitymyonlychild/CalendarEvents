@@ -113,4 +113,11 @@ public class Series implements java.io.Serializable {
         return this.events;
     }
 
+    public String toString(){
+        String result = name + ": \n";
+        for (Event e : events){
+            result = result + e.getName() + " ";
+        }
+    }
+
 }
