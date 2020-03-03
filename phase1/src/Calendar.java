@@ -40,16 +40,13 @@ public class Calendar {
         }
 
 
-
-
-
     }
 
     public static void logout() {
         setCurrentUser(null);
     }
 
-    public static void ShowOngoingEvent(){
+    public static void showOngoingEvent(){
 
         for(Event event: currentUser.getOngoingEvents())
             System.out.println(event);
@@ -63,7 +60,7 @@ public class Calendar {
 
     }
 
-    public static void ShowFutureEvent(){
+    public static void showFutureEvent(){
 
         for(Event event: currentUser.getFutureEvents())
             System.out.println(event);
@@ -77,29 +74,27 @@ public class Calendar {
     }
 
     public static ArrayList<Event> showTodayEvents(){
+        // edit
+        return currentUser.getPastEvents();
 
     }
 
     public static void showMemo(){
-        //边框
+        // border
         for(Memo memo: currentUser.getMemos())
             System.out.println(memo);
 
     }
 
-    public static void showNotification(){
-        //println alerts with time range(input)
-        Scanner scan = new Scanner(System.in);
-        System.out.println("Please enter the start time with the format yyyy-MM-dd HH:mm");
-        String
-
-
-        String startTime = scan.nextLine();
-
+    public static void showSeries(){
+        System.out.println("haha");
 
     }
 
+
     public static void alert(){
+
+        // check user alert on and event alert on
 
         LocalDateTime now = LocalDateTime.now();
         boolean detective = false;
@@ -135,15 +130,13 @@ public class Calendar {
 
     public static Event searchEventByDate(){
         // how to compare
-        System.out.println("Please enter a date with the format yyyy-MM-dd HH:mm ");
+        System.out.println("Please enter a date with the format yyyy-MM-dd HH:mm");
         Scanner scan = new Scanner(System.in);
         String input = scan.nextLine();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         LocalDateTime search = LocalDateTime.parse(input, formatter);
         for(Event event: currentUser.getEvents()){
-            LocalDateTime eventYear = event.getStartTime().format(formatter);
-            LocalDateTime eventDate = LocalDateTime.parse();
-            if(eventYear == search){
+            if(event.getStartTime().compareTo(search) >= 0  &&  event.getEndTime().compareTo(search) <= 0){
                 System.out.println(event);
                 return event;
             }
@@ -153,9 +146,9 @@ public class Calendar {
     }
 
 
-    public static Event searchEventByDuration(){
-        //no requirement
-    }
+//    public static Event searchEventByDuration(){
+//        no requirement
+//    }
 
     public static Memo searchEventByMemo(){
         System.out.println("Please enter a keyword to search memo");
@@ -172,9 +165,33 @@ public class Calendar {
         }
     }
 
+    public static Event searchEventByName(){
+        // edit
+        return currentUser.getPastEvents().get(0);
+    }
+
+    public static void searchAlerts(){
+        //println alerts with time range(input)
+        Scanner scan = new Scanner(System.in);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+
+        System.out.println("Please enter the start time with the format yyyy-MM-dd HH:mm");
+        LocalDateTime startTime = LocalDateTime.parse(scan.nextLine(), formatter);
+        System.out.println("Please enter the end time with the format yyyy-MM-dd HH:mm");
+        LocalDateTime endTime = LocalDateTime.parse(scan.nextLine(), formatter);
+
+        for(Alert alert: currentUser.getAlertList()){
+            if (alert.getStartTime().compareTo(startTime) >= 0  &&  alert.getStartTime().compareTo(endTime) <= 0)
+                System.out.println();
+
+        }
+
+    }
+
     public static Event searchEventBySeriesName(){
         // From User get the Arraylist of series
 
+        return currentUser.getPastEvents().get(0);
 
     }
 
