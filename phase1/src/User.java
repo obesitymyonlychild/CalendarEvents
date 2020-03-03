@@ -67,6 +67,18 @@ public class User implements Serializable{
         this.events = evts;
     }
 
+    public boolean getAlertOn(){
+        return this.alertOn;
+    }
+
+    public void setAlertOn() {
+        this.alertOn = true;
+    }
+
+    public void setAlertOff(){
+        this.alertOn = false;
+    }
+
     public ArrayList<Alert> getAlertList() {
         return alertList;
     }
@@ -79,7 +91,7 @@ public class User implements Serializable{
         return memos;
     }
 
-    public void setMemo(ArrayList<Memo> mem) {
+    public void setMemos(ArrayList<Memo> mem) {
         this.memos = mem;
     }
 
