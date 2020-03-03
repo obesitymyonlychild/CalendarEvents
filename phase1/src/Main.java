@@ -23,15 +23,15 @@ public class Main {
         System.out.println("Successfully log in\n\n\n");
         System.out.println("Today's Event!!!");
         ArrayList todayEvent = Calendar.showTodayEvents();
-        System.out.println(todayEvent);
         if (todayEvent.size()>0){
             for (Object o : todayEvent) {
                 System.out.println(o);
             }}
         System.out.println("Category\n");
         for (int i=0;i<20;i++){
-            System.out.println("=");
+            System.out.print("=");
         }
+        System.out.println("\n");
         System.out.println("| Past Event     |");
         System.out.println("| Ongoing Event  |");
         System.out.println("| Future Event   |");
