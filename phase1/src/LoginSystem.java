@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class LoginSystem {
 
-    static ArrayList Users = new ArrayList();
+    static ArrayList<String> Users = new ArrayList<String>();
 
     public static void main(String[] args) throws IOException {
         ObjectOutputStream users = new ObjectOutputStream(new FileOutputStream("Users"));
@@ -27,12 +27,12 @@ public class LoginSystem {
         return false;
     }
 
-    private static ArrayList openUpUsersFile() throws IOException, ClassNotFoundException {
+    private static ArrayList<String> openUpUsersFile() throws IOException, ClassNotFoundException {
         ObjectInputStream is = new ObjectInputStream(new FileInputStream("Users"));
-        return (ArrayList) is.readObject();
+        return (ArrayList<String>) is.readObject();
     }
 
-    private static void writeInUsersFile(ArrayList Users) throws IOException {
+    private static void writeInUsersFile(ArrayList<String> Users) throws IOException {
         ObjectOutputStream userList = new ObjectOutputStream(new FileOutputStream("Users"));
         userList.writeObject(Users);
         userList.close();
@@ -41,7 +41,7 @@ public class LoginSystem {
 
     public static void createAccount() throws IOException, ClassNotFoundException {
         ObjectInputStream is = new ObjectInputStream(new FileInputStream("Users"));
-        Users = (ArrayList) is.readObject();
+        Users = (ArrayList<String>) is.readObject();
         Scanner input = new Scanner(System.in);
         System.out.println("Type in your name:");
         String name = input.next();
