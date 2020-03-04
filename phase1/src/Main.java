@@ -40,82 +40,82 @@ public class Main {
                 System.out.println(o);
             }
         }
-        System.out.println("Category\n");
-        for (int i = 0; i < 20; i++) {
-            System.out.println("=");
+        while (true) {
+            System.out.println("Category\n");
+            for (int i = 0; i < 20; i++) {
+                System.out.println("=");
+            }
+            System.out.println("| Past Event     |");
+            System.out.println("| Ongoing Event  |");
+            System.out.println("| Future Event   |");
+            System.out.println("| All Event      |");
+            System.out.println("| Series         |");
+            System.out.println("| Memo           |");
+            System.out.println("| Search         |");
+            System.out.println("| Add Event      |");
+            System.out.println("Type in command:");
+            Scanner scan = new Scanner(System.in);
+            String command = scan.next();
+            switch (command) {
+                case "Past Event":
+                case "past event":
+                case "pastevent":
+                case "PastEvent": {
+                    pastEventSimulation();
+                    break;
+                }
+                case "Ongoing Event":
+                case "ongoing event":
+                case "ongoingevent":
+                case "OngoingEvent": {
+                    onGoingEventSimulation();
+                    break;
+                }
+                case "Future Event":
+                case "futureevent":
+                case "FutureEvent":
+                case "future event": {
+                    futureEventSimulation();
+                    break;
+                }
+                case "All Event":
+                case "allevent":
+                case "AllEvent":
+                case "all event": {
+                    allEventSimulation();
+                    break;
+                }
+                case "Series":
+                case "series": {
+                    seriesSimulation();
+                    break;
+                }
+                case "Memo":
+                case "memo": {
+                    memoSimulation();
+                    break;
+                }
+                case "Search":
+                case "search": {
+                    searchSimulation();
+                    break;
+                }
+                case "Add Event":
+                case "add event":
+                case "addevent":
+                case "AddEvent": {
+                    addEventSimulation();
+                    break;
+                }
+
+                default: {
+                    System.out.println("Wrong input!!!");
+                }
+            }
+            // user should be able to choose whether to continue (call logInSimulation) or log out
+
+
         }
-        System.out.println("| Past Event     |");
-        System.out.println("| Ongoing Event  |");
-        System.out.println("| Future Event   |");
-        System.out.println("| All Event      |");
-        System.out.println("| Series         |");
-        System.out.println("| Memo           |");
-        System.out.println("| Search         |");
-        System.out.println("| Add Event      |");
-        System.out.println("Type in command:");
-        Scanner scan = new Scanner(System.in);
-        String command = scan.next();
-        switch (command) {
-            case "Past Event":
-            case "past event":
-            case "pastevent":
-            case "PastEvent": {
-                pastEventSimulation();
-                break;
-            }
-            case "Ongoing Event":
-            case "ongoing event":
-            case "ongoingevent":
-            case "OngoingEvent": {
-                onGoingEventSimulation();
-                break;
-            }
-            case "Future Event":
-            case "futureevent":
-            case "FutureEvent":
-            case "future event": {
-                futureEventSimulation();
-                break;
-            }
-            case "All Event":
-            case "allevent":
-            case "AllEvent":
-            case "all event": {
-                allEventSimulation();
-                break;
-            }
-            case "Series":
-            case "series": {
-                seriesSimulation();
-                break;
-            }
-            case "Memo":
-            case "memo": {
-                memoSimulation();
-                break;
-            }
-            case "Search":
-            case "search": {
-                searchSimulation();
-                break;
-            }
-            case "Add Event":
-            case "add event":
-            case "addevent":
-            case "AddEvent": {
-                addEventSimulation();
-                break;
-            }
-
-            default: {
-                System.out.println("Wrong input!!!");
-                logInSimulation();
-            }
-        }
-        // user should be able to choose whether to continue (call logInSimulation) or log out
-        logInSimulation();
-
-
     }
 
     // why this method is public
