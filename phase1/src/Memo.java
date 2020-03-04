@@ -80,6 +80,11 @@ public class Memo implements java.io.Serializable{
 
     }
 
-
-
+    public void showEvents() {
+        for (int i=0; i < this.events.size(); i++){
+            int j = i + 1;
+            String s = String.valueOf(j);
+            System.out.println(s + "." + this.events.get(i).getName());
+        }
+    }
 }
