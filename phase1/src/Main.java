@@ -32,6 +32,7 @@ public class Main {
         ArrayList<Event> todayEvent = Calendar.showTodayEvents();
         //reformat this using a method
         System.out.println(todayEvent);
+        //why assert? todayEvent is possible to be null?
         assert todayEvent != null;
         //already print out the event, why print again?
         if (todayEvent.size() > 0) {
