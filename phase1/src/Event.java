@@ -140,8 +140,9 @@ public class Event implements java.io.Serializable, Comparable<Event> {
         tags.add(tag);
     }
 
-    public void deleteTag(String tag) {
-        tags.remove(tag);
+    public boolean deleteTag(String tag) {
+        boolean success = tags.remove(tag);
+        return success;
     }
 
     public void addNewMemo(String name, String content){
@@ -150,12 +151,40 @@ public class Event implements java.io.Serializable, Comparable<Event> {
         m.addEvent(this.name, this.startTime.toString().replace("T", " "), this.duration, this.address);
     }
 
-    public void deleteMemo(String nameOfMemo) {
+    public boolean deleteMemo(String nameOfMemo) {
         for (Memo m : memos){
             if (m.getName().equals(nameOfMemo)){
                 m.deleteEvent(this.name, this.startTime.toString().replace("T", " "), duration, address);
                 memos.remove(m);
+                return true;
             }
+        }
+        return false;
+    }
+
+    public void showMemos(){
+        if (memos.size() == 0){
+            System.out.println("no memo in this event!");
+        }
+        else {
+            String result = "";
+            for (int i = 0; i < memos.size(); i++){
+                result = result + Integer.toString(i+1) + " " + memos.get(i).getName() + "\n";
+            }
+            System.out.println(result);
+        }
+    }
+
+    public void showAlerts(){
+        if (alerts.size() == 0){
+            System.out.println("no alert in this event!");
+        }
+        else {
+            String result = "";
+            for (int i = 0; i < alerts.size(); i++){
+                result = result + Integer.toString(i + 1) + " " + alerts.toString() + "\n";
+            }
+            System.out.println(result);
         }
     }
 
