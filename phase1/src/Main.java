@@ -31,6 +31,7 @@ public class Main1 {
         System.out.println("Today's Event!!!");
         ArrayList todayEvent = Calendar.showTodayEvents();
         System.out.println(todayEvent);
+        assert todayEvent != null;
         if (todayEvent.size() > 0) {
             for (Object o : todayEvent) {
                 System.out.println(o);
@@ -103,15 +104,20 @@ public class Main1 {
 
     }
 
+    public static void helperOfSimulationMessage(){
+        System.out.println("Type in the index of the event:");
+        System.out.println("if you want to go back to main, type in -1");
+    }
+
 
     public static void pastEventSimulation(){
         while (true){
         System.out.println("past events: \n");
         ArrayList<Event> pe = Calendar.showPastEvent();
-        System.out.println("Type in the index of the event:");
-        System.out.println("if you want to go back to main, type in -1");
-        Integer index = -1;
+        helperOfSimulationMessage();
+        int index = -1;
         try {
+
             Scanner scan = new Scanner(System.in);
             index = scan.nextInt();
             Event e = pe.get(index-1);
@@ -126,13 +132,13 @@ public class Main1 {
         }}
     }
 
+
     public static void onGoingEventSimulation(){
         while (true){
         System.out.println("on going events: \n");
         ArrayList<Event> oe = Calendar.showOngoingEvent();
-        System.out.println("Type in the index of the events");
-        System.out.println("if you want to go back to main, type in -1");
-        Integer index = -1;
+        helperOfSimulationMessage();
+        int index = -1;
         try {
             Scanner scan = new Scanner(System.in);
             index = scan.nextInt();
@@ -154,9 +160,8 @@ public class Main1 {
         while (true){
         System.out.println("future events: \n");
         ArrayList<Event> fe = Calendar.showFutureEvent();
-        System.out.println("Type in the index of the events");
-        System.out.println("if you want to go back to main, type in -1");
-        Integer index = -1;
+        helperOfSimulationMessage();
+        int index = -1;
         try {
             Scanner scan = new Scanner(System.in);
             index = scan.nextInt();
@@ -178,9 +183,8 @@ public class Main1 {
         while (true){
         System.out.println("all events: \n");
         ArrayList<Event> ae = Calendar.showEvents();
-        System.out.println("Type in the index of the events");
-        System.out.println("if you want to go back to main, type in -1");
-        Integer index = -1;
+        helperOfSimulationMessage();
+        int index = -1;
         try {
             Scanner scan = new Scanner(System.in);
             index = scan.nextInt();
@@ -192,7 +196,7 @@ public class Main1 {
                 return;
             } else {
                 System.out.println("invalid index!");
-                ;
+
             }
         }
         }
@@ -202,9 +206,8 @@ public class Main1 {
         while (true){
         System.out.println("all series: \n");
         ArrayList<Series> s = Calendar.showSeries();
-        System.out.println("Type in the index of the Series");
-        System.out.println("if you want to go back to main, type in -1");
-        Integer index = -1;
+        helperOfSimulationMessage();
+        int index = -1;
         try {
             Scanner scan = new Scanner(System.in);
             index = scan.nextInt();
@@ -226,9 +229,8 @@ public class Main1 {
         while (true){
         System.out.println("all memos: \n");
         ArrayList<Memo> m = Calendar.showMemo();
-        System.out.println("Type in the index of the events");
-        System.out.println("if you want to go back to main, type in -1");
-        Integer index = -1;
+        helperOfSimulationMessage();
+        int index = -1;
         try {
             Scanner scan = new Scanner(System.in);
             index = scan.nextInt();
@@ -287,7 +289,6 @@ public class Main1 {
                     Calendar.searchEventByDate();
                 case "memo":
                     Calendar.searchEventByMemo();
-                case "eventname":
                 case "event name":
                     Calendar.searchEventByName();
                 case "series":
@@ -327,9 +328,8 @@ public class Main1 {
         while (true){
         System.out.println("events in series");
         s0.showEvents(); // index line by line
-        System.out.println("Type in the index of the events");
-        System.out.println("if you want to go back to main, type in -1");
-        Integer index = -1;
+        helperOfSimulationMessage();
+        int index = -1;
         try {
             Scanner scan = new Scanner(System.in);
             index = scan.nextInt();
@@ -350,9 +350,8 @@ public class Main1 {
         while (true){
         System.out.println("events in memos");
         m0.showEvents(); // index line by line
-        System.out.println("Type in the index of the events");
-        System.out.println("if you want to go back to main, type in -1");
-        Integer index = -1;
+        helperOfSimulationMessage();
+        int index = -1;
         try {
             Scanner scan = new Scanner(System.in);
             index = scan.nextInt();
@@ -397,7 +396,7 @@ public class Main1 {
                 Calendar.getterCurrentUser().deleteEvent(event.getName());
                 System.out.println("successfully delete this event");
                 return;
-            };
+            }
             case "view event":{
                 while (true){
                 System.out.println(event);
@@ -412,7 +411,7 @@ public class Main1 {
                         break;
                     }
                     default:{
-                        System.out.println("Wrong input");;
+                        System.out.println("Wrong input");
                     }
                 }}
             }
@@ -443,7 +442,7 @@ public class Main1 {
                 while(true) {
                     try {
                         System.out.println("type in the index of the memo: ");
-                        Integer index = scan.nextInt();
+                        int index = scan.nextInt();
                         m0 = event.getMemos().get(index);
                         break;
                     } catch (Exception e) {
@@ -459,7 +458,7 @@ public class Main1 {
                 while(true) {
                     try {
                         System.out.println("type in the index of the alert: ");
-                        Integer i = scan.nextInt();
+                        int i = scan.nextInt();
                         a0 = event.getAlerts().get(i);
                         break;
                     } catch (Exception e) {
@@ -515,7 +514,7 @@ public class Main1 {
                         break;
                     }
                     default:{
-                        System.out.println("Wrong input");;
+                        System.out.println("Wrong input");
                     }
                 }}
             }
@@ -537,7 +536,7 @@ public class Main1 {
                         break;
                     }
                     default:{
-                        System.out.println("Wrong input");;
+                        System.out.println("Wrong input");
                     }
                     }
                 }}
@@ -595,7 +594,7 @@ public class Main1 {
                         break;
                     }
                     default:{
-                        System.out.println("Wrong input");;
+                        System.out.println("Wrong input");
                     }
                 }
             }}
@@ -633,7 +632,7 @@ public class Main1 {
                         break;
                     }
                     default:{
-                        System.out.println("Wrong input");;
+                        System.out.println("Wrong input");
                     }
                 }}
             }
@@ -656,7 +655,7 @@ public class Main1 {
                         break;
                     }
                     default:{
-                        System.out.println("Wrong input");;
+                        System.out.println("Wrong input");
                     }
                 }}
             }
