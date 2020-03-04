@@ -24,6 +24,7 @@ public class CalendarFacade {
     public CalendarFacade(){
         // no requirement
         calendarSearch = new CalendarSearch(currentUser);
+        calendarShow = new CalendarShow(currentUser);
     }
 
     // Call login system and set user to currentUser
