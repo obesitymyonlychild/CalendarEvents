@@ -339,7 +339,7 @@ public class Main {
             if (! back.equals("main")) {
                 try {
                     //implement this method
-                    Calendar.getterCurrentUser().createEvent(name, startTime, duration, address);
+                    Calendar.getCurrentUser().createEvent(name, startTime, duration, address);
                     System.out.println("event add successfully!");
                     return;
                 } catch (Exception e) {
@@ -424,7 +424,7 @@ public class Main {
             String command = scan.next();
             switch (command) {
                 case "delete event": {
-                    Calendar.getterCurrentUser().deleteEvent(event.getName());
+                    Calendar.getCurrentUser().deleteEvent(event.getName());
                     System.out.println("successfully delete this event");
                     return;
                 }
