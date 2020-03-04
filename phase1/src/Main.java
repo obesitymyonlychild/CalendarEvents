@@ -567,7 +567,7 @@ public class Main1 {
             case "set alert": {
                 while (true){
                 System.out.println("all the alerts in the events");
-                event.showAlert();
+                event.getAlerts();
                 while (true) {
                     try {
                         System.out.println("type in the information for the new alert");
@@ -640,7 +640,7 @@ public class Main1 {
             case "add tag": {
                 while (true){
                 System.out.println("current tags: ");
-                event.showTags(); //index line by line
+                event.getTags(); //index line by line
                 System.out.println("type in the new tag: ");
                 String newTag = scan.next();
                 event.addTag(newTag);
@@ -715,7 +715,7 @@ public class Main1 {
             case "delete memo": {
                 while (true) {
                     System.out.println("current memo names: ");
-                    event.showMemoName();
+                    event.getMemos();
                     System.out.println("type in the memo name you want to delete: ");
                     String name = scan.next();
                     if (event.deleteMemo(name)){
