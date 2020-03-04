@@ -621,7 +621,7 @@ public class Main {
                                 String unit = scan.next();
                                 System.out.println("repeat how many time: ");
                                 int num = scan.nextInt();
-                                event.setAlert(newStartTime, num, unit);
+                                event.setAlert(newStartTime, num, Unit.MINUTE);
                                 break;
                             } catch (Exception e) {
                                 System.out.println("invalid input");
