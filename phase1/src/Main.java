@@ -1,6 +1,3 @@
-import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
-import com.sun.tools.internal.xjc.reader.xmlschema.BindPurple;
-import jdk.nashorn.internal.runtime.ECMAException;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -342,7 +339,7 @@ public class Main {
             if (! back.equals("main")) {
                 try {
                     //implement this method
-                    Calendar.createEvent(name, startTime, duration, address);
+                    Calendar.getterCurrentUser().createEvent(name, startTime, duration, address);
                     System.out.println("event add successfully!");
                     return;
                 } catch (Exception e) {
