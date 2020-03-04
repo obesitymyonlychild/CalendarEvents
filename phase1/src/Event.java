@@ -188,6 +188,7 @@ public class Event implements java.io.Serializable, Comparable<Event> {
         }
     }
 
+
     public String toString(){
         String result = name + ": " + "from " + startTime.toString() + " to ";
         LocalDateTime endTime = startTime.plusMinutes(duration);

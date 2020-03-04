@@ -693,7 +693,7 @@ public class Main {
                 case "add tag": {
                     while (true) {
                         System.out.println("current tags: ");
-                        event.getTags(); //index line by line
+                        System.out.println(event.getTags());
                         System.out.println("type in the new tag: ");
                         String newTag = scan.next();
                         event.addTag(newTag);
@@ -719,6 +719,7 @@ public class Main {
                 case "delete tag": {
                     while (true) {
                         System.out.println("current tags: ");
+                        System.out.println(event.getTags());
                         System.out.println("type in the tag you want to delete: ");
                         String t = scan.next();
                         if (event.deleteTag(t)) {
