@@ -8,7 +8,7 @@ import java.util.TimerTask;
 public class Main {
     static ArrayList<String> Users = new ArrayList<String>();
     public static void main(String[] args) throws IOException, ClassNotFoundException {
-        File file = new File("ProjectGroups//Users");
+        File file = new File("Users");
         if (!file.exists()){
         ObjectOutputStream users = new ObjectOutputStream(new FileOutputStream("Users"));
         users.writeObject(Users);
@@ -339,6 +339,7 @@ public class Main {
             System.out.println("address: ");
             String address = scan.nextLine();
             String back = scan.nextLine();
+            System.out.println("Event add successfully!!!");
             System.out.println("if you want to go back to main, type in main");
             String main = scan.nextLine();
             if (! main.equals("main")) {
