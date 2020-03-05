@@ -624,15 +624,17 @@ public class Main {
                                 System.out.println("type in the information for the new alert");
                                 System.out.println("start time in format yyyy-MM-dd HH:mm");
                                 String newStartTime = scan.next();
-                                scan = new Scanner(System.in);
-                                String unit = scan.next();
                                 System.out.println("frequency: type in MINUTE or HOUR or DAY or WEEK or MONTH or YEAR or ONETIME");
+                                scan.nextLine();
+                                String unit = scan.next();
                                 Unit u = getUnit(unit);
-                                System.out.println("repeat how many time: ");
+                                scan.nextLine();
+                                System.out.println("repeat how many times: ");
                                 int num = scan.nextInt();
                                 event.setAlert(newStartTime, num, u);
                                 break;
                             } catch (Exception e) {
+                                e.printStackTrace();
                                 System.out.println("invalid input");
                             }
                         }
