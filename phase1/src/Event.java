@@ -13,7 +13,7 @@ public class Event implements java.io.Serializable, Comparable<Event> {
     private LocalDateTime startTime;
 
     //duration of the event in minute
-    private long duration;
+    private int duration;
 
     //address of the event
     private String address;
@@ -25,19 +25,19 @@ public class Event implements java.io.Serializable, Comparable<Event> {
     private ArrayList<Memo> memos;
 
     //the alert of the event
-    private ArrayList<Alert> alerts = new ArrayList<Alert>();
+    private ArrayList<Alert> alerts = new ArrayList<>();
 
     //a boolean indicates whether the alert of the event is on or off
     private boolean alertOn = true;
 
-    public Event(String name, String startTime, long duration, String address){
+    public Event(String name, String startTime, int duration, String address){
         this.name = name;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         this.startTime = LocalDateTime.parse(startTime, formatter);
         this.duration = duration;
         this.address = address;
-        this.tags = new ArrayList<String>();
-        this.memos = new ArrayList<Memo>();
+        this.tags = new ArrayList<>();
+        this.memos = new ArrayList<>();
     }
 
     public String getName() {
@@ -141,8 +141,7 @@ public class Event implements java.io.Serializable, Comparable<Event> {
     }
 
     public boolean deleteTag(String tag) {
-        boolean success = tags.remove(tag);
-        return success;
+        return tags.remove(tag);
     }
 
     public void addNewMemo(String name, String content){
@@ -168,8 +167,10 @@ public class Event implements java.io.Serializable, Comparable<Event> {
         }
         else {
             String result = "";
+            int j;
             for (int i = 0; i < memos.size(); i++){
-                result = result + Integer.toString(i+1) + " " + memos.get(i).getName() + "\n";
+                j = i + 1;
+                result = result + j + " " + memos.get(i).getName() + "\n";
             }
             System.out.println(result);
         }
@@ -181,8 +182,10 @@ public class Event implements java.io.Serializable, Comparable<Event> {
         }
         else {
             String result = "";
+            int j;
             for (int i = 0; i < alerts.size(); i++){
-                result = result + Integer.toString(i + 1) + " " + alerts.toString() + "\n";
+                j = i + 1;
+                result = result + j + " " + alerts.toString() + "\n";
             }
             System.out.println(result);
         }
