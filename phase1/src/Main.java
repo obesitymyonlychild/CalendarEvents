@@ -1,5 +1,8 @@
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -24,12 +27,16 @@ public class Main {
         logInSimulation();
     }
 
-    public static void logInSimulation() {
+    public static void logInSimulation() throws IOException {
         System.out.println("Today's Event!!!");
         ArrayList<Event> todayEvent = Calendar.showTodayEvents();
         //reformat this using a method
         System.out.println(todayEvent);
         while (true) {
+            String fileName =Calendar.getCurrentUser().getName();
+            ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(fileName));
+            os.writeObject(fileName);
+            os.close();
             System.out.println("Category\n");
             System.out.println("===============================");
             System.out.println("| Past Event     |");
@@ -388,7 +395,7 @@ public class Main {
         }
     }
 
-    public static void eventSimulation(Event event) {
+    public static void eventSimulation(Event event) throws IOException {
         while (true) {
             System.out.println("what do you want to do?");
             System.out.println("=====================================================");
@@ -798,7 +805,7 @@ public class Main {
     }
 
 // concern is the case for main and back
-    public static void alertSimulation(Event event, Alert a){
+    public static void alertSimulation(Event event, Alert a) throws IOException {
         System.out.println("what do you want to do with this alert?");
         System.out.println("| delete alert (type in delete)        |");
         System.out.println("| view this alert (type in view)       |");
