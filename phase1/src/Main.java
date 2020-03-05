@@ -10,7 +10,7 @@ public class Main {
         while (!flag) {
             while (true) {
                 System.out.println("Log in[type log]\nCreate new account[type create]");
-                String a = input.next();
+                String a = input.nextLine();
                 if (a.equals("log")) {
                     flag = LoginSystem.login();
                     break;
@@ -31,9 +31,7 @@ public class Main {
         System.out.println(todayEvent);
         while (true) {
             System.out.println("Category\n");
-            for (int i = 0; i < 20; i++) {
-                System.out.println("=");
-            }
+            System.out.println("===============================");
             System.out.println("| Past Event     |");
             System.out.println("| Ongoing Event  |");
             System.out.println("| Future Event   |");
@@ -44,7 +42,7 @@ public class Main {
             System.out.println("| Add Event      |");
             System.out.println("Type in command:");
             Scanner scan = new Scanner(System.in);
-            String command = scan.next();
+            String command = scan.nextLine();
             switch (command) {
                 case "Past Event":
                 case "past event":
@@ -292,7 +290,7 @@ public class Main {
         System.out.println("search by: ");
         System.out.println("if you want to go back to main, type main");
         Scanner scan = new Scanner(System.in);
-        String command = scan.next();
+        String command = scan.nextLine();
         switch (command) {
             case "tag":
                 Calendar.searchEventByTag();
@@ -319,15 +317,15 @@ public class Main {
             System.out.println("type in the event information");
             Scanner scan = new Scanner(System.in);
             System.out.println("name of the event: ");
-            String name = scan.next();
+            String name = scan.nextLine();
             System.out.println("start time in format: yyyy-MM-dd HH:mm");
-            String startTime = scan.next();
+            String startTime = scan.nextLine();
             System.out.println("duration in minute (type long): ");
-            Long duration = scan.nextLong();
+            int duration = scan.nextInt();
             System.out.println("address: ");
-            String address = scan.next();
+            String address = scan.nextLine();
             System.out.println("if you want to go back to main, type in main");
-            String back = scan.next();
+            String back = scan.nextLine();
             if (! back.equals("main")) {
                 try {
                     //implement this method
@@ -413,7 +411,7 @@ public class Main {
             System.out.println("| delete memo (type in delete memo)                 |");
             System.out.println("| back to main (type in main)                       |");
             Scanner scan = new Scanner(System.in);
-            String command = scan.next();
+            String command = scan.nextLine();
             switch (command) {
                 case "delete event": {
                     Calendar.getCurrentUser().deleteEvent(event.getName());
@@ -425,7 +423,7 @@ public class Main {
                         System.out.println(event);
                         System.out.println("type in back, if you want to do more with the event");
                         System.out.println("type in main, if you want to go back to main");
-                        String c = scan.next();
+                        String c = scan.nextLine();
                         switch (c) {
                             case "main": {
                                 return;
@@ -446,7 +444,7 @@ public class Main {
                         System.out.println(event.getTags());
                         System.out.println("type in back, if you want to do more with the event");
                         System.out.println("type in main, if you want to go back to main");
-                        String c = scan.next();
+                        String c = scan.nextLine();
                         switch (c) {
                             case "main": {
                                 return;
@@ -500,12 +498,12 @@ public class Main {
                     while (true) {
                         System.out.println("current name: " + event.getName());
                         System.out.println("type in the new name: ");
-                        String newName = scan.next();
+                        String newName = scan.nextLine();
                         event.setName(newName);
                         System.out.println("name set to: " + newName);
                         System.out.println("type in back, if you want to do more with the event");
                         System.out.println("type in main, if you want to go back to main");
-                        String c = scan.next();
+                        String c = scan.nextLine();
                         switch (c) {
                             case "main": {
                                 return;
@@ -526,7 +524,7 @@ public class Main {
                         while (true) {
                             try {
                                 System.out.println("type in the new start time in format yyyy-MM-dd HH:mm");
-                                String newStartTime = scan.next();
+                                String newStartTime = scan.nextLine();
                                 event.setStartTime(newStartTime);
                                 break;
                             } catch (Exception e) {
@@ -536,7 +534,7 @@ public class Main {
                         System.out.println("start time set to: " + event.getStartTime().toString().replace("T", " "));
                         System.out.println("type in back, if you want to do more with the event");
                         System.out.println("type in main, if you want to go back to main");
-                        String c = scan.next();
+                        String c = scan.nextLine();
                         switch (c) {
                             case "main": {
                                 return;
@@ -560,7 +558,7 @@ public class Main {
                         System.out.println("duration set to: " + newDuration);
                         System.out.println("type in back, if you want to do more with the event");
                         System.out.println("type in main, if you want to go back to main");
-                        String c = scan.next();
+                        String c = scan.nextLine();
                         switch (c) {
                             case "main": {
                                 return;
@@ -585,7 +583,7 @@ public class Main {
                         System.out.println("address set to: " + newAddress);
                         System.out.println("type in back, if you want to do more with the event");
                         System.out.println("type in main, if you want to go back to main");
-                        String c = scan.next();
+                        String c = scan.nextLine();
                         switch (c) {
                             case "main": {
                                 return;
@@ -622,7 +620,7 @@ public class Main {
                         System.out.println("alert set successfully!");
                         System.out.println("type in back, if you want to do more with the event");
                         System.out.println("type in main, if you want to go back to main");
-                        String c = scan.next();
+                        String c = scan.nextLine();
                         switch (c) {
                             case "main": {
                                 return;
@@ -643,7 +641,7 @@ public class Main {
                         System.out.println("alert is turned on");
                         System.out.println("type in back, if you want to do more with the event");
                         System.out.println("type in main, if you want to go back to main");
-                        String c = scan.next();
+                        String c = scan.nextLine();
                         switch (c) {
                             case "main": {
                                 return;
@@ -664,7 +662,7 @@ public class Main {
                         System.out.println("alert is turned off");
                         System.out.println("type in back, if you want to do more with the event");
                         System.out.println("type in main, if you want to go back to main");
-                        String c = scan.next();
+                        String c = scan.nextLine();
                         switch (c) {
                             case "main": {
                                 return;
@@ -689,7 +687,7 @@ public class Main {
                         System.out.println("new tag is added: " + newTag);
                         System.out.println("type in back, if you want to do more with the event");
                         System.out.println("type in main, if you want to go back to main");
-                        String c = scan.next();
+                        String c = scan.nextLine();
                         switch (c) {
                             case "main": {
                                 return;
@@ -720,7 +718,7 @@ public class Main {
                     }
                     System.out.println("type in back, if you want to do more with the event");
                     System.out.println("type in main, if you want to go back to main");
-                    String c = scan.next();
+                    String c = scan.nextLine();
                     switch (c) {
                         case "main": {
                             return;
@@ -744,7 +742,7 @@ public class Main {
                     System.out.println("memo add successfully!");
                     System.out.println("type in back, if you want to do more with the event");
                     System.out.println("type in main, if you want to go back to main");
-                    String c = scan.next();
+                    String c = scan.nextLine();
                     switch (c) {
                         case "main": {
                             return;
@@ -763,7 +761,7 @@ public class Main {
                         System.out.println("current memo names: ");
                         event.showMemos();
                         System.out.println("type in the memo name you want to delete: ");
-                        String name = scan.next();
+                        String name = scan.nextLine();
                         if (event.deleteMemo(name)) {
                             System.out.println("successfully delete the memo");
                             break;
@@ -774,7 +772,7 @@ public class Main {
                     }
                     System.out.println("type in back, if you want to do more with the event");
                     System.out.println("type in main, if you want to go back to main");
-                    String c = scan.next();
+                    String c = scan.nextLine();
                     switch (c) {
                         case "main": {
                             return;
@@ -807,7 +805,7 @@ public class Main {
         System.out.println("| return to main (type in main)        | ");
         System.out.println("| return to this event (type in back) |");
         Scanner scan = new Scanner(System.in);
-        String command = scan.next();
+        String command = scan.nextLine();
         switch (command){
             case "delete":{
                 event.deleteAlert(a.getStartTime().toString().replace("T", " "));
@@ -828,7 +826,7 @@ public class Main {
         }
         System.out.println("type in back, if you want to do more with the event");
         System.out.println("type in main, if you want to go back to main");
-        String c = scan.next();
+        String c = scan.nextLine();
         switch (c) {
             case "main": {
                 logInSimulation();
