@@ -320,7 +320,7 @@ public class Main {
             String name = scan.nextLine();
             System.out.println("start time in format: yyyy-MM-dd HH:mm");
             String startTime = scan.nextLine();
-            System.out.println("duration in minute (type long): ");
+            System.out.println("duration in minute: ");
             int duration = scan.nextInt();
             System.out.println("address: ");
             String address = scan.nextLine();
