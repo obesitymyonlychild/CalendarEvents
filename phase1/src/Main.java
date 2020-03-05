@@ -618,6 +618,7 @@ public class Main {
                                 System.out.println("type in the information for the new alert");
                                 System.out.println("start time in format yyyy-MM-dd HH:mm");
                                 String newStartTime = scan.next();
+                                scan = new Scanner(System.in);
                                 String unit = scan.next();
                                 System.out.println("frequency: type in MINUTE or HOUR or DAY or WEEK or MONTH or YEAR or ONETIME");
                                 Unit u = getUnit(unit);
