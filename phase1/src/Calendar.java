@@ -281,9 +281,10 @@ public class Calendar {
         boolean detective = false;
 
         for (Event event: currentUser.getEvents()){
-            if (event.getName().contains(input))
+            if (event.getName().contains(input)){
                 detective = true;
             eventList.add(event);
+            }
         }
         if (!detective){
             System.out.println("No event with this name");
