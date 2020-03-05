@@ -338,11 +338,12 @@ public class Main {
             int duration = scan.nextInt();
             System.out.println("address: ");
             String address = scan.nextLine();
-            String back = scan.nextLine();
-            System.out.println("Event add successfully!!!");
+            System.out.println("Confirm adding event, press Enter");
             System.out.println("if you want to go back to main, type in main");
-            String main = scan.nextLine();
-            if (! main.equals("main")) {
+            String enterKey = scan.nextLine();
+            if (enterKey == ""){
+                System.out.println("Event added successfully");}
+            if (! enterKey.equals("main")) {
                 try {
                     //implement this method
                     Calendar.getCurrentUser().createEvent(name, startTime, duration, address);
