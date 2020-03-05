@@ -144,7 +144,7 @@ public class Main {
                 if (index == -1) {
                     return;
                 } else {
-                    System.out.println("invalid index pp!");
+                    System.out.println("invalid index in past event simulation!");
                 }
             }
         }
@@ -167,7 +167,7 @@ public class Main {
                 if (index == -1) {
                     return;
                 } else {
-                    System.out.println("invalid index on!");
+                    System.out.println("invalid index in ongoing event simulation!");
                 }
             }
         }
@@ -190,7 +190,7 @@ public class Main {
                 if (index == -1) {
                     return;
                 } else {
-                    System.out.println("invalid index fu!");
+                    System.out.println("invalid index in future event!");
                 }
 
             }
@@ -214,7 +214,7 @@ public class Main {
                 if (index == -1) {
                     return;
                 } else {
-                    System.out.println("invalid index all!");
+                    System.out.println("invalid index in all events simulation!");
 
                 }
             }
@@ -239,7 +239,7 @@ public class Main {
                 if (index == -1) {
                     return;
                 } else {
-                    System.out.println("invalid index!");
+                    System.out.println("invalid index in series simulation!");
                     seriesSimulation();
                 }
             }
@@ -264,7 +264,7 @@ public class Main {
                 if (index == -1) {
                     return;
                 } else {
-                    System.out.println("invalid index!");
+                    System.out.println("invalid index in memo simulation!");
                 }
             }
         }
@@ -319,7 +319,7 @@ public class Main {
             case "main":
                 return;
             default:
-                System.out.println("invalid command");
+                System.out.println("invalid command in search simulation! ");
                 searchSimulation();
                 return;
         }
@@ -350,7 +350,7 @@ public class Main {
                     Calendar.getCurrentUser().createEvent(name, startTime, duration, address);
                     return;
                 } catch (Exception e) {
-                    System.out.println("invalid input! please try again.");
+                    System.out.println("invalid input in add event simulation! please try again.");
                     addEventSimulation();
                 }
             }else{
@@ -378,7 +378,7 @@ public class Main {
                 if (index == -1) {
                     return;
                 } else {
-                    System.out.println("invalid index!");
+                    System.out.println("invalid index in event in series simulation!");
                 }
             }
         }
@@ -400,7 +400,7 @@ public class Main {
                 if (index == -1) {
                     return;
                 } else {
-                    System.out.println("invalid index!");
+                    System.out.println("invalid index in eventInMemo simulation!");
                 }
             }
         }
@@ -432,7 +432,7 @@ public class Main {
             switch (command) {
                 case "delete event": {
                     Calendar.getCurrentUser().deleteEvent(event.getName());
- //                   System.out.println("successfully delete this event");
+                    System.out.println("successfully delete this event");
                     return;
                 }
                 case "view event": {
@@ -489,7 +489,7 @@ public class Main {
                             m0 = event.getMemos().get(index-1);
                             break;
                         } catch (Exception e) {
-                            System.out.println("invalid input!");
+                            System.out.println("invalid input in get memos!");
                         }
                     }
                     eventInMemoSimulation(m0);
@@ -506,7 +506,7 @@ public class Main {
                             a0 = event.getAlerts().get(i-1);
                             break;
                         } catch (Exception e) {
-                            System.out.println("invalid input!");
+                            System.out.println("invalid input in get alerts!");
                         }
                     }
                     alertSimulation(event, a0);
@@ -545,7 +545,7 @@ public class Main {
                                 event.setStartTime(newStartTime);
                                 break;
                             } catch (Exception e) {
-                                System.out.println("invalid time format.");
+                                System.out.println("invalid time format in change start time.");
                             }
                         }
                         System.out.println("start time set to: " + event.getStartTime().toString().replace("T", " "));
@@ -636,7 +636,7 @@ public class Main {
                                     System.out.println("Wrong input");
                                 }
                             } catch (Exception e) {
-                                System.out.println("invalid input");
+                                System.out.println("invalid input in set alert");
                             }
                         }
                         System.out.println("alert set successfully!");
