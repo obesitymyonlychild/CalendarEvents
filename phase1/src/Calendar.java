@@ -61,6 +61,9 @@ public class Calendar {
             System.out.println(index + ". " + event.toString());
             index++;
         }
+        if (index == 0){
+            System.out.println("No ongoing event");
+        }
         return eventList;
 
     }
@@ -73,6 +76,10 @@ public class Calendar {
             System.out.println(index + ". " + event.toString());
             index++;
         }
+        if (index == 0){
+            System.out.println("No past event");
+        }
+
         return eventList;
 
     }
@@ -85,6 +92,9 @@ public class Calendar {
             System.out.println(index + ". " + event.toString());
             index++;
         }
+        if (index == 0){
+            System.out.println("No future event");
+        }
         return eventList;
 
     }
@@ -96,6 +106,9 @@ public class Calendar {
         for(Event event: eventList){
             System.out.println(index + ". " + event.toString());
             index++;
+        }
+        if (index == 0){
+            System.out.println("No event");
         }
         return eventList;
 
@@ -137,6 +150,9 @@ public class Calendar {
             System.out.println(index + ". " + memo.toString());
             index++;
         }
+        if (index == 0){
+            System.out.println("No memo");
+        }
         return memoList;
 
     }
@@ -148,6 +164,9 @@ public class Calendar {
         for(Series series: seriesList){
             System.out.println(index + ". " + series.toString());
             index++;
+        }
+        if (index == 0){
+            System.out.println("No series");
         }
         return seriesList;
 
@@ -328,7 +347,7 @@ public class Calendar {
 
         if (!detective){
             System.out.println("No alert with this duration");
-           
+
         } else
             for (Alert alert: alertList){
                 System.out.println("====================");
