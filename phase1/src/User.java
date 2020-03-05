@@ -142,7 +142,6 @@ public class User implements Serializable{
     public void createEvent(String name, String startTime, int duration, String address){
         Event evt = new Event(name, startTime, duration, address);
         this.events.add(evt);
-        System.out.println(this.events);
         LocalDateTime start = evt.getStartTime();
         LocalDateTime end = start.plusMinutes(duration);
         LocalDateTime now = LocalDateTime.now();
