@@ -200,7 +200,7 @@ public class Calendar {
     }
 
     public static ArrayList<Event> searchEventByTag(){
-
+        System.out.println("Please enter a tag name");
         Scanner scan = new Scanner(System.in);
         String input = scan.nextLine();
         ArrayList<Event> eventList = new ArrayList<Event>();
@@ -274,16 +274,17 @@ public class Calendar {
     }
 
     public static ArrayList<Event> searchEventByName(){
-
+        System.out.println("Please enter event name");
         Scanner scan = new Scanner(System.in);
         String input = scan.nextLine();
         ArrayList<Event> eventList = new ArrayList<Event>();
         boolean detective = false;
 
         for (Event event: currentUser.getEvents()){
-            if (event.getName().contains(input))
+            if (event.getName().contains(input)){
                 detective = true;
             eventList.add(event);
+            }
         }
         if (!detective){
             System.out.println("No event with this name");
@@ -293,6 +294,7 @@ public class Calendar {
                 System.out.println("====================");
                 System.out.println(event);
             }
+        System.out.println("====================");
         return (ArrayList<Event>) eventList.stream().distinct().collect(Collectors.toList());
 
     }
@@ -301,7 +303,7 @@ public class Calendar {
     public static ArrayList<Event> searchEventBySeriesName(){
 
         // get rid of repetitive ele in arraylist
-
+        System.out.println("Please enter a series name");
         Scanner scan = new Scanner(System.in);
         String input = scan.nextLine();
         ArrayList<Event> eventList = new ArrayList<Event>();
