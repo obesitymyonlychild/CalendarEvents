@@ -145,21 +145,26 @@ public class User implements Serializable{
     public void createEvent(String name, String startTime, int duration, String address){
         Event evt = new Event(name, startTime, duration, address);
         this.events.add(evt);
+        System.out.println(this.events);
         LocalDateTime start = evt.getStartTime();
         LocalDateTime end = start.plusMinutes(duration);
         LocalDateTime now = LocalDateTime.now();
         if(start.isAfter(now)){
             this.futureEvents.add(evt);
+            System.out.println(this.futureEvents);
         }
         else if(start.isBefore(now)){
             if (end.isBefore(now)){
                 this.pastEvents.add(evt);
+                System.out.println(this.pastEvents);
             }
             else{this.ongoingEvents.add(evt);
+                System.out.println(this.ongoingEvents);
             }
         }
         else{
             this.ongoingEvents.add(evt);
+            System.out.println(this.ongoingEvents);
         }
         System.out.println("Event added successfully!");
     }
