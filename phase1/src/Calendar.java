@@ -294,6 +294,7 @@ public class Calendar {
                 System.out.println("====================");
                 System.out.println(event);
             }
+        System.out.println("====================");
         return (ArrayList<Event>) eventList.stream().distinct().collect(Collectors.toList());
 
     }
