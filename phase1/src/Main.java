@@ -623,9 +623,8 @@ public class Main {
                             try {
                                 System.out.println("type in the information for the new alert");
                                 System.out.println("start time in format yyyy-MM-dd HH:mm");
-                                String newStartTime = scan.next();
+                                String newStartTime = scan.nextLine();
                                 System.out.println("frequency: type in MINUTE or HOUR or DAY or WEEK or MONTH or YEAR or ONETIME");
-                                scan.nextLine();
                                 String unit = scan.next();
                                 Unit u = getUnit(unit);
                                 scan.nextLine();
@@ -634,7 +633,6 @@ public class Main {
                                 event.setAlert(newStartTime, num, u);
                                 break;
                             } catch (Exception e) {
-                                e.printStackTrace();
                                 System.out.println("invalid input");
                             }
                         }
