@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class Main {
     public static void main(String[] args) throws IOException, ClassNotFoundException {
@@ -25,6 +27,9 @@ public class Main {
         }
         System.out.println("Successfully log in\n\n\n");
         logInSimulation();
+
+        Timer timer = new Timer();
+        timer.schedule(new Updater(), 0, 5000);
     }
 
     public static void logInSimulation() throws IOException {
@@ -876,5 +881,12 @@ public class Main {
             }
 
         }
+    }
+}
+
+
+class Updater extends TimerTask {
+    public void run() {
+        Calendar.updater();
     }
 }
