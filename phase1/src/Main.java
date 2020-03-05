@@ -31,7 +31,6 @@ public class Main {
         System.out.println("Today's Event!!!");
         ArrayList<Event> todayEvent = Calendar.showTodayEvents();
         //reformat this using a method
-        System.out.println(todayEvent);
         while (true) {
             String fileName =Calendar.getCurrentUser().getName();
             ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(fileName));
