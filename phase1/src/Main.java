@@ -337,7 +337,8 @@ public class Main {
             String address = scan.nextLine();
             String back = scan.nextLine();
             System.out.println("if you want to go back to main, type in main");
-            if (! back.equals("main")) {
+            String main = scan.nextLine();
+            if (! main.equals("main")) {
                 try {
                     //implement this method
                     Calendar.getCurrentUser().createEvent(name, startTime, duration, address);
