@@ -308,14 +308,19 @@ public class Main {
         switch (command) {
             case "tag":
                 Calendar.searchEventByTag();
+                break;
             case "date":
                 Calendar.searchEventByDate();
+                break;
             case "memo":
                 Calendar.searchEventByMemo();
+                break;
             case "event name":
                 Calendar.searchEventByName();
+                break;
             case "series":
                 Calendar.searchEventBySeriesName();
+                break;
             case "main":
                 return;
             default:
@@ -463,12 +468,10 @@ public class Main {
                         System.out.println("type in main, if you want to go back to main");
                         String c = scan.nextLine();
                         switch (c) {
-                            case "main": {
-                                return;
-                            }
-                            // in this case user want to re-enter eventSimulation? what does break do?
+                            case "main":
+                                // in this case user want to re-enter eventSimulation? what does break do?
                             case "back": {
-                                break;
+                                return;
                             }
                             default: {
                                 System.out.println("Wrong input");
@@ -482,13 +485,17 @@ public class Main {
                     // implement this method
                     event.showMemos(); // index line by line
                     Memo m0;
+                    int index = -1;
                     while (true) {
                         try {
                             System.out.println("type in the index of the memo: ");
-                            int index = scan.nextInt();
+                            index = scan.nextInt();
                             m0 = event.getMemos().get(index-1);
                             break;
                         } catch (Exception e) {
+                            if (index == -1) {
+                                return;
+                            }
                             System.out.println("invalid input in get memos!");
                         }
                     }
@@ -499,13 +506,18 @@ public class Main {
                     // implement this method
                     event.showAlerts(); // index line by line
                     Alert a0;
+                    int i = -1;
                     while (true) {
                         try {
                             System.out.println("type in the index of the alert: ");
-                            int i = scan.nextInt();
+                            System.out.println("type in -1 if you want to go back");
+                            i = scan.nextInt();
                             a0 = event.getAlerts().get(i-1);
                             break;
                         } catch (Exception e) {
+                            if (i == -1) {
+                                return;
+                            }
                             System.out.println("invalid input in get alerts!");
                         }
                     }
@@ -553,12 +565,10 @@ public class Main {
                         System.out.println("type in main, if you want to go back to main");
                         String c = scan.nextLine();
                         switch (c) {
-                            case "main": {
-                                return;
-                            }
-                            // in this case user want to re-enter eventSimulation? what does break do?
+                            case "main":
+                                // in this case user want to re-enter eventSimulation? what does break do?
                             case "back": {
-                                break;
+                                return;
                             }
                             default: {
                                 System.out.println("Wrong input");
@@ -575,7 +585,8 @@ public class Main {
                         System.out.println("duration set to: " + newDuration);
                         System.out.println("type in back, if you want to do more with the event");
                         System.out.println("type in main, if you want to go back to main");
-                        String c = scan.nextLine();
+                        Scanner s = new Scanner(System.in);
+                        String c = s.nextLine();
                         switch (c) {
                             case "main": {
                                 return;
@@ -642,14 +653,14 @@ public class Main {
                         System.out.println("alert set successfully!");
                         System.out.println("type in back, if you want to do more with the event");
                         System.out.println("type in main, if you want to go back to main");
-                        String c = scan.nextLine();
+                        Scanner s = new Scanner(System.in);
+                        String c = s.nextLine();
+
                         switch (c) {
-                            case "main": {
-                                return;
-                            }
-                            // in this case user want to re-enter eventSimulation? what does break do?
+                            case "main":
+                                // in this case user want to re-enter eventSimulation? what does break do?
                             case "back": {
-                                break;
+                                return;
                             }
                             default: {
                                 System.out.println("Wrong input");
@@ -812,6 +823,8 @@ public class Main {
                 case "main": {
                     logInSimulation();
                 }
+                default:
+                    System.out.println("wrong input!");
 
 
             }
