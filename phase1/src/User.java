@@ -142,7 +142,7 @@ public class User implements Serializable{
         }
     }
 
-    public void createEvent(String name, String startTime, long duration, String address){
+    public void createEvent(String name, String startTime, int duration, String address){
         Event evt = new Event(name, startTime, duration, address);
         this.events.add(evt);
         LocalDateTime start = evt.getStartTime();

@@ -48,7 +48,7 @@ public class Event implements java.io.Serializable, Comparable<Event> {
         return startTime;
     }
 
-    public long getDuration() {
+    public int getDuration() {
         return duration;
     }
 

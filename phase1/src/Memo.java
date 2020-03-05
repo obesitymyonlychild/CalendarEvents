@@ -41,7 +41,7 @@ public class Memo implements java.io.Serializable{
     }
 
 
-    public void addEvent(String event_name, String startTime, long duration, String address){
+    public void addEvent(String event_name, String startTime, int duration, String address){
 
         Event event1 = new Event(event_name, startTime, duration, address);
         event1.addNewMemo(this.name, this.content);
@@ -49,7 +49,7 @@ public class Memo implements java.io.Serializable{
     }
 
 
-    public void deleteEvent(String event_name, String startTime, long duration, String address){
+    public void deleteEvent(String event_name, String startTime, int duration, String address){
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         LocalDateTime t = LocalDateTime.parse(startTime, formatter);

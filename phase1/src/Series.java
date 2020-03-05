@@ -18,7 +18,7 @@ public class Series implements java.io.Serializable {
         events = new ArrayList<Event>();
     }
 
-    private void createEventInMiniute(String nameOfEvent, LocalDateTime t, long duration, String address, int num){
+    private void createEventInMiniute(String nameOfEvent, LocalDateTime t, int duration, String address, int num){
         LocalDateTime time;
         for (int i = 0; i < num; i++){
             time = t.plusMinutes(i);
@@ -27,7 +27,7 @@ public class Series implements java.io.Serializable {
         }
     }
 
-    private void createEventInHour(String nameOfEvent, LocalDateTime t, long duration, String address, int num){
+    private void createEventInHour(String nameOfEvent, LocalDateTime t, int duration, String address, int num){
         LocalDateTime time;
         for (int i = 0; i < num; i++){
             time = t.plusHours(i);
@@ -36,7 +36,7 @@ public class Series implements java.io.Serializable {
         }
     }
 
-    private void createEventInDay(String nameOfEvent, LocalDateTime t, long duration, String address, int num){
+    private void createEventInDay(String nameOfEvent, LocalDateTime t, int duration, String address, int num){
         LocalDateTime time;
         for (int i = 0; i < num; i++){
             time = t.plusDays(i);
@@ -45,7 +45,7 @@ public class Series implements java.io.Serializable {
         }
     }
 
-    private void createEventInWeek(String nameOfEvent, LocalDateTime t, long duration, String address, int num){
+    private void createEventInWeek(String nameOfEvent, LocalDateTime t, int duration, String address, int num){
         LocalDateTime time;
         for (int i = 0; i < num; i++){
             time = t.plusWeeks(i);
@@ -54,7 +54,7 @@ public class Series implements java.io.Serializable {
         }
     }
 
-    private void createEventInMonth(String nameOfEvent, LocalDateTime t, long duration, String address, int num){
+    private void createEventInMonth(String nameOfEvent, LocalDateTime t, int duration, String address, int num){
         LocalDateTime time;
         for (int i = 0; i < num; i++){
             time = t.plusMonths(i);
@@ -63,7 +63,7 @@ public class Series implements java.io.Serializable {
         }
     }
 
-    private void createEventInYear(String nameOfEvent, LocalDateTime t, long duration, String address, int num){
+    private void createEventInYear(String nameOfEvent, LocalDateTime t, int duration, String address, int num){
         LocalDateTime time;
         for (int i = 0; i < num; i++){
             time = t.plusYears(i);
@@ -72,7 +72,7 @@ public class Series implements java.io.Serializable {
         }
     }
 
-    public void createFrequencyEvent(String nameOfEvent, String startTime, long duration, String address,
+    public void createFrequencyEvent(String nameOfEvent, String startTime, int duration, String address,
                                      int num, Unit unit){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         LocalDateTime t = LocalDateTime.parse(startTime, formatter);
@@ -100,7 +100,7 @@ public class Series implements java.io.Serializable {
         }
     }
 
-    public void addToSeries(String nameOfEvent, String startTime, long duration, String address){
+    public void addToSeries(String nameOfEvent, String startTime, int duration, String address){
         Event e = new Event(nameOfEvent, startTime, duration, address);
         events.add(e);
     }
