@@ -330,7 +330,6 @@ public class Main {
                 try {
                     //implement this method
                     Calendar.getCurrentUser().createEvent(name, startTime, duration, address);
-                    System.out.println("event add successfully!");
                     return;
                 } catch (Exception e) {
                     System.out.println("invalid input! please try again.");
@@ -609,9 +608,10 @@ public class Main {
                                 String newStartTime = scan.next();
                                 System.out.println("frequency: type in MINUTE or HOUR or DAY or WEEK or MONTH or YEAR or ONETIME");
                                 String unit = scan.next();
+                                Unit u = getUnit(unit);
                                 System.out.println("repeat how many time: ");
                                 int num = scan.nextInt();
-                                event.setAlert(newStartTime, num, Unit.MINUTE);
+                                event.setAlert(newStartTime, num, u);
                                 break;
                             } catch (Exception e) {
                                 System.out.println("invalid input");
@@ -840,5 +840,35 @@ public class Main {
         }
 
 
+    }
+
+    public static Unit getUnit(String unit) throws Exception{
+        switch (unit){
+            case "MINUTE":{
+                return Unit.MINUTE;
+            }
+            case "HOUR":{
+                return Unit.HOUR;
+            }
+            case "DAY":{
+                return Unit.DAY;
+            }
+            case "WEEK":{
+                return Unit.WEEK;
+            }
+            case "MONTH":{
+                return Unit.MONTH;
+            }
+            case "YEAR":{
+                return Unit.YEAR;
+            }
+            case "ONETIME":{
+                return Unit.ONETIME;
+            }
+            default:{
+                throw new Exception();
+            }
+
+        }
     }
 }
