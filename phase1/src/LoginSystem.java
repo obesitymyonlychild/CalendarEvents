@@ -83,10 +83,7 @@ public class LoginSystem {
             return true;
         ObjectInputStream is = new ObjectInputStream(new FileInputStream(name));
         User user = (User) is.readObject();
-        if (user.getPassword().equals(password))
-            return true;
-        else
-            return false;
+        return user.getPassword().equals(password);
     }
 
 
@@ -108,7 +105,7 @@ public class LoginSystem {
             System.out.println("Please type in your password(Type Esc to exit):");
             password = input.next();
         }
-        if (name == "Esc")
+        if (password.equals("Esc"))
             return false;
         ObjectInputStream is = new ObjectInputStream(new FileInputStream(name));
         User user = (User) is.readObject();
