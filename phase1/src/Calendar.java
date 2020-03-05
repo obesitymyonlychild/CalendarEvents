@@ -200,7 +200,7 @@ public class Calendar {
     }
 
     public static ArrayList<Event> searchEventByTag(){
-
+        System.out.println("Please enter a tag name");
         Scanner scan = new Scanner(System.in);
         String input = scan.nextLine();
         ArrayList<Event> eventList = new ArrayList<Event>();
@@ -274,7 +274,7 @@ public class Calendar {
     }
 
     public static ArrayList<Event> searchEventByName(){
-
+        System.out.println("Please enter event name");
         Scanner scan = new Scanner(System.in);
         String input = scan.nextLine();
         ArrayList<Event> eventList = new ArrayList<Event>();
@@ -301,7 +301,7 @@ public class Calendar {
     public static ArrayList<Event> searchEventBySeriesName(){
 
         // get rid of repetitive ele in arraylist
-
+        System.out.println("Please enter a series name");
         Scanner scan = new Scanner(System.in);
         String input = scan.nextLine();
         ArrayList<Event> eventList = new ArrayList<Event>();
