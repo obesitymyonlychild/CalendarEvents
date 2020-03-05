@@ -1,5 +1,8 @@
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -24,12 +27,15 @@ public class Main {
         logInSimulation();
     }
 
-    public static void logInSimulation() {
+    public static void logInSimulation() throws IOException {
         System.out.println("Today's Event!!!");
         ArrayList<Event> todayEvent = Calendar.showTodayEvents();
         //reformat this using a method
-        System.out.println(todayEvent);
         while (true) {
+            String fileName =Calendar.getCurrentUser().getName();
+            ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(fileName));
+            os.writeObject(fileName);
+            os.close();
             System.out.println("Category\n");
             System.out.println("===============================");
             System.out.println("| Past Event     |");
@@ -320,7 +326,7 @@ public class Main {
             String name = scan.nextLine();
             System.out.println("start time in format: yyyy-MM-dd HH:mm");
             String startTime = scan.nextLine();
-            System.out.println("duration in minute (type long): ");
+            System.out.println("duration in minute: ");
             int duration = scan.nextInt();
             System.out.println("address: ");
             String address = scan.nextLine();
@@ -330,7 +336,6 @@ public class Main {
                 try {
                     //implement this method
                     Calendar.getCurrentUser().createEvent(name, startTime, duration, address);
-                    System.out.println("event add successfully!");
                     return;
                 } catch (Exception e) {
                     System.out.println("invalid input! please try again.");
@@ -389,7 +394,7 @@ public class Main {
         }
     }
 
-    public static void eventSimulation(Event event) {
+    public static void eventSimulation(Event event) throws IOException {
         while (true) {
             System.out.println("what do you want to do?");
             System.out.println("=====================================================");
@@ -609,9 +614,10 @@ public class Main {
                                 String newStartTime = scan.next();
                                 System.out.println("frequency: type in MINUTE or HOUR or DAY or WEEK or MONTH or YEAR or ONETIME");
                                 String unit = scan.next();
+                                Unit u = getUnit(unit);
                                 System.out.println("repeat how many time: ");
                                 int num = scan.nextInt();
-                                event.setAlert(newStartTime, num, Unit.MINUTE);
+                                event.setAlert(newStartTime, num, u);
                                 break;
                             } catch (Exception e) {
                                 System.out.println("invalid input");
@@ -798,7 +804,7 @@ public class Main {
     }
 
 // concern is the case for main and back
-    public static void alertSimulation(Event event, Alert a){
+    public static void alertSimulation(Event event, Alert a) throws IOException {
         System.out.println("what do you want to do with this alert?");
         System.out.println("| delete alert (type in delete)        |");
         System.out.println("| view this alert (type in view)       |");
@@ -840,5 +846,35 @@ public class Main {
         }
 
 
+    }
+
+    public static Unit getUnit(String unit) throws Exception{
+        switch (unit){
+            case "MINUTE":{
+                return Unit.MINUTE;
+            }
+            case "HOUR":{
+                return Unit.HOUR;
+            }
+            case "DAY":{
+                return Unit.DAY;
+            }
+            case "WEEK":{
+                return Unit.WEEK;
+            }
+            case "MONTH":{
+                return Unit.MONTH;
+            }
+            case "YEAR":{
+                return Unit.YEAR;
+            }
+            case "ONETIME":{
+                return Unit.ONETIME;
+            }
+            default:{
+                throw new Exception();
+            }
+
+        }
     }
 }
