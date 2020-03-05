@@ -122,7 +122,6 @@ public class User implements Serializable{
     public void createMemo(String name, String content){
         Memo mm = new Memo(name, content);
         this.memos.add(mm);
-        System.out.println("Memo added successfully!");
     }
 
     public void deleteMemos(String name){
@@ -149,22 +148,17 @@ public class User implements Serializable{
         LocalDateTime now = LocalDateTime.now();
         if(start.isAfter(now)){
             this.futureEvents.add(evt);
-            System.out.println(this.futureEvents);
         }
         else if(start.isBefore(now)){
             if (end.isBefore(now)){
                 this.pastEvents.add(evt);
-                System.out.println(this.pastEvents);
             }
             else{this.ongoingEvents.add(evt);
-                System.out.println(this.ongoingEvents);
             }
         }
         else{
             this.ongoingEvents.add(evt);
-            System.out.println(this.ongoingEvents);
         }
-        System.out.println("Event added successfully!");
     }
 
     public void deleteEvent(String name){
@@ -216,7 +210,7 @@ public class User implements Serializable{
                 return series.getEvents();
             }
         }
-        System.out.println("Series does not exists!");
+//        System.out.println("Series does not exists!");
         return null;
     }
 }
