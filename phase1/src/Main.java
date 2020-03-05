@@ -335,8 +335,8 @@ public class Main {
             int duration = scan.nextInt();
             System.out.println("address: ");
             String address = scan.nextLine();
-            System.out.println("if you want to go back to main, type in main");
             String back = scan.nextLine();
+            System.out.println("if you want to go back to main, type in main");
             if (! back.equals("main")) {
                 try {
                     //implement this method
@@ -617,8 +617,8 @@ public class Main {
                                 System.out.println("type in the information for the new alert");
                                 System.out.println("start time in format yyyy-MM-dd HH:mm");
                                 String newStartTime = scan.next();
-                                System.out.println("frequency: type in MINUTE or HOUR or DAY or WEEK or MONTH or YEAR or ONETIME");
                                 String unit = scan.next();
+                                System.out.println("frequency: type in MINUTE or HOUR or DAY or WEEK or MONTH or YEAR or ONETIME");
                                 Unit u = getUnit(unit);
                                 System.out.println("repeat how many time: ");
                                 int num = scan.nextInt();
