@@ -70,7 +70,7 @@ public class Calendar {
 
     public static ArrayList<Event> showPastEvent(){
 
-        ArrayList<Event> eventList = currentUser.getOngoingEvents();
+        ArrayList<Event> eventList = currentUser.getPastEvents();
         int index = 0;
         for(Event event: eventList){
             System.out.println(index + ". " + event.toString());
@@ -86,7 +86,7 @@ public class Calendar {
 
     public static ArrayList<Event> showFutureEvent(){
 
-        ArrayList<Event> eventList = currentUser.getOngoingEvents();
+        ArrayList<Event> eventList = currentUser.getFutureEvents();
         int index = 0;
         for(Event event: eventList){
             System.out.println(index + ". " + event.toString());
@@ -122,7 +122,7 @@ public class Calendar {
         ArrayList<Event> eventList = new ArrayList<Event>();
         boolean detective = false;
 
-        for (Event event: currentUser.getOngoingEvents()) {
+        for (Event event: currentUser.getEvents()) {
             if (event.getStartTime().format(formatter).equals(nowString)) {
                 detective = true;
                 eventList.add(event);
