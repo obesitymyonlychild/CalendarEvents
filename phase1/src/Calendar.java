@@ -56,12 +56,12 @@ public class Calendar {
     public static ArrayList<Event> showOngoingEvent(){
 
         ArrayList<Event> eventList = currentUser.getOngoingEvents();
-        int index = 0;
+        int index = 1;
         for(Event event: eventList){
             System.out.println(index + ". " + event.toString());
             index++;
         }
-        if (index == 0){
+        if (index == 1){
             System.out.println("No ongoing event");
         }
         return eventList;
@@ -71,12 +71,12 @@ public class Calendar {
     public static ArrayList<Event> showPastEvent(){
 
         ArrayList<Event> eventList = currentUser.getPastEvents();
-        int index = 0;
+        int index = 1;
         for(Event event: eventList){
             System.out.println(index + ". " + event.toString());
             index++;
         }
-        if (index == 0){
+        if (index == 1){
             System.out.println("No past event");
         }
 
@@ -87,12 +87,12 @@ public class Calendar {
     public static ArrayList<Event> showFutureEvent(){
 
         ArrayList<Event> eventList = currentUser.getFutureEvents();
-        int index = 0;
+        int index = 1;
         for(Event event: eventList){
             System.out.println(index + ". " + event.toString());
             index++;
         }
-        if (index == 0){
+        if (index == 1){
             System.out.println("No future event");
         }
         return eventList;
@@ -102,12 +102,12 @@ public class Calendar {
     public static ArrayList<Event> showEvents(){
 
         ArrayList<Event> eventList = currentUser.getEvents();
-        int index = 0;
+        int index = 1;
         for(Event event: eventList){
             System.out.println(index + ". " + event.toString());
             index++;
         }
-        if (index == 0){
+        if (index == 1){
             System.out.println("No event");
         }
         return eventList;
@@ -132,7 +132,7 @@ public class Calendar {
         if (!detective){
             System.out.println("No task today");
         } else{
-            int index = 0;
+            int index = 1;
             for (Event event: eventList){
                 System.out.println(index + ". " + event.toString());
                 index++;
@@ -145,12 +145,12 @@ public class Calendar {
     public static ArrayList<Memo> showMemo(){
         // border
         ArrayList<Memo> memoList = currentUser.getMemos();
-        int index = 0;
+        int index = 1;
         for(Memo memo: memoList){
             System.out.println(index + ". " + memo.toString());
             index++;
         }
-        if (index == 0){
+        if (index == 1){
             System.out.println("No memo");
         }
         return memoList;
@@ -160,12 +160,12 @@ public class Calendar {
     public static ArrayList<Series> showSeries(){
 
         ArrayList<Series> seriesList = currentUser.getSeries();
-        int index = 0;
+        int index = 1;
         for(Series series: seriesList){
             System.out.println(index + ". " + series.toString());
             index++;
         }
-        if (index == 0){
+        if (index == 1){
             System.out.println("No series");
         }
         return seriesList;
