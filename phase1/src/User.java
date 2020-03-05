@@ -137,9 +137,7 @@ public class User implements Serializable{
         if (!res){
             System.out.println("No such memo exists!");
         }
-        else{
-            System.out.println("Memo added successfully!");
-        }
+
     }
 
     public void createEvent(String name, String startTime, int duration, String address){
@@ -197,9 +195,6 @@ public class User implements Serializable{
 
         if (!res){
             System.out.println("No such event exists!");
-        }
-        else{
-            System.out.println("Event added successfully!");
         }
     }
 
