@@ -130,7 +130,7 @@ public class User implements Serializable{
             if(this.memos.get(i).getName().equals(name)){
                 this.memos.remove(i);
                 res = true;
-                break;
+                return;
             }
         }
         if (!res){
