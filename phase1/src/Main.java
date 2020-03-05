@@ -144,7 +144,7 @@ public class Main {
                 if (index == -1) {
                     return;
                 } else {
-                    System.out.println("invalid index!");
+                    System.out.println("invalid index pp!");
                 }
             }
         }
@@ -167,7 +167,7 @@ public class Main {
                 if (index == -1) {
                     return;
                 } else {
-                    System.out.println("invalid index!");
+                    System.out.println("invalid index on!");
                 }
             }
         }
@@ -190,7 +190,7 @@ public class Main {
                 if (index == -1) {
                     return;
                 } else {
-                    System.out.println("invalid index!");
+                    System.out.println("invalid index fu!");
                 }
 
             }
@@ -214,7 +214,7 @@ public class Main {
                 if (index == -1) {
                     return;
                 } else {
-                    System.out.println("invalid index!");
+                    System.out.println("invalid index all!");
 
                 }
             }
