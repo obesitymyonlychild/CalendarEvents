@@ -337,6 +337,7 @@ public class Main {
             System.out.println("duration in minute: ");
             int duration = scan.nextInt();
             System.out.println("address: ");
+            scan.nextLine();
             String address = scan.nextLine();
             System.out.println("Confirm adding event, press Enter");
             System.out.println("if you want to go back to main, type in main");
