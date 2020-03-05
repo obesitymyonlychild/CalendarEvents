@@ -126,10 +126,10 @@ public class User implements Serializable{
 
     public void deleteMemos(String name){
         boolean res = false;
-        for (int i=0; i < this.memos.size(); i++){
-            if(this.memos.get(i).getName().equals(name)){
-                this.memos.remove(i);
+        for (Memo me: this.memos){
+            if(me.getName().equals(name)){
                 res = true;
+                this.memos.remove(me);
                 return;
             }
         }
@@ -162,30 +162,31 @@ public class User implements Serializable{
 
     public void deleteEvent(String name){
         boolean res = false;
-        for (Event evt: this.events)
+        for (Event evt: this.events){
             if (evt.getName().equals(name)) {
                 this.events.remove(evt);
                 res = true;
+                break;
             }
-        for (int i=0; i < this.ongoingEvents.size(); i++){
-            if (this.ongoingEvents.get(i).getName().equals(name)){
-                this.ongoingEvents.remove(i);
+        }
+        for (Event evt: this.ongoingEvents){
+            if(evt.getName().equals(name)){
+                this.ongoingEvents.remove(evt);
                 return;
             }
         }
-        for (int i=0; i < this.pastEvents.size(); i++){
-            if (this.pastEvents.get(i).getName().equals(name)){
-                this.pastEvents.remove(i);
+        for (Event evt: this.pastEvents){
+            if(evt.getName().equals(name)){
+                this.pastEvents.remove(evt);
                 return;
             }
         }
-        for (int i=0; i < this.futureEvents.size(); i++){
-            if (this.futureEvents.get(i).getName().equals(name)){
-                this.futureEvents.remove(i);
+        for (Event evt: this.futureEvents){
+            if(evt.getName().equals(name)){
+                this.futureEvents.remove(evt);
                 return;
             }
         }
-
         if (!res){
             System.out.println("No such event exists!");
         }
