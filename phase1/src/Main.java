@@ -432,7 +432,7 @@ public class Main {
             switch (command) {
                 case "delete event": {
                     Calendar.getCurrentUser().deleteEvent(event.getName());
-                    System.out.println("successfully delete this event");
+ //                   System.out.println("successfully delete this event");
                     return;
                 }
                 case "view event": {
@@ -595,7 +595,7 @@ public class Main {
                     while (true) {
                         System.out.println("current address: " + event.getAddress());
                         System.out.println("type in the new address: ");
-                        String newAddress = scan.next();
+                        String newAddress = scan.nextLine();
                         event.setAddress(newAddress);
                         System.out.println("address set to: " + newAddress);
                         System.out.println("type in back, if you want to do more with the event");
@@ -701,7 +701,7 @@ public class Main {
                         System.out.println("current tags: ");
                         System.out.println(event.getTags());
                         System.out.println("type in the new tag: ");
-                        String newTag = scan.next();
+                        String newTag = scan.nextLine();
                         event.addTag(newTag);
                         System.out.println("new tag is added: " + newTag);
                         System.out.println("type in back, if you want to do more with the event");
@@ -727,7 +727,7 @@ public class Main {
                         System.out.println("current tags: ");
                         System.out.println(event.getTags());
                         System.out.println("type in the tag you want to delete: ");
-                        String t = scan.next();
+                        String t = scan.nextLine();
                         if (event.deleteTag(t)) {
                             System.out.println("succesfully delete tag!");
                             break;
@@ -754,9 +754,9 @@ public class Main {
                 case "add memo": {
                     System.out.println("type in the information for memo: ");
                     System.out.println("type in the name: ");
-                    String memoName = scan.next();
+                    String memoName = scan.nextLine();
                     System.out.println("type in the content: ");
-                    String memoContent = scan.next();
+                    String memoContent = scan.nextLine();
                     event.addNewMemo(memoName, memoContent);
                     System.out.println("memo add successfully!");
                     System.out.println("type in back, if you want to do more with the event");
