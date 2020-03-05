@@ -42,7 +42,7 @@ public class Main {
         while (true) {
             String fileName =Calendar.getCurrentUser().getName();
             ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(fileName));
-            os.writeObject(fileName);
+            os.writeObject(Calendar.getCurrentUser());
             os.close();
             System.out.println("Category\n");
             System.out.println("===============================");
