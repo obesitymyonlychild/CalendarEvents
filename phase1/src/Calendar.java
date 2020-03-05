@@ -101,7 +101,7 @@ public class Calendar {
 
     public static ArrayList<Event> showEvents(){
 
-        ArrayList<Event> eventList = currentUser.getOngoingEvents();
+        ArrayList<Event> eventList = currentUser.getEvents();
         int index = 0;
         for(Event event: eventList){
             System.out.println(index + ". " + event.toString());
