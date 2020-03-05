@@ -171,19 +171,19 @@ public class User implements Serializable{
         for (int i=0; i < this.ongoingEvents.size(); i++){
             if (this.ongoingEvents.get(i).getName().equals(name)){
                 this.ongoingEvents.remove(i);
-                break;
+                return;
             }
         }
         for (int i=0; i < this.pastEvents.size(); i++){
             if (this.pastEvents.get(i).getName().equals(name)){
                 this.pastEvents.remove(i);
-                break;
+                return;
             }
         }
         for (int i=0; i < this.futureEvents.size(); i++){
             if (this.futureEvents.get(i).getName().equals(name)){
                 this.futureEvents.remove(i);
-                break;
+                return;
             }
         }
 
