@@ -185,7 +185,7 @@ public class Event implements java.io.Serializable, Comparable<Event> {
             int j;
             for (int i = 0; i < alerts.size(); i++){
                 j = i + 1;
-                result = result + j + " " + alerts.toString() + "\n";
+                result = result + j + " " + alerts.get(i).toString() + "\n";
             }
             System.out.println(result);
         }
