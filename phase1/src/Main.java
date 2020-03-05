@@ -9,7 +9,7 @@ public class Main {
     static ArrayList<String> Users = new ArrayList<String>();
     public static void main(String[] args) throws IOException, ClassNotFoundException {
         File file = new File("ProjectGroups//Users");
-        if (file.exists()){
+        if (!file.exists()){
         ObjectOutputStream users = new ObjectOutputStream(new FileOutputStream("Users"));
         users.writeObject(Users);
         users.close();}
