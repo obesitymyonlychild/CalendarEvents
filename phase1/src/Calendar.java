@@ -118,16 +118,14 @@ public class Calendar {
 
         if (!detective){
             System.out.println("No task today");
-            return null;
         } else{
             int index = 0;
             for (Event event: eventList){
                 System.out.println(index + ". " + event.toString());
                 index++;
             }
-            return eventList;
-
         }
+        return eventList;
 
     }
 
@@ -196,7 +194,7 @@ public class Calendar {
         }
         if (!detective){
             System.out.println("No event with this tag");
-            return null;
+
         } else
             for (Event event: eventList)
                 System.out.println(event);
@@ -221,7 +219,7 @@ public class Calendar {
         }
         if (!detective){
             System.out.println("No event with this date");
-            return null;
+
         } else
             for (Event event: eventList){
                 System.out.println("====================");
@@ -247,7 +245,7 @@ public class Calendar {
         }
         if (!detective){
             System.out.println("No event with this memo");
-            return null;
+
         } else
             for (Event event: eventList){
                 System.out.println("====================");
@@ -270,7 +268,7 @@ public class Calendar {
         }
         if (!detective){
             System.out.println("No event with this name");
-            return null;
+
         } else
             for (Event event: eventList){
                 System.out.println("====================");
@@ -297,7 +295,7 @@ public class Calendar {
         }
         if (!detective){
             System.out.println("No event with this name");
-            return null;
+
         } else
             for (Event event: eventList){
                 System.out.println("====================");
@@ -330,7 +328,7 @@ public class Calendar {
 
         if (!detective){
             System.out.println("No alert with this duration");
-            return null;
+           
         } else
             for (Alert alert: alertList){
                 System.out.println("====================");
