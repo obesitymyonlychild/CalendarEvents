@@ -1,4 +1,6 @@
+import javax.swing.*;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.time.LocalDateTime;
@@ -16,6 +18,7 @@ public class Calendar {
     public static void setCurrentUser(User para){
         Calendar.currentUser = para;
     }
+    public static String timeAppeared = "0";
 
     // Call all the methods of Event
 
@@ -176,19 +179,28 @@ public class Calendar {
 
     public static void alert(){
 
-        LocalDateTime now = LocalDateTime.now();
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        String nowString = LocalDateTime.now().format(formatter);
+        //LocalDateTime now = LocalDateTime.parse(nowString, formatter);
+
         boolean detective = false;
         // check user alert on and event alert on
         if (currentUser.getAlertOn()){
-            for(Alert alert: currentUser.getAlertList()){
-                if (alert.getStartTime().compareTo(now) == 0) {
-                    System.out.println(alert);
-                    detective = true;
-                }else {
-                    if (detective)
-                        break;
+            for (Event event: currentUser.getEvents())
+                for(Alert alert: event.getAlerts()){
+                    //if (alert.getStartTime().isEqual(now)) {
+                    if ((alert.getStartTime().format(formatter)).equals(nowString) && !nowString.equals(timeAppeared)) {
+                        //System.out.println(alert);
+                        JOptionPane.showMessageDialog(null, alert.toString());
+                        detective = true;
+                        timeAppeared = nowString;
+                        //alert.closeAlert();
+                    }else {
+                        if (detective)
+                            break;
+                    }
                 }
-            }
         }
 
     }
@@ -223,15 +235,22 @@ public class Calendar {
 
     public static ArrayList<Event> searchEventByDate(){
 
-        System.out.println("Please enter a date with the format yyyy-MM-dd HH:mm");
+        System.out.println("Please enter a date with the format yyyy-MM-dd");
         Scanner scan = new Scanner(System.in);
         String input = scan.nextLine();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-        LocalDateTime search = LocalDateTime.parse(input, formatter);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate search = LocalDate.parse(input, formatter);
         ArrayList<Event> eventList = new ArrayList<Event>();
         boolean detective = false;
         for(Event event: currentUser.getEvents()){
-            if(event.getStartTime().isBefore(search)  &&  event.getEndTime().isAfter(search)){
+
+            String startTimeString = event.getStartTime().format(formatter);
+            LocalDate startTime = LocalDate.parse(startTimeString, formatter);
+            String endTimeString = event.getEndTime().format(formatter);
+            LocalDate endTime = LocalDate.parse(endTimeString, formatter);
+
+            if(startTime.compareTo(search)<=0 && endTime.compareTo(search)>=0){
+
                 detective = true;
                 eventList.add(event);
             }

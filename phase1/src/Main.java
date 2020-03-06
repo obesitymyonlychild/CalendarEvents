@@ -6,8 +6,14 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class Main {
+
+
+
     static ArrayList<String> Users = new ArrayList<String>();
     public static void main(String[] args) throws IOException, ClassNotFoundException {
+
+
+
         File file = new File("Users");
         if (!file.exists()){
         ObjectOutputStream users = new ObjectOutputStream(new FileOutputStream("Users"));
@@ -29,10 +35,13 @@ public class Main {
             }
         }
         System.out.println("Successfully log in\n\n\n");
-        logInSimulation();
 
         Timer timer = new Timer();
         timer.schedule(new Updater(), 0, 5000);
+
+        logInSimulation();
+
+
     }
 
     public static void logInSimulation() throws IOException {
@@ -915,3 +924,4 @@ class Updater extends TimerTask {
         Calendar.alert();
     }
 }
+
