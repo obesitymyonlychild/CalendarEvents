@@ -112,7 +112,7 @@ public class LoginSystem {
             return false;
         ObjectInputStream is = new ObjectInputStream(new FileInputStream(name));
         User user = (User) is.readObject();
-        Calendar.setCurrentUser(user);
+        CalendarFacade.setCurrentUser(user);
         return true;
     }
 

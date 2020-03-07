@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.io.IOException;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -6,16 +7,20 @@ import java.time.LocalDateTime;
 public class CalendarFacade {
 
     private static User currentUser;
-    private static CalendarSearch calendarSearch;
-    private static CalendarShow calendarShow;
+
     //private static LoginSystem loginSystem = new LoginSystem();
 
-    public static  User getterCurrentUser(){
+    public static String timeAppeared = "0";
+
+    public static  User getCurrentUser(){
         return currentUser;
     }
 
+
     public static void setCurrentUser(User para){
         CalendarFacade.currentUser = para;
+        CalendarShow.setCurrentUser(para);
+        CalendarSearch.setCurrentUser(para);
     }
 
     // Call all the methods of Event
@@ -23,8 +28,6 @@ public class CalendarFacade {
     // Constructor
     public CalendarFacade(){
         // no requirement
-        calendarSearch = new CalendarSearch(currentUser);
-        calendarShow = new CalendarShow(currentUser);
     }
 
     // Call login system and set user to currentUser
@@ -54,50 +57,61 @@ public class CalendarFacade {
         setCurrentUser(null);
     }
 
-    public static void showOngoingEvent(){
-        CalendarShow.showOngoingEvent();
+    public static ArrayList<Event> showOngoingEvent(){
+        return CalendarShow.showOngoingEvent();
     }
 
-    public static void showPastEvent(){
-        CalendarShow.showPastEvent();
+    public static ArrayList<Event> showPastEvent(){
+        return CalendarShow.showPastEvent();
     }
 
-    public static void showFutureEvent(){
-        CalendarShow.showFutureEvent();
+    public static ArrayList<Event> showFutureEvent(){
+        return CalendarShow.showFutureEvent();
     }
 
-    public static void showEvents(){
-        CalendarShow.showEvents();
+    public static ArrayList<Event> showEvents(){
+        return CalendarShow.showEvents();
     }
 
     public static ArrayList<Event> showTodayEvents(){
         return CalendarShow.showTodayEvents();
     }
 
-    public static void showMemo(){
+    public static ArrayList<Memo> showMemo(){
         // border
-        CalendarShow.showMemo();
+        return CalendarShow.showMemo();
     }
 
-    public static void showSeries(){
-        CalendarShow.showSeries();
+    public static ArrayList<Series> showSeries(){
+        return CalendarShow.showSeries();
     }
 
     public static void alert(){
-        LocalDateTime now = LocalDateTime.now();
+
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        String nowString = LocalDateTime.now().format(formatter);
+        //LocalDateTime now = LocalDateTime.parse(nowString, formatter);
+
         boolean detective = false;
         // check user alert on and event alert on
         if (currentUser.getAlertOn()){
-            for(Alert alert: currentUser.getAlertList()){
-                if (alert.getStartTime().compareTo(now) == 0) {
-                    System.out.println(alert);
-                    detective = true;
-                }else {
-                    if (detective)
-                        break;
+            for (Event event: currentUser.getEvents())
+                for(Alert alert: event.getAlerts()){
+                    //if (alert.getStartTime().isEqual(now)) {
+                    if ((alert.getStartTime().format(formatter)).equals(nowString) && !nowString.equals(timeAppeared)) {
+                        //System.out.println(alert);
+                        JOptionPane.showMessageDialog(null, alert.toString());
+                        detective = true;
+                        timeAppeared = nowString;
+                        //alert.closeAlert();
+                    }else {
+                        if (detective)
+                            break;
+                    }
                 }
-            }
         }
+
     }
 
     public static ArrayList<Event> getEvents(){

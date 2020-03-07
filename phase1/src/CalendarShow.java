@@ -5,86 +5,131 @@ import java.time.LocalDateTime;
 public class CalendarShow {
 
     private static User currentUser;
-    public CalendarShow(User user){
-        currentUser = user;
+    public CalendarShow(){
+    }
+
+    public static  User getCurrentUser(){
+        return currentUser;
+    }
+
+    public static void setCurrentUser(User para){
+        CalendarShow.currentUser = para;
     }
 
     public static ArrayList<Event> showOngoingEvent(){
 
-        ArrayList<Event> events = currentUser.getOngoingEvents();
-        int index = 0;
-        for(Event event: currentUser.getOngoingEvents()){
-            System.out.println(index + event.toString());
+        ArrayList<Event> eventList = currentUser.getOngoingEvents();
+        int index = 1;
+        for(Event event: eventList){
+            System.out.println(index + ". " + event.toString());
             index++;
         }
-        return events;
+        if (index == 1){
+            System.out.println("No ongoing event");
+        }
+        return eventList;
+
     }
 
     public static ArrayList<Event> showPastEvent(){
-        ArrayList<Event> events = currentUser.getOngoingEvents();
-        int index = 0;
-        for(Event event: currentUser.getPastEvents()){
-            System.out.println(index + event.toString());
+
+        ArrayList<Event> eventList = currentUser.getPastEvents();
+        int index = 1;
+        for(Event event: eventList){
+            System.out.println(index + ". " + event.toString());
             index++;
         }
-        return events;
+        if (index == 1){
+            System.out.println("No past event");
+        }
+
+        return eventList;
+
     }
 
     public static ArrayList<Event> showFutureEvent(){
-        ArrayList<Event> events = currentUser.getOngoingEvents();
-        int index = 0;
-        for(Event event: currentUser.getFutureEvents()){
-            System.out.println(index + event.toString());
+
+        ArrayList<Event> eventList = currentUser.getFutureEvents();
+        int index = 1;
+        for(Event event: eventList){
+            System.out.println(index + ". " + event.toString());
             index++;
         }
-        return events;
+        if (index == 1){
+            System.out.println("No future event");
+        }
+        return eventList;
+
     }
 
     public static ArrayList<Event> showEvents(){
-        ArrayList<Event> events = currentUser.getOngoingEvents();
-        int index = 0;
-        for(Event event: currentUser.getEvents()){
-            System.out.println(index + event.toString());
+
+        ArrayList<Event> eventList = currentUser.getEvents();
+        int index = 1;
+        for(Event event: eventList){
+            System.out.println(index + ". " + event.toString());
             index++;
         }
-        return events;
+        if (index == 1){
+            System.out.println("No event");
+        }
+        return eventList;
+
     }
 
     public static ArrayList<Event> showTodayEvents(){
+
         LocalDateTime now = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         String nowString = now.format(formatter);
-        ArrayList<Event> events = new ArrayList<Event>();
+        ArrayList<Event> eventList = new ArrayList<Event>();
         boolean detective = false;
 
-        for (Event event: currentUser.getOngoingEvents()) {
+        for (Event event: currentUser.getEvents()) {
             if (event.getStartTime().format(formatter).equals(nowString)) {
                 detective = true;
-                events.add(event);
+                eventList.add(event);
             }
         }
 
         if (!detective){
             System.out.println("No task today");
-            return null;
         } else{
-            int index = 0;
-            for (Event event: events){
-                System.out.println(index + event.toString());
+            int index = 1;
+            for (Event event: eventList){
+                System.out.println(index + ". " + event.toString());
                 index++;
             }
-            return events;
         }
+        return eventList;
+
     }
 
-    public static void showMemo(){
+    public static ArrayList<Memo> showMemo(){
         // border
-        for(Memo memo: currentUser.getMemos())
-            System.out.println(memo);
+        // border
+        ArrayList<Memo> memoList = currentUser.getMemos();
+        int index = 1;
+        for(Memo memo: memoList){
+            System.out.println(index + ". " + memo.toString());
+            index++;
+        }
+        if (index == 1){
+            System.out.println("No memo");
+        }
+        return memoList;
     }
 
-    public static void showSeries(){
-        for(Series series: currentUser.getSeries())
-            System.out.println(series);
+    public static ArrayList<Series> showSeries(){
+        ArrayList<Series> seriesList = currentUser.getSeries();
+        int index = 1;
+        for(Series series: seriesList){
+            System.out.println(index + ". " + series.toString());
+            index++;
+        }
+        if (index == 1){
+            System.out.println("No series");
+        }
+        return seriesList;
     }
 }

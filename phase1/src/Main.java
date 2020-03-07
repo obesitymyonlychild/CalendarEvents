@@ -46,12 +46,12 @@ public class Main {
 
     public static void logInSimulation() throws IOException {
         System.out.println("Today's Event!!!");
-        ArrayList<Event> todayEvent = Calendar.showTodayEvents();
+        ArrayList<Event> todayEvent = CalendarFacade.showTodayEvents();
         //reformat this using a method
         while (true) {
-            String fileName =Calendar.getCurrentUser().getName();
+            String fileName =CalendarFacade.getCurrentUser().getName();
             ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(fileName));
-            os.writeObject(Calendar.getCurrentUser());
+            os.writeObject(CalendarFacade.getCurrentUser());
             os.close();
             System.out.println("Category\n");
             System.out.println("===============================");
@@ -139,7 +139,7 @@ public class Main {
         while (true) {
             System.out.println("past events: \n");
             // need to print out according to pre-specified format
-            ArrayList<Event> pe = Calendar.showPastEvent();
+            ArrayList<Event> pe = CalendarFacade.showPastEvent();
             helperOfSimulationMessage();
             int index = -1;
             try {
@@ -163,7 +163,7 @@ public class Main {
     public static void onGoingEventSimulation() {
         while (true) {
             System.out.println("on going events: \n");
-            ArrayList<Event> oe = Calendar.showOngoingEvent();
+            ArrayList<Event> oe = CalendarFacade.showOngoingEvent();
             helperOfSimulationMessage();
             int index = -1;
             try {
@@ -186,7 +186,7 @@ public class Main {
     public static void futureEventSimulation() {
         while (true) {
             System.out.println("future events: \n");
-            ArrayList<Event> fe = Calendar.showFutureEvent();
+            ArrayList<Event> fe = CalendarFacade.showFutureEvent();
             helperOfSimulationMessage();
             int index = -1;
             try {
@@ -210,7 +210,7 @@ public class Main {
     public static void allEventSimulation() {
         while (true) {
             System.out.println("all events: \n");
-            ArrayList<Event> ae = Calendar.showEvents();
+            ArrayList<Event> ae = CalendarFacade.showEvents();
             helperOfSimulationMessage();
             int index = -1;
             try {
@@ -234,7 +234,7 @@ public class Main {
         while (true) {
             System.out.println("all series: \n");
             // implement this method, both return and print out according to the pre-specified format
-            ArrayList<Series> s = Calendar.showSeries();
+            ArrayList<Series> s = CalendarFacade.showSeries();
             // can't use the same helper, since it's index for series
             helperOfSimulationMessage();
             int index = -1;
@@ -259,7 +259,7 @@ public class Main {
         while (true) {
             System.out.println("all memos: \n");
             // implement this method, both return and print out according to the pre-specified format
-            ArrayList<Memo> m = Calendar.showMemo();
+            ArrayList<Memo> m = CalendarFacade.showMemo();
             // can't use same helper, since it's index for memo
             helperOfSimulationMessage();
             int index = -1;
@@ -316,19 +316,19 @@ public class Main {
         String command = scan.nextLine();
         switch (command) {
             case "tag":
-                Calendar.searchEventByTag();
+                CalendarFacade.searchEventByTag();
                 break;
             case "date":
-                Calendar.searchEventByDate();
+                CalendarFacade.searchEventByDate();
                 break;
             case "memo":
-                Calendar.searchEventByMemo();
+                CalendarFacade.searchEventByMemo();
                 break;
             case "event name":
-                Calendar.searchEventByName();
+                CalendarFacade.searchEventByName();
                 break;
             case "series":
-                Calendar.searchEventBySeriesName();
+                CalendarFacade.searchEventBySeriesName();
                 break;
             case "main":
                 return;
@@ -361,7 +361,7 @@ public class Main {
             if (! enterKey.equals("main")) {
                 try {
                     //implement this method
-                    Calendar.getCurrentUser().createEvent(name, startTime, duration, address);
+                    CalendarFacade.getCurrentUser().createEvent(name, startTime, duration, address);
                     return;
                 } catch (Exception e) {
                     System.out.println("invalid input in add event simulation! please try again.");
@@ -445,7 +445,7 @@ public class Main {
             String command = scan.nextLine();
             switch (command) {
                 case "delete event": {
-                    Calendar.getCurrentUser().deleteEvent(event.getName());
+                    CalendarFacade.getCurrentUser().deleteEvent(event.getName());
                     System.out.println("successfully delete this event");
                     return;
                 }
@@ -920,8 +920,8 @@ public class Main {
 
 class Updater extends TimerTask {
     public void run() {
-        Calendar.updater();
-        Calendar.alert();
+        CalendarFacade.updater();
+        CalendarFacade.alert();
     }
 }
 
