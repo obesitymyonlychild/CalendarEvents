@@ -118,25 +118,25 @@ public class CalendarFacade {
         return currentUser.getEvents();
     }
 
-    public static ArrayList<Event> searchEventByTag(){
-        return CalendarSearch.searchEventByTag();
+    public static void searchEventByTag(){
+        CalendarSearch.searchEventByTag();
     }
 
-    public static ArrayList<Event> searchEventByDate(){
-        return CalendarSearch.searchEventByDate();
+    public static void searchEventByDate(){
+        CalendarSearch.searchEventByDate();
     }
 
-    public static ArrayList<Event> searchEventByMemo(){
-        return CalendarSearch.searchEventByMemo();
+    public static void searchEventByMemo(){
+        CalendarSearch.searchEventByMemo();
     }
 
-    public static ArrayList<Event> searchEventByName(){
-        return CalendarSearch.searchEventByName();
+    public static void searchEventByName(){
+        CalendarSearch.searchEventByName();
     }
 
 
-    public static ArrayList<Event> searchEventBySeriesName() {
-        return CalendarSearch.searchEventBySeriesName();
+    public static void searchEventBySeriesName() {
+        CalendarSearch.searchEventBySeriesName();
     }
 
     public static void searchAlerts(){
