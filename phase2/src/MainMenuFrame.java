@@ -20,6 +20,11 @@ public class MainMenuFrame extends JFrame implements ActionListener {
 
 
     MainMenuFrame(){
+        this.setTitle("Main Menu");
+        this.setVisible(true);
+        this.setBounds(10, 10, 800, 800);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setResizable(false);
         setLayoutManager();
         setLocationAndSize();
         addComponentsToContainer();

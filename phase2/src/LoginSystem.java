@@ -9,11 +9,6 @@ public class LoginSystem extends JFrame {
 
     public static void login() throws IOException{
         LoginFrame frame = new LoginFrame();
-        frame.setTitle("Calendar Login");
-        frame.setVisible(true);
-        frame.setBounds(10, 10, 400, 600);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setResizable(false);
 
     }
 
