@@ -11,35 +11,16 @@ public class Main {
 
     static ArrayList<String> Users = new ArrayList<String>();
     public static void main(String[] args) throws IOException, ClassNotFoundException {
-
-
+        LoginSystem.login();
 
         File file = new File("Users");
         if (!file.exists()){
-        ObjectOutputStream users = new ObjectOutputStream(new FileOutputStream("Users"));
-        users.writeObject(Users);
-        users.close();}
-        Scanner input = new Scanner(System.in);
-        boolean flag = false;
-        while (!flag) {
-            while (true) {
-                System.out.println("Log in[type log]\nCreate new account[type create]");
-                String a = input.nextLine();
-                if (a.equals("log")) {
-                    flag = LoginSystem.login();
-                    break;
-                } else if (a.equals("create")) {
-                    LoginSystem.createAccount();
-                    break;
-                } else System.out.println("wrong input");
-            }
-        }
-        System.out.println("Successfully log in\n\n\n");
+            ObjectOutputStream users = new ObjectOutputStream(new FileOutputStream("Users"));
+            users.writeObject(Users);
+            users.close();}
 
         Timer timer = new Timer();
         timer.schedule(new Updater(), 0, 5000);
-
-        logInSimulation();
 
 
     }
@@ -302,7 +283,7 @@ public class Main {
 //
 //    }
 
-// for each case, user should be able to type in index and do eventSimulation
+    // for each case, user should be able to type in index and do eventSimulation
     public static void searchSimulation() {
         System.out.println("====================");
         System.out.println("|Search by tag[type in tag]          |");
@@ -645,14 +626,14 @@ public class Main {
                                 System.out.println("start time in format yyyy-MM-dd HH:mm");
                                 String newStartTime = scan.nextLine();
                                 try {
-                                System.out.println("frequency: type in MINUTE or HOUR or DAY or WEEK or MONTH or YEAR or ONETIME");
-                                String unit = scan.next();
-                                Unit u = getUnit(unit);
-                                scan.nextLine();
-                                System.out.println("repeat how many times: ");
-                                int num = scan.nextInt();
-                                event.setAlert(newStartTime, num, u);
-                                break;}catch (Exception e){
+                                    System.out.println("frequency: type in MINUTE or HOUR or DAY or WEEK or MONTH or YEAR or ONETIME");
+                                    String unit = scan.next();
+                                    Unit u = getUnit(unit);
+                                    scan.nextLine();
+                                    System.out.println("repeat how many times: ");
+                                    int num = scan.nextInt();
+                                    event.setAlert(newStartTime, num, u);
+                                    break;}catch (Exception e){
                                     System.out.println("Wrong input");
                                 }
                             } catch (Exception e) {
@@ -841,7 +822,7 @@ public class Main {
 
     }
 
-// concern is the case for main and back
+    // concern is the case for main and back
     public static void alertSimulation(Event event, Alert a) throws IOException {
         System.out.println("what do you want to do with this alert?");
         System.out.println("| delete alert (type in delete)        |");
