@@ -139,15 +139,14 @@ public class LoginFrame extends JFrame implements ActionListener {
                         CalendarFacade.setCurrentUser(user);
                         JOptionPane.showMessageDialog(this, "Login Successful");
                         MainMenuFrame main = new MainMenuFrame();
-                        return;
 
                     }
                     else{
                         JOptionPane.showMessageDialog(this, "Invalid Username or Password");
                         userTextField.setText("");
                         passwordField.setText("");
-                        return;
                     }
+                    return;
                 } catch (IOException | ClassNotFoundException ex) {
                     ex.printStackTrace();
                 }
