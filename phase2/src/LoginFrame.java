@@ -17,6 +17,11 @@ public class LoginFrame extends JFrame implements ActionListener {
 
 
     LoginFrame() {
+        this.setTitle("Calendar Login");
+        this.setVisible(true);
+        this.setBounds(10, 10, 400, 600);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setResizable(false);
         setLayoutManager();
         setLocationAndSize();
         addComponentsToContainer();
@@ -134,11 +139,6 @@ public class LoginFrame extends JFrame implements ActionListener {
                         CalendarFacade.setCurrentUser(user);
                         JOptionPane.showMessageDialog(this, "Login Successful");
                         MainMenuFrame main = new MainMenuFrame();
-                        main.setTitle("Main Menu");
-                        main.setVisible(true);
-                        main.setBounds(10, 10, 800, 800);
-                        main.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                        main.setResizable(false);
                         return;
 
                     }
@@ -164,7 +164,8 @@ public class LoginFrame extends JFrame implements ActionListener {
             try {
                 if (whetherUserExit(username)){
                     JOptionPane.showMessageDialog(this, "Username already existed");
-                    LoginSystem.login();
+                    userTextField.setText("");
+                    passwordField.setText("");
                     return;
                 }
             } catch (IOException | ClassNotFoundException ex) {
@@ -172,6 +173,7 @@ public class LoginFrame extends JFrame implements ActionListener {
             }
             if (!justifyPasswordQualified(password)){
                 JOptionPane.showMessageDialog(this, "at least length of 8 and with at least one capital");
+                passwordField.setText("");
                 return;
             }
             try {
