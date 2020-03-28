@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 import java.io.*;
 import java.util.ArrayList;
 
-public class AddEventFrame extends JFrame implements ActionListener {
+public class EditEvent extends JFrame implements ActionListener {
 
     Container container = getContentPane();
     JLabel nameLabel = new JLabel("EVENT NAME");
@@ -22,12 +22,7 @@ public class AddEventFrame extends JFrame implements ActionListener {
     JButton backButton = new JButton("BACK");
 
 
-    AddEventFrame() {
-        this.setTitle("Add New Event");
-        this.setVisible(true);
-        this.setBounds(10, 10, 500, 600);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setResizable(false);
+    EditEvent() {
         setLayoutManager();
         setLocationAndSize();
         addComponentsToContainer();

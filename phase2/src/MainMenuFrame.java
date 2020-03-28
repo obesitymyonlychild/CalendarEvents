@@ -107,22 +107,12 @@ public class MainMenuFrame extends JFrame implements ActionListener {
 
         if(e.getSource() == addEventButton){
             AddEventFrame newEvent = new AddEventFrame();
-            newEvent.setTitle("Add New Event");
-            newEvent.setVisible(true);
-            newEvent.setBounds(10, 10, 500, 600);
-            newEvent.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            newEvent.setResizable(false);
         }
 
 
         if (e.getSource() == logoutButton){
             CalendarFacade.setCurrentUser(null);
             LoginFrame frame = new LoginFrame();
-            frame.setTitle("Calendar Login");
-            frame.setVisible(true);
-            frame.setBounds(10, 10, 400, 600);
-            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            frame.setResizable(false);
         }
 
     }

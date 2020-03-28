@@ -5,7 +5,7 @@ import java.util.Timer;
 
 
 public class LoginSystem extends JFrame {
-    
+
 
     public static void login() throws IOException{
         LoginFrame frame = new LoginFrame();
