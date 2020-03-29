@@ -17,6 +17,7 @@ public class MainMenuFrame extends JFrame implements ActionListener {
     JButton searchButton = new JButton("Search");
     JButton addEventButton = new JButton("Add Event");
     JButton logoutButton = new JButton("logout");
+    JButton createSeriesButton = new JButton("Create Series");
 
 
     MainMenuFrame(){
@@ -48,6 +49,7 @@ public class MainMenuFrame extends JFrame implements ActionListener {
         ArrayList<Event> today = CalendarFacade.showTodayEvents();
         todayEvents.setText("Today's events: \n"+today.toString());
         todayEvents.setBounds(300, 700, 200, 30);
+        createSeriesButton.setBounds(300, 450, 100, 30);
     }
 
     public void addComponentsToContainer(){
@@ -61,6 +63,7 @@ public class MainMenuFrame extends JFrame implements ActionListener {
         container.add(addEventButton);
         container.add(logoutButton);
         container.add(todayEvents);
+        container.add(createSeriesButton);
     }
 
     public void addActionEvent(){
@@ -72,6 +75,7 @@ public class MainMenuFrame extends JFrame implements ActionListener {
         memoButton.addActionListener(this);
         searchButton.addActionListener(this);
         addEventButton.addActionListener(this);
+        createSeriesButton.addActionListener(this);
     }
 
     @Override
@@ -109,10 +113,19 @@ public class MainMenuFrame extends JFrame implements ActionListener {
             AddEventFrame newEvent = new AddEventFrame();
         }
 
+        if(e.getSource()==createSeriesButton){
+            //create series frame
+        }
+
 
         if (e.getSource() == logoutButton){
             CalendarFacade.setCurrentUser(null);
-            LoginFrame frame = new LoginFrame();
+            this.dispose();
+            try {
+                LoginSystem.login();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
         }
 
     }
