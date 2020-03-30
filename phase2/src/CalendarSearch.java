@@ -27,14 +27,14 @@ public class CalendarSearch {
         CalendarSearch.currentCalendar = para;
     }
 
-    public static ArrayList<Event> searchEventByTag(){
-        System.out.println("Please enter a tag name");
-        Scanner scan = new Scanner(System.in);
-        String input = scan.nextLine();
+    public static ArrayList<Event> searchEventByTag(String para){
+//        System.out.println("Please enter a tag name");
+//        Scanner scan = new Scanner(System.in);
+//        String input = scan.nextLine();
         ArrayList<Event> eventList = new ArrayList<Event>();
         boolean detective = false;
         for(Event event: currentCalendar.getEvents()){
-            if(event.getTags().contains(input)){
+            if(event.getTags().contains(para)){
                 detective = true;
                 eventList.add(event);
             }
@@ -49,13 +49,13 @@ public class CalendarSearch {
 
     }
 
-    public static ArrayList<Event> searchEventByDate(){
+    public static ArrayList<Event> searchEventByDate(String para){
 
-        System.out.println("Please enter a date with the format yyyy-MM-dd");
-        Scanner scan = new Scanner(System.in);
-        String input = scan.nextLine();
+//        System.out.println("Please enter a date with the format yyyy-MM-dd");
+//        Scanner scan = new Scanner(System.in);
+//        String input = scan.nextLine();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDate search = LocalDate.parse(input, formatter);
+        LocalDate search = LocalDate.parse(para, formatter);
         ArrayList<Event> eventList = new ArrayList<Event>();
         boolean detective = false;
         for(Event event: currentCalendar.getEvents()){
@@ -85,14 +85,14 @@ public class CalendarSearch {
     }
 
 
-    public static ArrayList<Event> searchEventByMemo(){
-        System.out.println("Please enter a keyword to search memo");
-        Scanner scan = new Scanner(System.in);
-        String input = scan.nextLine();
+    public static ArrayList<Event> searchEventByMemo(String para){
+//        System.out.println("Please enter a keyword to search memo");
+//        Scanner scan = new Scanner(System.in);
+//        String input = scan.nextLine();
         ArrayList<Event> eventList = new ArrayList<Event>();
         boolean detective = false;
         for(Memo memo: currentCalendar.getMemos()){
-            if(memo.getContent().contains(input)){
+            if(memo.getContent().contains(para)){
                 detective = true;
                 eventList.addAll(memo.getEvents());
             }
@@ -108,15 +108,15 @@ public class CalendarSearch {
         return (ArrayList<Event>) eventList.stream().distinct().collect(Collectors.toList());
     }
 
-    public static ArrayList<Event> searchEventByName(){
-        System.out.println("Please enter event name");
-        Scanner scan = new Scanner(System.in);
-        String input = scan.nextLine();
+    public static ArrayList<Event> searchEventByName(String para){
+//        System.out.println("Please enter event name");
+//        Scanner scan = new Scanner(System.in);
+//        String input = scan.nextLine();
         ArrayList<Event> eventList = new ArrayList<Event>();
         boolean detective = false;
 
         for (Event event: currentCalendar.getEvents()){
-            if (event.getName().contains(input)){
+            if (event.getName().contains(para)){
                 detective = true;
                 eventList.add(event);
             }
@@ -135,16 +135,16 @@ public class CalendarSearch {
     }
 
 
-    public static ArrayList<Event> searchEventBySeriesName(){
+    public static ArrayList<Event> searchEventBySeriesName(String para){
 
         // get rid of repetitive ele in arraylist
-        System.out.println("Please enter a series name");
-        Scanner scan = new Scanner(System.in);
-        String input = scan.nextLine();
+//        System.out.println("Please enter a series name");
+//        Scanner scan = new Scanner(System.in);
+//        String input = scan.nextLine();
         ArrayList<Event> eventList = new ArrayList<Event>();
         boolean detective = false;
         for(Series series: currentCalendar.getSeries()){
-            if(series.getName().contains(input)){
+            if(series.getName().contains(para)){
                 detective = true;
                 eventList.addAll(series.getEvents());
             }
@@ -162,18 +162,18 @@ public class CalendarSearch {
 
     }
 
-    public static ArrayList<Alert> searchAlerts(){
+    public static ArrayList<Alert> searchAlerts(String para1, String para2){
         //println alerts with time range(input)
-        Scanner scan = new Scanner(System.in);
+//        Scanner scan = new Scanner(System.in);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
         ArrayList<Alert> alertList = new ArrayList<Alert>();
         boolean detective = false;
 
-        System.out.println("Please enter the start time with the format yyyy-MM-dd HH:mm");
-        LocalDateTime startTime = LocalDateTime.parse(scan.nextLine(), formatter);
-        System.out.println("Please enter the end time with the format yyyy-MM-dd HH:mm");
-        LocalDateTime endTime = LocalDateTime.parse(scan.nextLine(), formatter);
+        //System.out.println("Please enter the start time with the format yyyy-MM-dd HH:mm");
+        LocalDateTime startTime = LocalDateTime.parse(para1, formatter);
+        //System.out.println("Please enter the end time with the format yyyy-MM-dd HH:mm");
+        LocalDateTime endTime = LocalDateTime.parse(para2, formatter);
 
         for(Alert alert: currentCalendar.getAlertList()){
             if (alert.getStartTime().isAfter(startTime) &&  alert.getStartTime().isBefore(endTime)){
