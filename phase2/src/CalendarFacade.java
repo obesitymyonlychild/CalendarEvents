@@ -77,6 +77,8 @@ public class CalendarFacade {
         return CalendarShow.showTodayEvents();
     }
 
+    public static String getMemoContent(String memoName) { return CalendarShow.getMemoContent(memoName);  }
+
     public static ArrayList<Memo> showMemo(){
         // border
         return CalendarShow.showMemo();
@@ -143,13 +145,5 @@ public class CalendarFacade {
         CalendarSearch.searchAlerts();
     }
 
-    public static String getMemoContent(String memoName) {
-        String res = "No result";
-        for (Memo memo: currentUser.getMemos()){
-            if (memo.getName().equals(memoName))
-                return memo.getContent();
-        }
-        return res;
 
-    }
 }
