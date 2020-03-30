@@ -5,15 +5,23 @@ import java.time.LocalDateTime;
 public class CalendarShow {
 
     private static User currentUser;
+    private static Calendar currentCalendar;
+
     public CalendarShow(){
     }
 
     public static  User getCurrentUser(){
         return currentUser;
     }
+    public static  Calendar getCurrent(){
+        return currentCalendar;
+    }
 
     public static void setCurrentUser(User para){
         CalendarShow.currentUser = para;
+    }
+    public static void setCurrentCalendar(Calendar para){
+        CalendarShow.currentCalendar = para;
     }
 
     public static ArrayList<Event> showOngoingEvent(){
