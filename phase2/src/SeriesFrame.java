@@ -69,7 +69,7 @@ public class SeriesFrame extends JFrame implements ActionListener, ListSelection
         container.add(backButton);
         container.add(addSeriesButton);
         container.add(deleteSeriesButton);
-        container.add(seriesContentTextField);
+//        container.add(seriesContentTextField);
     }
 
     private void addActionEvent() {
