@@ -13,7 +13,7 @@ public class SeriesFrame extends JFrame implements ActionListener, ListSelection
     JList<String> eventList = new JList<>();
     JLabel seriesLabel = new JLabel("series");
     JLabel eventsLabel = new JLabel("events");
-    JTextField seriesContentTextField = new JTextField();
+//    JTextField seriesContentTextField = new JTextField();
     JButton goButton = new JButton("go to series");
     JButton backButton = new JButton("back");
 
@@ -49,7 +49,7 @@ public class SeriesFrame extends JFrame implements ActionListener, ListSelection
     private void setLocationAndSize() {
         seriesLabel.setBounds(30, 30, 100, 30);
         eventsLabel.setBounds(200, 30, 100, 30);
-        seriesContentTextField.setBounds(30, 450, 400, 90);
+//        seriesContentTextField.setBounds(30, 450, 400, 90);
         seriesList.setBounds(30, 60, 200, 350);
         eventList.setBounds(200, 60, 200, 350);
         goButton.setBounds(440, 30, 80, 30);
@@ -69,7 +69,7 @@ public class SeriesFrame extends JFrame implements ActionListener, ListSelection
         container.add(backButton);
         container.add(addSeriesButton);
         container.add(deleteSeriesButton);
-        container.add(seriesContentTextField);
+//        container.add(seriesContentTextField);
     }
 
     private void addActionEvent() {
@@ -156,7 +156,7 @@ public class SeriesFrame extends JFrame implements ActionListener, ListSelection
             eventString[i] = events.get(i).toString();
         }
         eventList.setListData(eventString);
-        seriesContentTextField.setText(CalendarFacade.getSeriesContent(targetSeriesString));
+
 
     }
 }

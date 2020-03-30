@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.concurrent.Future;
 
 public class MainMenuFrame extends JFrame implements ActionListener {
     Container container = getContentPane();
@@ -17,7 +18,6 @@ public class MainMenuFrame extends JFrame implements ActionListener {
     JButton searchButton = new JButton("Search");
     JButton addEventButton = new JButton("Add Event");
     JButton logoutButton = new JButton("logout");
-    JButton createSeriesButton = new JButton("Create Series");
 
 
     MainMenuFrame(){
@@ -49,7 +49,6 @@ public class MainMenuFrame extends JFrame implements ActionListener {
         ArrayList<Event> today = CalendarFacade.showTodayEvents();
         todayEvents.setText("Today's events: \n"+today.toString());
         todayEvents.setBounds(300, 700, 200, 30);
-        createSeriesButton.setBounds(300, 450, 100, 30);
     }
 
     public void addComponentsToContainer(){
@@ -63,7 +62,6 @@ public class MainMenuFrame extends JFrame implements ActionListener {
         container.add(addEventButton);
         container.add(logoutButton);
         container.add(todayEvents);
-        container.add(createSeriesButton);
     }
 
     public void addActionEvent(){
@@ -75,26 +73,26 @@ public class MainMenuFrame extends JFrame implements ActionListener {
         memoButton.addActionListener(this);
         searchButton.addActionListener(this);
         addEventButton.addActionListener(this);
-        createSeriesButton.addActionListener(this);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         //Coding part of past
         if(e.getSource() == pastButton){
-            JOptionPane.showMessageDialog(this, "hiya");
+            PastEventFrame past = new PastEventFrame();
         }
 
         if(e.getSource() == ongoingButton){
-            JOptionPane.showMessageDialog(this, "hiya");
+            //wrong spelling in class ongoing event frame.
+            OngingEventFrame ing = new OngingEventFrame();
         }
 
         if(e.getSource() == futureButton){
-            JOptionPane.showMessageDialog(this, "hiya");
+            FutureEventFrame fut = new FutureEventFrame();
         }
 
         if(e.getSource() == allEventButton){
-            JOptionPane.showMessageDialog(this, "hiya");
+            //
         }
 
         if(e.getSource() == seriesButton){
@@ -111,10 +109,6 @@ public class MainMenuFrame extends JFrame implements ActionListener {
 
         if(e.getSource() == addEventButton){
             AddEventFrame newEvent = new AddEventFrame();
-        }
-
-        if(e.getSource()==createSeriesButton){
-            //create series frame
         }
 
 
