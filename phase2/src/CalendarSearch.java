@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 public class CalendarSearch {
 
     private static User currentUser;
+    private static Calendar currentCalendar;
 
     public CalendarSearch() {
     }
@@ -15,9 +16,15 @@ public class CalendarSearch {
     public static  User getCurrentUser(){
         return currentUser;
     }
+    public static  Calendar getCurrent(){
+        return currentCalendar;
+    }
 
     public static void setCurrentUser(User para){
         CalendarSearch.currentUser = para;
+    }
+    public static void setCurrentCalendar(Calendar para){
+        CalendarSearch.currentCalendar = para;
     }
 
     public static ArrayList<Event> searchEventByTag(){
