@@ -115,7 +115,7 @@ public class SeriesFrame extends JFrame implements ActionListener, ListSelection
 
 
         if (e.getSource() == backButton) {
-            MainMenuFrame main = new MainMenuFrame();
+            this.dispose();
 
         }
 
