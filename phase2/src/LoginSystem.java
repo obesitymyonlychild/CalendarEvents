@@ -23,12 +23,7 @@ public class LoginSystem extends JFrame {
 
         java.util.Timer timer = new Timer();
         timer.schedule(new Updater(), 0, 5000);
-
-
     }
-
-
-
 //    private static boolean justifyPasswordQualified(String password){
 //        if (password.length()<8)
 //            return false;

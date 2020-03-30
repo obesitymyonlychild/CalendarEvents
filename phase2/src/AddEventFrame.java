@@ -16,8 +16,6 @@ public class AddEventFrame extends InfoEventFrame implements ActionListener {
         addButton.setBounds(300, 500, 100, 30);
         container.add(addButton);
         addButton.addActionListener(this);
-
-
     }
 
 
