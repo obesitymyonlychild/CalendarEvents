@@ -114,7 +114,7 @@ public class MainMenuFrame extends JFrame implements ActionListener {
         }
 
         if(e.getSource()==createSeriesButton){
-            //create series frame
+            SeriesFrame newSeries = new SeriesFrame();
         }
 
 
