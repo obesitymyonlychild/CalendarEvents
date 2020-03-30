@@ -132,4 +132,14 @@ public class CalendarShow {
         }
         return seriesList;
     }
+
+    public static String getMemoContent(String memoName) {
+        String res = "No result";
+        for (Memo memo: currentUser.getMemos()){
+            if (memo.getName().equals(memoName))
+                return memo.getContent();
+        }
+        return res;
+
+    }
 }
