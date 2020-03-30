@@ -33,7 +33,7 @@ public class CalendarSearch {
         String input = scan.nextLine();
         ArrayList<Event> eventList = new ArrayList<Event>();
         boolean detective = false;
-        for(Event event: currentUser.getEvents()){
+        for(Event event: currentCalendar.getEvents()){
             if(event.getTags().contains(input)){
                 detective = true;
                 eventList.add(event);
@@ -58,7 +58,7 @@ public class CalendarSearch {
         LocalDate search = LocalDate.parse(input, formatter);
         ArrayList<Event> eventList = new ArrayList<Event>();
         boolean detective = false;
-        for(Event event: currentUser.getEvents()){
+        for(Event event: currentCalendar.getEvents()){
 
             String startTimeString = event.getStartTime().format(formatter);
             LocalDate startTime = LocalDate.parse(startTimeString, formatter);
@@ -91,7 +91,7 @@ public class CalendarSearch {
         String input = scan.nextLine();
         ArrayList<Event> eventList = new ArrayList<Event>();
         boolean detective = false;
-        for(Memo memo: currentUser.getMemos()){
+        for(Memo memo: currentCalendar.getMemos()){
             if(memo.getContent().contains(input)){
                 detective = true;
                 eventList.addAll(memo.getEvents());
@@ -115,7 +115,7 @@ public class CalendarSearch {
         ArrayList<Event> eventList = new ArrayList<Event>();
         boolean detective = false;
 
-        for (Event event: currentUser.getEvents()){
+        for (Event event: currentCalendar.getEvents()){
             if (event.getName().contains(input)){
                 detective = true;
                 eventList.add(event);
@@ -143,7 +143,7 @@ public class CalendarSearch {
         String input = scan.nextLine();
         ArrayList<Event> eventList = new ArrayList<Event>();
         boolean detective = false;
-        for(Series series: currentUser.getSeries()){
+        for(Series series: currentCalendar.getSeries()){
             if(series.getName().contains(input)){
                 detective = true;
                 eventList.addAll(series.getEvents());
@@ -175,7 +175,7 @@ public class CalendarSearch {
         System.out.println("Please enter the end time with the format yyyy-MM-dd HH:mm");
         LocalDateTime endTime = LocalDateTime.parse(scan.nextLine(), formatter);
 
-        for(Alert alert: currentUser.getAlertList()){
+        for(Alert alert: currentCalendar.getAlertList()){
             if (alert.getStartTime().isAfter(startTime) &&  alert.getStartTime().isBefore(endTime)){
                 alertList.add(alert);
                 detective = true;

@@ -26,7 +26,7 @@ public class CalendarShow {
 
     public static ArrayList<Event> showOngoingEvent(){
 
-        ArrayList<Event> eventList = currentUser.getOngoingEvents();
+        ArrayList<Event> eventList = currentCalendar.getOngoingEvents();
         int index = 1;
         for(Event event: eventList){
             System.out.println(index + ". " + event.toString());
@@ -41,7 +41,7 @@ public class CalendarShow {
 
     public static ArrayList<Event> showPastEvent(){
 
-        ArrayList<Event> eventList = currentUser.getPastEvents();
+        ArrayList<Event> eventList = currentCalendar.getPastEvents();
         int index = 1;
         for(Event event: eventList){
             System.out.println(index + ". " + event.toString());
@@ -57,7 +57,7 @@ public class CalendarShow {
 
     public static ArrayList<Event> showFutureEvent(){
 
-        ArrayList<Event> eventList = currentUser.getFutureEvents();
+        ArrayList<Event> eventList = currentCalendar.getFutureEvents();
         int index = 1;
         for(Event event: eventList){
             System.out.println(index + ". " + event.toString());
@@ -72,7 +72,7 @@ public class CalendarShow {
 
     public static ArrayList<Event> showEvents(){
 
-        ArrayList<Event> eventList = currentUser.getEvents();
+        ArrayList<Event> eventList = currentCalendar.getEvents();
         int index = 1;
         for(Event event: eventList){
             System.out.println(index + ". " + event.toString());
@@ -93,7 +93,7 @@ public class CalendarShow {
         ArrayList<Event> eventList = new ArrayList<Event>();
         boolean detective = false;
 
-        for (Event event: currentUser.getEvents()) {
+        for (Event event: currentCalendar.getEvents()) {
             if (event.getStartTime().format(formatter).equals(nowString)) {
                 detective = true;
                 eventList.add(event);
@@ -116,7 +116,7 @@ public class CalendarShow {
     public static ArrayList<Memo> showMemo(){
         // border
         // border
-        ArrayList<Memo> memoList = currentUser.getMemos();
+        ArrayList<Memo> memoList = currentCalendar.getMemos();
         int index = 1;
         for(Memo memo: memoList){
             System.out.println(index + ". " + memo.toString());
@@ -129,7 +129,7 @@ public class CalendarShow {
     }
 
     public static ArrayList<Series> showSeries(){
-        ArrayList<Series> seriesList = currentUser.getSeries();
+        ArrayList<Series> seriesList = currentCalendar.getSeries();
         int index = 1;
         for(Series series: seriesList){
             System.out.println(index + ". " + series.toString());
@@ -143,7 +143,7 @@ public class CalendarShow {
 
     public static String getMemoContent(String memoName) {
         String res = "No result";
-        for (Memo memo: currentUser.getMemos()){
+        for (Memo memo: currentCalendar.getMemos()){
             if (memo.getName().equals(memoName))
                 return memo.getContent();
         }

@@ -49,22 +49,23 @@ public class CalendarFacade {
 
         LocalDateTime now = LocalDateTime.now();
 
-        for (Event event: currentUser.getEvents()){
+        for (Event event: currentCalendar.getEvents()){
             LocalDateTime startTime = event.getStartTime();
             LocalDateTime endTime = event.getEndTime();
 
             // case1 move futureEvent
-            if (startTime.isAfter(now) && currentUser.getFutureEvents().contains(event))
-                currentUser.moveToNow(event);
+            if (startTime.isAfter(now) && currentCalendar.getFutureEvents().contains(event))
+                currentCalendar.moveToNow(event);
             // case2 move ongoingEvent
-            if (endTime.isBefore(now) && currentUser.getOngoingEvents().contains(event))
-                currentUser.moveToNow(event);
+            if (endTime.isBefore(now) && currentCalendar.getOngoingEvents().contains(event))
+                currentCalendar.moveToNow(event);
         }
 
     }
 
     public static void logout() {
         setCurrentUser(null);
+        setCurrentCalendar(null);
     }
 
     public static ArrayList<Event> showOngoingEvent(){
@@ -108,7 +109,7 @@ public class CalendarFacade {
         boolean detective = false;
         // check user alert on and event alert on
         if (currentUser.getAlertOn()){
-            for (Event event: currentUser.getEvents())
+            for (Event event: currentCalendar.getEvents())
                 for(Alert alert: event.getAlerts()){
                     //if (alert.getStartTime().isEqual(now)) {
                     if ((alert.getStartTime().format(formatter)).equals(nowString) && !nowString.equals(timeAppeared)) {
@@ -127,7 +128,7 @@ public class CalendarFacade {
     }
 
     public static ArrayList<Event> getEvents(){
-        return currentUser.getEvents();
+        return currentCalendar.getEvents();
     }
 
     public static void searchEventByTag(){
