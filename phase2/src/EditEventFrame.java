@@ -1,14 +1,10 @@
-import com.sun.scenario.effect.impl.sw.java.JSWBlend_COLOR_BURNPeer;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.*;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
-public class EditEvent extends JFrame implements ActionListener {
+public class EditEventFrame extends JFrame implements ActionListener {
 
 
     // i want this event info on this edit page or not
@@ -32,7 +28,7 @@ public class EditEvent extends JFrame implements ActionListener {
     JButton backButton = new JButton("BACK");
 
 
-    EditEvent(Event event) {
+    EditEventFrame(Event event) {
         this.event = event;
         this.setTitle("Edit Event");
         this.setVisible(true);
