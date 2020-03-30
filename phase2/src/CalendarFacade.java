@@ -31,8 +31,8 @@ public class CalendarFacade {
     }
 
     // Call login system and set user to currentUser
-    public static boolean callLogin() throws IOException, ClassNotFoundException {
-        return LoginSystem.login();
+    public static void callLogin() throws IOException, ClassNotFoundException {
+        LoginSystem.login();
     }
 
     public static void updater(){
@@ -141,5 +141,15 @@ public class CalendarFacade {
 
     public static void searchAlerts(){
         CalendarSearch.searchAlerts();
+    }
+
+    public static String getMemoContent(String memoName) {
+        String res = "No result";
+        for (Memo memo: currentUser.getMemos()){
+            if (memo.getName().equals(memoName))
+                return memo.getContent();
+        }
+        return res;
+
     }
 }
