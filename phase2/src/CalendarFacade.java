@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 public class CalendarFacade {
 
     private static User currentUser;
+    private static Calendar currentCalendar;
 
     //private static LoginSystem loginSystem = new LoginSystem();
 
@@ -15,12 +16,21 @@ public class CalendarFacade {
     public static  User getCurrentUser(){
         return currentUser;
     }
+    public static  Calendar getCurrentCalendar(){
+        return currentCalendar;
+    }
 
 
     public static void setCurrentUser(User para){
         CalendarFacade.currentUser = para;
         CalendarShow.setCurrentUser(para);
         CalendarSearch.setCurrentUser(para);
+    }
+
+    public static void setCurrentCalendar(Calendar para){
+        CalendarFacade.currentCalendar = para;
+        CalendarShow.setCurrentCalendar(para);
+        CalendarSearch.setCurrentCalendar(para);
     }
 
     // Call all the methods of Event
