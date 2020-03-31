@@ -7,11 +7,11 @@ import javax.swing.*;     // Using Swing components and containers
 public class SearchFrame extends JFrame implements ActionListener {
 
     Container container = getContentPane();
-    JButton tagButton = new JButton("SEARCH BY TAG");
-    JButton dateButton = new JButton("SEARCH BY DATE");
-    JButton memoButton = new JButton("SEARCH BY MEMO");
-    JButton seriesButton = new JButton("SEARCH BY SERIES");
-    JButton eventButton = new JButton("SEARCH BY EVENT");
+    JButton tagButton = new JButton("BY TAG");
+    JButton dateButton = new JButton("BY DATE");
+    JButton memoButton = new JButton("BY MEMO");
+    JButton seriesButton = new JButton("BY SERIES");
+    JButton eventButton = new JButton("BY EVENT");
     JButton backButton = new JButton("BACK");
     JButton goButton = new JButton("GO");
     JLabel tagLabel = new JLabel("tag");
