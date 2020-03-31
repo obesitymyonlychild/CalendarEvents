@@ -51,10 +51,10 @@ public class SeriesFrame extends JFrame implements ActionListener, ListSelection
         eventsLabel.setBounds(200, 30, 100, 30);
 //        seriesContentTextField.setBounds(30, 450, 400, 90);
         seriesList.setBounds(30, 60, 200, 350);
-        eventList.setBounds(200, 60, 200, 350);
-        goButton.setBounds(440, 30, 80, 30);
+        eventList.setBounds(270, 60, 200, 350);
+        goButton.setBounds(440, 30, 130, 30);
         backButton.setBounds(440, 90, 80, 30);
-        addSeriesButton.setBounds(100, 30, 80, 30);
+        addSeriesButton.setBounds(440, 150, 80, 30);
         deleteSeriesButton.setBounds(100, 90, 80, 30);
 
 
@@ -99,16 +99,21 @@ public class SeriesFrame extends JFrame implements ActionListener, ListSelection
 
 
 //            ArrayList<Series> series = CalendarFacade.getCurrentUser().getSeries();
-
-            for (Series value : series) {
-                if (value.getName().equals(seriesName)) {
-                    ArrayList<Event> events = value.getEvents();
-                    String[] eventsString = new String[events.size()];
-                    for (int j = 0; j < events.size(); j++) {
-                        eventsString[j] = events.get(j).toString();
+            try {
+                for (Series value : series) {
+                    if (value.getName().equals(seriesName)) {
+                        ArrayList<Event> events = value.getEvents();
+                        String[] eventsString = new String[events.size()];
+                        for (int j = 0; j < events.size(); j++) {
+                            eventsString[j] = events.get(j).toString();
+                        }
+                        eventList.setListData(eventsString);
                     }
-                    eventList.setListData(eventsString);
+
                 }
+            }
+            catch (IndexOutOfBoundsException ee){
+                JOptionPane.showMessageDialog(this, "No series!");
 
             }
         }
