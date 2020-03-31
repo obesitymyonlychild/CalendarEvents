@@ -29,7 +29,7 @@ public class MemoFrame extends JFrame implements ActionListener, ListSelectionLi
         setLocationAndSize();
         addComponentsToContainer();
         addActionEvent();
-        ArrayList<Memo> memos = CalendarFacade.getMemos();
+        ArrayList<Memo> memos = CalendarFacade.showMemo();
         String[] memoString = new String[memos.size()];
         for (int j = 0; j < memos.size(); j++) {
             memoString[j] = memos.get(j).toString();
