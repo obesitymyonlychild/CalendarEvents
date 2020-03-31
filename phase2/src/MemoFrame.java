@@ -11,8 +11,8 @@ public class MemoFrame extends JFrame implements ActionListener, ListSelectionLi
     Container container = getContentPane();
     JList<String> memoList = new JList<>();
     JList<String> eventList = new JList<>();
-    JLabel memosLabel = new JLabel("memos");
-    JLabel eventsLabel = new JLabel("events");
+    JLabel memosLabel = new JLabel("MEMOS");
+    JLabel eventsLabel = new JLabel("EVENTS");
     JTextField memoContentTextField = new JTextField();
     JButton goButton = new JButton("GO");
     JButton backButton = new JButton("BACK");
@@ -44,13 +44,13 @@ public class MemoFrame extends JFrame implements ActionListener, ListSelectionLi
 
     private void setLocationAndSize() {
         memosLabel.setBounds(30, 30, 100, 30);
-        eventsLabel.setBounds(200, 30, 100, 30);
-        memoContentTextField.setBounds(30, 450, 400, 50);
+        eventsLabel.setBounds(250, 30, 100, 30);
+        memoContentTextField.setBounds(30, 370, 400, 100);
         memoList.setBounds(30, 60, 200, 250);
-        eventList.setBounds(200, 60, 200, 250);
-        goButton.setBounds(440, 60, 80, 30);
-        backButton.setBounds(440, 100, 80, 30);
-        memoContentLabel.setBounds(30, 350, 400, 50);
+        eventList.setBounds(250, 60, 200, 250);
+        goButton.setBounds(460, 60, 100, 40);
+        backButton.setBounds(460, 120, 100, 40);
+        memoContentLabel.setBounds(30, 320, 400, 50);
 
     }
 
@@ -62,6 +62,7 @@ public class MemoFrame extends JFrame implements ActionListener, ListSelectionLi
         container.add(goButton);
         container.add(backButton);
         container.add(memoContentTextField);
+        container.add(memoContentLabel);
     }
 
     private void addActionEvent() {
