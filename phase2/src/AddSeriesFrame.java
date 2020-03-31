@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.io.*;
 import java.util.ArrayList;
 
+
 public class AddSeriesFrame extends JFrame implements ActionListener {
 
     JButton addButton = new JButton("add");
@@ -28,8 +29,8 @@ public class AddSeriesFrame extends JFrame implements ActionListener {
         addComponentsToContainer();
         addActionEvent();
 
-        addButton.addActionListener(this);
-        backButton.addActionListener(this);
+//        addButton.addActionListener(this);
+//        backButton.addActionListener(this);
 
     }
     public void setLayoutManager() {
@@ -72,9 +73,26 @@ public class AddSeriesFrame extends JFrame implements ActionListener {
             String name = nameTextField.getText();
             CalendarFacade.getCurrentUser().createSeries(name);
             JOptionPane.showMessageDialog(this, "Series added!");
+
+
             nameTextField.setText("");
 
+            ArrayList<Series> series = CalendarFacade.getCurrentUser().getSeries();
+            String[] seriesString = new String[series.size()];
+            for (int j = 0; j < series.size(); j++) {
+                seriesString[j] = series.get(j).toString();
+            }
+            SeriesFrame.seriesList.setListData(seriesString);
+
+
         }
+
     }
+
+
+
+
+
+
 }
 

@@ -15,7 +15,7 @@ public class Series implements java.io.Serializable {
 
     public Series(String name){
         this.name = name;
-        events = new ArrayList<Event>();
+        events = new ArrayList<>();
     }
 
     private void createEventInMiniute(String nameOfEvent, LocalDateTime t, int duration, String address, int num){
@@ -113,24 +113,23 @@ public class Series implements java.io.Serializable {
         return this.events;
     }
 
-    public String toString(){
-        String result = name + ": \n";
-        for (Event e : events){
-            result = result + e.getName() + " ";
-        }
-        return result;
-    }
-
-    public void showEvents(){
-        if (events.size() == 0){
-            System.out.println("no events in this series");
-        }else {
-            String result = "";
-            for (int i = 0; i < events.size(); i++){
-                result = Integer.toString(i+1) + " " + events.get(i).getName() + "\n";
-            }
-            System.out.println(result);
-        }
-    }
+//    public String toString(){
+//        //        for (Event e : events){
+////            result = result + e.getName() + " ";
+////        }
+//        return name + "\n";
+//    }
+//
+//    public void showEvents(){
+//        if (events.size() == 0){
+//            System.out.println("no events in this series");
+//        }else {
+//            String result = "";
+//            for (int i = 0; i < events.size(); i++){
+//                result = Integer.toString(i+1) + " " + events.get(i).getName() + "\n";
+//            }
+//            System.out.println(result);
+//        }
+//    }
 
 }

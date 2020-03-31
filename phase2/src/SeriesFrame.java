@@ -9,11 +9,11 @@ import javax.swing.event.ListSelectionListener;
 public class SeriesFrame extends JFrame implements ActionListener, ListSelectionListener {
 
     Container container = getContentPane();
-    JList<String> seriesList = new JList<>();
+    public static JList<String> seriesList = new JList<>();
     JList<String> eventList = new JList<>();
     JLabel seriesLabel = new JLabel("series");
     JLabel eventsLabel = new JLabel("events");
-//    JTextField seriesContentTextField = new JTextField();
+    //    JTextField seriesContentTextField = new JTextField();
     JButton goButton = new JButton("go to series");
     JButton backButton = new JButton("back");
 
@@ -55,7 +55,7 @@ public class SeriesFrame extends JFrame implements ActionListener, ListSelection
         goButton.setBounds(500, 30, 130, 30);
         backButton.setBounds(500, 90, 130, 30);
         addSeriesButton.setBounds(500, 150, 130, 30);
-        deleteSeriesButton.setBounds(100, 90, 80, 30);
+        deleteSeriesButton.setBounds(500, 210, 130, 30);
 
 
     }
@@ -83,10 +83,9 @@ public class SeriesFrame extends JFrame implements ActionListener, ListSelection
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == goButton) {
-            int i = seriesList.getSelectedIndex();
+
 
             ArrayList<Series> series = CalendarFacade.getCurrentUser().getSeries();
-
 
 
 //            ArrayList<Event> events = CalendarFacade.searchEventBySeriesName(seriesName);
@@ -100,6 +99,9 @@ public class SeriesFrame extends JFrame implements ActionListener, ListSelection
 
 //            ArrayList<Series> series = CalendarFacade.getCurrentUser().getSeries();
             try {
+//                String seriesName = seriesList.getSelectedValue();
+                int i = seriesList.getSelectedIndex();
+//                for (Series value : series)
                 String seriesName = series.get(i).getName();
                 for (Series value : series) {
                     if (value.getName().equals(seriesName)) {
@@ -110,13 +112,18 @@ public class SeriesFrame extends JFrame implements ActionListener, ListSelection
                         }
                         eventList.setListData(eventsString);
                     }
-
                 }
-            }
-            catch (IndexOutOfBoundsException ee){
-                JOptionPane.showMessageDialog(this, "No series!");
+
+
+            } catch (IndexOutOfBoundsException ee) {
+                JOptionPane.showMessageDialog(this, "Uh-oh! No series so far");
 
             }
+            catch (NullPointerException n) {
+                JOptionPane.showMessageDialog(this, "No events in this series so far",
+                        "Error", JOptionPane.ERROR_MESSAGE);
+            }
+
         }
 
 
@@ -127,45 +134,63 @@ public class SeriesFrame extends JFrame implements ActionListener, ListSelection
 
         if (e.getSource() == addSeriesButton) {
             AddSeriesFrame newSeries = new AddSeriesFrame();
-
-            ArrayList<Series> series = CalendarFacade.getCurrentUser().getSeries();
-            String[] seriesString = new String[series.size()];
-            for (int j = 0; j < series.size(); j++) {
-                seriesString[j] = series.get(j).toString();
-            }
-            seriesList.setListData(seriesString);
-
         }
+
+
+//            ArrayList<Series> series = CalendarFacade.getCurrentUser().getSeries();
+//            String[] seriesString = new String[series.size()];
+//            for (int j = 0; j < series.size(); j++) {
+//                seriesString[j] = series.get(j).toString();
+//            }
+//            seriesList.setListData(seriesString);
+
 
         if (e.getSource() == deleteSeriesButton) {
-            int i = seriesList.getSelectedIndex();
+
             ArrayList<Series> series = CalendarFacade.getCurrentUser().getSeries();
-            series.remove(i);
-            String[] seriesString = new String[series.size()];
-            for (int j = 0; j < series.size(); j++) {
-                seriesString[j] = series.get(j).toString();
+
+            int i = seriesList.getSelectedIndex();
+            String seriesName = series.get(i).getName();
+
+            Series target = null;
+            for (Series value : series) {
+                if (value.getName().equals(seriesName)) {
+                    target = value;
+                }
             }
-            seriesList.setListData(seriesString);
+                series.remove(target);
+                    String[] seriesString = new String[series.size()];
+                    for (int j = 0; j < series.size(); j++) {
+                        seriesString[j] = series.get(j).getName();
+                    }
+                    seriesList.setListData(seriesString);
 
+
+            }
         }
 
 
-    }
+
+        public void valueChanged (ListSelectionEvent e){
+            String targetSeriesString = seriesList.getSelectedValue();
+
+            try {
+                events = CalendarFacade.searchEventBySeriesName(targetSeriesString);
+                String[] eventString;
+                eventString = new String[events.size()];
+                for (int i = 0; i < events.size(); i++) {
+                    eventString[i] = events.get(i).toString();
+                }
+                eventList.setListData(eventString);
+            } catch (NullPointerException n) {
+                JOptionPane.showMessageDialog(this, "Uh-oh! No events in this series so far");
+            }
 
 
-    public void valueChanged(ListSelectionEvent e) {
-        String targetSeriesString = seriesList.getSelectedValue();
-        events = CalendarFacade.searchEventBySeriesName(targetSeriesString);
-        String[] eventString;
-        eventString = new String[events.size()];
-        for (int i = 0; i < events.size(); i++) {
-            eventString[i] = events.get(i).toString();
         }
-        eventList.setListData(eventString);
 
-
-    }
 }
+
 
 
 
