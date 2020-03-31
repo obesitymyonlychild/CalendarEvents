@@ -131,29 +131,29 @@ public class CalendarFacade {
         return currentCalendar.getEvents();
     }
 
-    public static void searchEventByTag(){
-        CalendarSearch.searchEventByTag();
+    public static void searchEventByTag(String para){
+        CalendarSearch.searchEventByTag(para);
     }
 
-    public static void searchEventByDate(){
-        CalendarSearch.searchEventByDate();
+    public static void searchEventByDate(String para){
+        CalendarSearch.searchEventByDate(para);
     }
 
-    public static void searchEventByMemo(){
-        CalendarSearch.searchEventByMemo();
+    public static void searchEventByMemo(String para){
+        CalendarSearch.searchEventByMemo(para);
     }
 
-    public static void searchEventByName(){
-        CalendarSearch.searchEventByName();
+    public static void searchEventByName(String para){
+        CalendarSearch.searchEventByName(para);
     }
 
 
-    public static void searchEventBySeriesName() {
-        CalendarSearch.searchEventBySeriesName();
+    public static void searchEventBySeriesName(String para) {
+        CalendarSearch.searchEventBySeriesName(para);
     }
 
-    public static void searchAlerts(){
-        CalendarSearch.searchAlerts();
+    public static void searchAlerts(String para1, String para2){
+        CalendarSearch.searchAlerts(para1, para2);
     }
 
 
