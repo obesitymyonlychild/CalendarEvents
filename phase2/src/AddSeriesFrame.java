@@ -21,7 +21,7 @@ public class AddSeriesFrame extends JFrame implements ActionListener {
         this.setTitle("Add New Series");
         this.setVisible(true);
         this.setBounds(10, 10, 500, 600);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         this.setResizable(false);
         setLayoutManager();
         setLocationAndSize();
@@ -66,7 +66,7 @@ public class AddSeriesFrame extends JFrame implements ActionListener {
 
         //Coding part of add and back button
         if (e.getSource() == backButton){
-            SeriesFrame seriesFrame = new SeriesFrame();
+            this.dispose();
         }
 
         if(e.getSource() == addButton){
