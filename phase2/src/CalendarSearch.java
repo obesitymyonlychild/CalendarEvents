@@ -39,12 +39,12 @@ public class CalendarSearch {
                 eventList.add(event);
             }
         }
-        if (!detective){
-            System.out.println("No event with this tag");
-
-        } else
-            for (Event event: eventList)
-                System.out.println(event);
+//        if (!detective){
+//            System.out.println("No event with this tag");
+//
+//        } else
+//            for (Event event: eventList)
+//                System.out.println(event);
         return (ArrayList<Event>) eventList.stream().distinct().collect(Collectors.toList());
 
     }
@@ -71,14 +71,14 @@ public class CalendarSearch {
                 eventList.add(event);
             }
         }
-        if (!detective){
-            System.out.println("No event with this date");
-
-        } else
-            for (Event event: eventList){
-                System.out.println("====================");
-                System.out.println(event);
-            }
+//        if (!detective){
+//            System.out.println("No event with this date");
+//
+//        } else
+//            for (Event event: eventList){
+//                System.out.println("====================");
+//                System.out.println(event);
+//            }
 
         return (ArrayList<Event>) eventList.stream().distinct().collect(Collectors.toList());
 
@@ -97,14 +97,14 @@ public class CalendarSearch {
                 eventList.addAll(memo.getEvents());
             }
         }
-        if (!detective){
-            System.out.println("No event with this memo");
-
-        } else
-            for (Event event: eventList){
-                System.out.println("====================");
-                System.out.println(event);
-            }
+//        if (!detective){
+//            System.out.println("No event with this memo");
+//
+//        } else
+//            for (Event event: eventList){
+//                System.out.println("====================");
+//                System.out.println(event);
+//            }
         return (ArrayList<Event>) eventList.stream().distinct().collect(Collectors.toList());
     }
 
@@ -121,15 +121,15 @@ public class CalendarSearch {
                 eventList.add(event);
             }
         }
-        if (!detective){
-            System.out.println("No event with this name");
-
-        } else
-            for (Event event: eventList){
-                System.out.println("====================");
-                System.out.println(event);
-            }
-        System.out.println("====================");
+//        if (!detective){
+//            System.out.println("No event with this name");
+//
+//        } else
+//            for (Event event: eventList){
+//                System.out.println("====================");
+//                System.out.println(event);
+//            }
+//        System.out.println("====================");
         return (ArrayList<Event>) eventList.stream().distinct().collect(Collectors.toList());
 
     }
@@ -149,14 +149,14 @@ public class CalendarSearch {
                 eventList.addAll(series.getEvents());
             }
         }
-        if (!detective){
-            System.out.println("No event with this name");
-
-        } else
-            for (Event event: eventList){
-                System.out.println("====================");
-                System.out.println(event);
-            }
+//        if (!detective){
+//            System.out.println("No event with this name");
+//
+//        } else
+//            for (Event event: eventList){
+//                System.out.println("====================");
+//                System.out.println(event);
+//            }
         return (ArrayList<Event>) eventList.stream().distinct().collect(Collectors.toList());
 
 
@@ -168,7 +168,7 @@ public class CalendarSearch {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
         ArrayList<Alert> alertList = new ArrayList<Alert>();
-        boolean detective = false;
+       // boolean detective = false;
 
         //System.out.println("Please enter the start time with the format yyyy-MM-dd HH:mm");
         LocalDateTime startTime = LocalDateTime.parse(para1, formatter);
@@ -178,18 +178,18 @@ public class CalendarSearch {
         for(Alert alert: currentCalendar.getAlertList()){
             if (alert.getStartTime().isAfter(startTime) &&  alert.getStartTime().isBefore(endTime)){
                 alertList.add(alert);
-                detective = true;
+                //detective = true;
             }
         }
 
-        if (!detective){
-            System.out.println("No alert with this duration");
-
-        } else
-            for (Alert alert: alertList){
-                System.out.println("====================");
-                System.out.println(alert);
-            }
+//        if (!detective){
+//            System.out.println("No alert with this duration");
+//
+//        } else
+//            for (Alert alert: alertList){
+//                System.out.println("====================");
+//                System.out.println(alert);
+//            }
         return (ArrayList<Alert>) alertList.stream().distinct().collect(Collectors.toList());
 
 
