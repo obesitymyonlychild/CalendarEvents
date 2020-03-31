@@ -60,9 +60,9 @@ public class SearchFrame extends JFrame implements ActionListener {
         memoButton.setBounds(420, 180, 100, 30);
         seriesButton.setBounds(420, 220, 100, 30);
         eventButton.setBounds(420, 260, 100, 30);
-        backButton.setBounds(500, 500, 100, 30);
-        eventList.setBounds(550, 50, 100, 500);
-        goButton.setBounds(600, 570, 100, 30);
+        backButton.setBounds(100, 300, 100, 30);
+        eventList.setBounds(550, 50, 200, 350);
+        goButton.setBounds(300, 300, 100, 30);
 
     }
 
