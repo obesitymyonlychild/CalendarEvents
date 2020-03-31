@@ -143,12 +143,12 @@ public class SearchFrame extends JFrame implements ActionListener {
 
         if (e.getSource() == goButton) {
             int i = eventList.getSelectedIndex();
-            EditEvent targetEventFrame = new EditEvent(events.get(i));
+            EditEventFrame targetEventFrame = new EditEventFrame(events.get(i));
             // need to set some default;
         }
 
         if (e.getSource() == backButton) {
-            MainMenuFrame main = new MainMenuFrame();
+            this.dispose();
 
         }
 
