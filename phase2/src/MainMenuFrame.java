@@ -46,9 +46,9 @@ public class MainMenuFrame extends JFrame implements ActionListener {
         searchButton.setBounds(200, 450, 200, 50);
         addEventButton.setBounds(400, 450, 200, 50);
         logoutButton.setBounds(400, 600, 100, 20);
-        ArrayList<Event> today = CalendarFacade.showTodayEvents();
-        todayEvents.setText("Today's events: \n"+today.toString());
-        todayEvents.setBounds(300, 700, 200, 30);
+        //ArrayList<Event> today = CalendarFacade.showTodayEvents();
+        //todayEvents.setText("Today's events: \n"+today.toString());
+        //todayEvents.setBounds(300, 700, 200, 30);
     }
 
     public void addComponentsToContainer(){
@@ -73,6 +73,7 @@ public class MainMenuFrame extends JFrame implements ActionListener {
         memoButton.addActionListener(this);
         searchButton.addActionListener(this);
         addEventButton.addActionListener(this);
+        logoutButton.addActionListener(this);
     }
 
     @Override
