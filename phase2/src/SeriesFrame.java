@@ -47,14 +47,14 @@ public class SeriesFrame extends JFrame implements ActionListener, ListSelection
     }
 
     private void setLocationAndSize() {
-        seriesLabel.setBounds(100, 30, 100, 30);
-        eventsLabel.setBounds(300, 30, 100, 30);
+        seriesLabel.setBounds(110, 30, 100, 30);
+        eventsLabel.setBounds(355, 30, 100, 30);
 //        seriesContentTextField.setBounds(30, 450, 400, 90);
         seriesList.setBounds(30, 60, 200, 350);
         eventList.setBounds(270, 60, 200, 350);
         goButton.setBounds(500, 30, 130, 30);
-        backButton.setBounds(500, 90, 80, 30);
-        addSeriesButton.setBounds(500, 150, 80, 30);
+        backButton.setBounds(500, 90, 130, 30);
+        addSeriesButton.setBounds(500, 150, 130, 30);
         deleteSeriesButton.setBounds(100, 90, 80, 30);
 
 
@@ -86,7 +86,7 @@ public class SeriesFrame extends JFrame implements ActionListener, ListSelection
             int i = seriesList.getSelectedIndex();
 
             ArrayList<Series> series = CalendarFacade.getCurrentUser().getSeries();
-            String seriesName = series.get(i).getName();
+
 
 
 //            ArrayList<Event> events = CalendarFacade.searchEventBySeriesName(seriesName);
@@ -100,6 +100,7 @@ public class SeriesFrame extends JFrame implements ActionListener, ListSelection
 
 //            ArrayList<Series> series = CalendarFacade.getCurrentUser().getSeries();
             try {
+                String seriesName = series.get(i).getName();
                 for (Series value : series) {
                     if (value.getName().equals(seriesName)) {
                         ArrayList<Event> events = value.getEvents();
