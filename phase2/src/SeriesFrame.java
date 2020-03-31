@@ -54,8 +54,8 @@ public class SeriesFrame extends JFrame implements ActionListener, ListSelection
         eventList.setBounds(200, 60, 200, 350);
         goButton.setBounds(440, 30, 80, 30);
         backButton.setBounds(440, 90, 80, 30);
-        addSeriesButton.setBounds(200, 30, 80, 30);
-        deleteSeriesButton.setBounds(200, 90, 80, 30);
+        addSeriesButton.setBounds(100, 30, 80, 30);
+        deleteSeriesButton.setBounds(100, 90, 80, 30);
 
 
     }
