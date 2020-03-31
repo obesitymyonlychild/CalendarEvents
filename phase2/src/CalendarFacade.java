@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 public class CalendarFacade {
 
     private static User currentUser;
-    private static Calendar currentCalendar;
+    private static Calendar currentCalendar = new Calendar();
 
     //private static LoginSystem loginSystem = new LoginSystem();
 
