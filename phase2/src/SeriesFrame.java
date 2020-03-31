@@ -28,7 +28,7 @@ public class SeriesFrame extends JFrame implements ActionListener, ListSelection
     SeriesFrame() {
         this.setTitle("Series");
         this.setVisible(true);
-        this.setBounds(10, 10, 650, 550);
+        this.setBounds(10, 10, 700, 550);
         this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setLayoutManager();
         setLocationAndSize();
@@ -47,14 +47,14 @@ public class SeriesFrame extends JFrame implements ActionListener, ListSelection
     }
 
     private void setLocationAndSize() {
-        seriesLabel.setBounds(30, 30, 100, 30);
-        eventsLabel.setBounds(200, 30, 100, 30);
+        seriesLabel.setBounds(100, 30, 100, 30);
+        eventsLabel.setBounds(300, 30, 100, 30);
 //        seriesContentTextField.setBounds(30, 450, 400, 90);
         seriesList.setBounds(30, 60, 200, 350);
         eventList.setBounds(270, 60, 200, 350);
-        goButton.setBounds(440, 30, 130, 30);
-        backButton.setBounds(440, 90, 80, 30);
-        addSeriesButton.setBounds(440, 150, 80, 30);
+        goButton.setBounds(500, 30, 130, 30);
+        backButton.setBounds(500, 90, 80, 30);
+        addSeriesButton.setBounds(500, 150, 80, 30);
         deleteSeriesButton.setBounds(100, 90, 80, 30);
 
 
