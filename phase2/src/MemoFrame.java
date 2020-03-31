@@ -29,7 +29,7 @@ public class MemoFrame extends JFrame implements ActionListener, ListSelectionLi
         setLocationAndSize();
         addComponentsToContainer();
         addActionEvent();
-        ArrayList<Memo> memos = CalendarFacade.getCurrentUser().getMemos();
+        ArrayList<Memo> memos = CalendarFacade.getMemos();
         String[] memoString = new String[memos.size()];
         for (int j = 0; j < memos.size(); j++) {
             memoString[j] = memos.get(j).toString();
@@ -74,11 +74,11 @@ public class MemoFrame extends JFrame implements ActionListener, ListSelectionLi
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == goButton) {
             int i = eventList.getSelectedIndex();
-            EditEvent targetEventFrame = new EditEvent(events.get(i));
+            EditEventFrame targetEventFrame = new EditEventFrame(events.get(i));
             // need to set some default
         }
         if (e.getSource() == backButton) {
-            MainMenuFrame main = new MainMenuFrame();
+            this.dispose();
 
         }
     }
