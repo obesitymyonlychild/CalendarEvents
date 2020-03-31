@@ -33,7 +33,7 @@ public class EditEventFrame extends JFrame implements ActionListener {
         this.setTitle("Edit Event");
         this.setVisible(true);
         this.setBounds(10, 10, 500, 600);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         this.setResizable(false);
         setLayoutManager();
         setLocationAndSize();
