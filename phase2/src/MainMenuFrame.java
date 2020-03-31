@@ -96,15 +96,15 @@ public class MainMenuFrame extends JFrame implements ActionListener {
         }
 
         if(e.getSource() == seriesButton){
-            JOptionPane.showMessageDialog(this, "hiya");
+            SeriesFrame series = new SeriesFrame();
         }
 
         if(e.getSource() == memoButton){
-            JOptionPane.showMessageDialog(this, "hiya");
+            MemoFrame memo = new MemoFrame();
         }
 
         if(e.getSource() == searchButton){
-            JOptionPane.showMessageDialog(this, "hiya");
+            SearchFrame search = new SearchFrame();
         }
 
         if(e.getSource() == addEventButton){
