@@ -31,7 +31,6 @@ public class AddSeriesFrame extends JFrame implements ActionListener {
         addButton.addActionListener(this);
         backButton.addActionListener(this);
 
-
     }
     public void setLayoutManager() {
         container.setLayout(null);
