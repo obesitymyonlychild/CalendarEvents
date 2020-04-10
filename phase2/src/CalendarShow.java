@@ -4,6 +4,13 @@ import java.time.LocalDateTime;
 
 public class CalendarShow {
 
+    public static ArrayList<Calendar> showCalendar(User currentUser){
+
+        ArrayList<Calendar> calendarList = currentUser.getCalendars();
+        return calendarList;
+
+    }
+
     public static ArrayList<Event> showOngoingEvent(Calendar currentCalendar){
 
         ArrayList<Event> eventList = currentCalendar.getOngoingEvents();

@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.image.AreaAveragingScaleFilter;
 import java.io.IOException;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -12,6 +13,11 @@ public class CalendarFacade {
     //private static LoginSystem loginSystem = new LoginSystem();
 
     public static String timeAppeared = "0";
+
+    // if currentCalendar is null then set currentCalendar else do nothing
+    public static void VerifyCurrentCalendar(){
+
+    }
 
     public static  User getCurrentUser(){
         return currentUser;
@@ -57,6 +63,10 @@ public class CalendarFacade {
     public static void logout() {
         setCurrentUser(null);
         setCurrentCalendar(null);
+    }
+
+    public static ArrayList<Calendar> showCalendar(){
+        return CalendarShow.showCalendar(currentUser);
     }
 
     public static ArrayList<Event> showOngoingEvent(){
