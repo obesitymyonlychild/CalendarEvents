@@ -34,7 +34,8 @@ public class SeriesFrame extends JFrame implements ActionListener, ListSelection
         setLocationAndSize();
         addComponentsToContainer();
         addActionEvent();
-        ArrayList<Series> series = CalendarFacade.getCurrentUser().getSeries();
+        // we store currentCalendar rather than currentUser now --- by Oliver
+        ArrayList<Series> series = CalendarFacade.getCurrentCalendar().getSeries();
         String[] seriesString = new String[series.size()];
         for (int j = 0; j < series.size(); j++) {
             seriesString[j] = series.get(j).toString();
@@ -84,8 +85,8 @@ public class SeriesFrame extends JFrame implements ActionListener, ListSelection
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == goButton) {
 
-
-            ArrayList<Series> series = CalendarFacade.getCurrentUser().getSeries();
+            // we store currentCalendar rather than currentUser now --- by Oliver
+            ArrayList<Series> series = CalendarFacade.getCurrentCalendar().getSeries();
 
 
 //            ArrayList<Event> events = CalendarFacade.searchEventBySeriesName(seriesName);
@@ -146,8 +147,8 @@ public class SeriesFrame extends JFrame implements ActionListener, ListSelection
 
 
         if (e.getSource() == deleteSeriesButton) {
-
-            ArrayList<Series> series = CalendarFacade.getCurrentUser().getSeries();
+            // we store currentCalendar rather than currentUser now --- by Oliver
+            ArrayList<Series> series = CalendarFacade.getCurrentCalendar().getSeries();
 
             int i = seriesList.getSelectedIndex();
             String seriesName = series.get(i).getName();
