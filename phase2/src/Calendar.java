@@ -5,6 +5,8 @@ import java.util.Collections;
 
 public class Calendar {
 
+    private String name;
+    private boolean alertOn;
     private ArrayList<Event> pastEvents = new ArrayList<>();
     private ArrayList<Event> futureEvents = new ArrayList<>();
     private ArrayList<Event> ongoingEvents = new ArrayList<>();
@@ -12,6 +14,11 @@ public class Calendar {
     private ArrayList<Memo> memos = new ArrayList<>();
     private ArrayList<Alert> alertList = new ArrayList<>();
     private ArrayList<Series> series = new ArrayList<>();
+
+    public Calendar(String Givename){
+        name = Givename;
+        alertOn = true;
+    }
 
     public ArrayList<Event> getPastEvents() {
         return this.pastEvents;
@@ -45,17 +52,17 @@ public class Calendar {
         this.events = evts;
     }
 
-//    public boolean getAlertOn(){
-//        return this.alertOn;
-//    }
-//
-//    public void setAlertOn() {
-//        this.alertOn = true;
-//    }
-//
-//    public void setAlertOff(){
-//        this.alertOn = false;
-//    }
+    public boolean getAlertOn(){
+        return this.alertOn;
+    }
+
+    public void setAlertOn() {
+        this.alertOn = true;
+    }
+
+    public void setAlertOff(){
+        this.alertOn = false;
+    }
 
     public ArrayList<Alert> getAlertList() {
         return alertList;
@@ -190,6 +197,10 @@ public class Calendar {
         }
 //        System.out.println("Series does not exists!");
         return null;
+    }
+
+    public void addUserToEvent(){
+
     }
 
 

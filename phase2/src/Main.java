@@ -260,30 +260,30 @@ public class Main {
         }
     }
 
-//    private static String operationEventCategory(){
-//        System.out.println("Delete Event[type delete]");
-//        System.out.println("Set Alert[type setalert]");
-//        System.out.println("Delete Alert[type deletealert]");
-//        System.out.println("Turn On Alert[type alerton]");
-//        System.out.println("Turn Off Alert[type alertoff]");
-//        System.out.println("Add Tag[type addtag]");
-//        System.out.println("Delete Tag[type deletetag]");
-//        System.out.println("Add Memo[type addmemo]");
-//        System.out.println("Delete Memo[type deletememo]");
-//        System.out.println("====================================");
-//        System.out.println("Type in your operation:");
-//        Scanner scanner = new Scanner(System.in);
-//        return scanner.next();
-//    }
-//
-//    private static void operationOnEvent(Event event){
-//        switch (operationEventCategory()){
-//            case "delete":
-//        }
-//
-//    }
+    private static String operationEventCategory(){
+        System.out.println("Delete Event[type delete]");
+        System.out.println("Set Alert[type setalert]");
+        System.out.println("Delete Alert[type deletealert]");
+        System.out.println("Turn On Alert[type alerton]");
+        System.out.println("Turn Off Alert[type alertoff]");
+        System.out.println("Add Tag[type addtag]");
+        System.out.println("Delete Tag[type deletetag]");
+        System.out.println("Add Memo[type addmemo]");
+        System.out.println("Delete Memo[type deletememo]");
+        System.out.println("====================================");
+        System.out.println("Type in your operation:");
+        Scanner scanner = new Scanner(System.in);
+        return scanner.next();
+    }
 
-    // for each case, user should be able to type in index and do eventSimulation
+    private static void operationOnEvent(Event event){
+        switch (operationEventCategory()){
+            case "delete":
+        }
+
+    }
+
+     //for each case, user should be able to type in index and do eventSimulation
     public static void searchSimulation() {
         System.out.println("====================");
         System.out.println("|Search by tag[type in tag]          |");
@@ -297,19 +297,19 @@ public class Main {
         String command = scan.nextLine();
         switch (command) {
             case "tag":
-                CalendarFacade.searchEventByTag();
+                CalendarFacade.searchEventByTag("1");
                 break;
             case "date":
-                CalendarFacade.searchEventByDate();
+                CalendarFacade.searchEventByDate("1");
                 break;
             case "memo":
-                CalendarFacade.searchEventByMemo();
+                CalendarFacade.searchEventByMemo("1");
                 break;
             case "event name":
-                CalendarFacade.searchEventByName();
+                CalendarFacade.searchEventByName("1");
                 break;
             case "series":
-                CalendarFacade.searchEventBySeriesName();
+                CalendarFacade.searchEventBySeriesName("1");
                 break;
             case "main":
                 return;
@@ -342,7 +342,7 @@ public class Main {
             if (! enterKey.equals("main")) {
                 try {
                     //implement this method
-                    CalendarFacade.getCurrentUser().createEvent(name, startTime, duration, address);
+                    CalendarFacade.getCurrentCalendar().createEvent(name, startTime, duration, address);
                     return;
                 } catch (Exception e) {
                     System.out.println("invalid input in add event simulation! please try again.");
@@ -360,7 +360,7 @@ public class Main {
         while (true) {
             System.out.println("events in series");
             // implement this method
-            s0.showEvents(); // index line by line
+            //s0.showEvents(); // index line by line
             helperOfSimulationMessage();
             int index = -1;
             try {
@@ -426,7 +426,7 @@ public class Main {
             String command = scan.nextLine();
             switch (command) {
                 case "delete event": {
-                    CalendarFacade.getCurrentUser().deleteEvent(event.getName());
+                    CalendarFacade.getCurrentCalendar().deleteEvent(event.getName());
                     System.out.println("successfully delete this event");
                     return;
                 }
