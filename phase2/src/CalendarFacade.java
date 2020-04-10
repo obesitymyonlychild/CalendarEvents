@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 public class CalendarFacade {
 
     private static User currentUser;
-    private static Calendar currentCalendar = new Calendar();
+    private static Calendar currentCalendar;
 
     //private static LoginSystem loginSystem = new LoginSystem();
 
@@ -16,29 +16,20 @@ public class CalendarFacade {
     public static  User getCurrentUser(){
         return currentUser;
     }
+
+    public static void setCurrentUser(User para){
+        CalendarFacade.currentUser = para;
+    }
+
     public static  Calendar getCurrentCalendar(){
         return currentCalendar;
     }
 
-
-    public static void setCurrentUser(User para){
-        CalendarFacade.currentUser = para;
-        CalendarShow.setCurrentUser(para);
-        CalendarSearch.setCurrentUser(para);
-    }
-
     public static void setCurrentCalendar(Calendar para){
         CalendarFacade.currentCalendar = para;
-        CalendarShow.setCurrentCalendar(para);
-        CalendarSearch.setCurrentCalendar(para);
     }
 
     // Call all the methods of Event
-
-    // Constructor
-    public CalendarFacade(){
-        // no requirement
-    }
 
     // Call login system and set user to currentUser
     public static void callLogin() throws IOException, ClassNotFoundException {
@@ -69,38 +60,67 @@ public class CalendarFacade {
     }
 
     public static ArrayList<Event> showOngoingEvent(){
-        return CalendarShow.showOngoingEvent();
+        return CalendarShow.showOngoingEvent(currentCalendar);
     }
 
     public static ArrayList<Event> showPastEvent(){
-        return CalendarShow.showPastEvent();
+        return CalendarShow.showPastEvent(currentCalendar);
     }
 
     public static ArrayList<Event> showFutureEvent(){
-        return CalendarShow.showFutureEvent();
+        return CalendarShow.showFutureEvent(currentCalendar);
     }
 
     public static ArrayList<Event> showEvents(){
-        return CalendarShow.showEvents();
+        return CalendarShow.showEvents(currentCalendar);
     }
 
     public static ArrayList<Event> showTodayEvents(){
-        return CalendarShow.showTodayEvents();
+        return CalendarShow.showTodayEvents(currentCalendar);
     }
 
-    public static String getMemoContent(String memoName) { return CalendarShow.getMemoContent(memoName);  }
+    public static String getMemoContent(String memoName) { return CalendarShow.getMemoContent(currentCalendar, memoName);  }
 
     public static ArrayList<Memo> showMemo(){
         // border
-        return CalendarShow.showMemo();
+        return CalendarShow.showMemo(currentCalendar);
     }
 
     public static ArrayList<Series> showSeries(){
-        return CalendarShow.showSeries();
+        return CalendarShow.showSeries(currentCalendar);
+    }
+
+
+    public static ArrayList<Event> getEvents(){
+        return currentCalendar.getEvents();
+    }
+
+    public static ArrayList<Event> searchEventByTag(String para){
+        return CalendarSearch.searchEventByTag(currentCalendar, para);
+    }
+
+    public static ArrayList<Event> searchEventByDate(String para){
+        return CalendarSearch.searchEventByDate(currentCalendar, para);
+    }
+
+    public static ArrayList<Event> searchEventByMemo(String para){
+        return CalendarSearch.searchEventByMemo(currentCalendar, para);
+    }
+
+    public static ArrayList<Event> searchEventByName(String para){
+        return CalendarSearch.searchEventByName(currentCalendar, para);
+    }
+
+
+    public static ArrayList<Event> searchEventBySeriesName(String para) {
+        return CalendarSearch.searchEventBySeriesName(currentCalendar, para);
+    }
+
+    public static ArrayList<Alert> searchAlerts(String para1, String para2){
+        return CalendarSearch.searchAlerts(currentCalendar, para1, para2);
     }
 
     public static void alert(){
-
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         String nowString = LocalDateTime.now().format(formatter);
@@ -108,7 +128,7 @@ public class CalendarFacade {
 
         boolean detective = false;
         // check user alert on and event alert on
-        if (currentUser.getAlertOn()){
+        if (currentCalendar.getAlertOn()){
             for (Event event: currentCalendar.getEvents())
                 for(Alert alert: event.getAlerts()){
                     //if (alert.getStartTime().isEqual(now)) {
@@ -125,33 +145,6 @@ public class CalendarFacade {
                 }
         }
 
-    }
-
-    public static ArrayList<Event> getEvents(){
-        return currentCalendar.getEvents();
-    }
-
-    public static ArrayList<Event> searchEventByTag(String para){ return CalendarSearch.searchEventByTag(para); }
-
-    public static ArrayList<Event> searchEventByDate(String para){
-        return CalendarSearch.searchEventByDate(para);
-    }
-
-    public static ArrayList<Event> searchEventByMemo(String para){
-        return CalendarSearch.searchEventByMemo(para);
-    }
-
-    public static ArrayList<Event> searchEventByName(String para){
-        return CalendarSearch.searchEventByName(para);
-    }
-
-
-    public static ArrayList<Event> searchEventBySeriesName(String para) {
-        return CalendarSearch.searchEventBySeriesName(para);
-    }
-
-    public static ArrayList<Alert> searchAlerts(String para1, String para2){
-        return CalendarSearch.searchAlerts(para1, para2);
     }
 
 
