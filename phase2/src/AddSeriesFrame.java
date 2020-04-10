@@ -71,13 +71,14 @@ public class AddSeriesFrame extends JFrame implements ActionListener {
 
         if(e.getSource() == addButton){
             String name = nameTextField.getText();
-            CalendarFacade.getCurrentUser().createSeries(name);
+            // we store currentCalendar in CalendarFacade now  --- by Oliver
+            CalendarFacade.getCurrentCalendar().createSeries(name);
             JOptionPane.showMessageDialog(this, "Series added!");
 
 
             nameTextField.setText("");
 
-            ArrayList<Series> series = CalendarFacade.getCurrentUser().getSeries();
+            ArrayList<Series> series = CalendarFacade.getCurrentCalendar().getSeries();
             String[] seriesString = new String[series.size()];
             for (int j = 0; j < series.size(); j++) {
                 seriesString[j] = series.get(j).toString();
