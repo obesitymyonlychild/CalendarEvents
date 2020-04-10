@@ -85,7 +85,8 @@ public class EditEventFrame extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         if (e.getSource() == deleteButton){
-            CalendarFacade.getCurrentUser().deleteEvent(event.getName());
+            // we store currentCalendar rather than currentUser now --- by Oliver
+            CalendarFacade.getCurrentCalendar().deleteEvent(event.getName());
             System.out.println("successfully delete this event");
         }
 

@@ -34,7 +34,8 @@ public class AddEventFrame extends InfoEventFrame implements ActionListener {
             String startTime = dateTextField.getText();
             int duration = Integer.parseInt(durationTextField.getText());
             String address = addressTextField.getText();
-            CalendarFacade.getCurrentUser().createEvent(name, startTime, duration, address);
+            // we store currentCalendar rather than currentUser now --- by Oliver
+            CalendarFacade.getCurrentCalendar().createEvent(name, startTime, duration, address);
             JOptionPane.showMessageDialog(this, "Event added!");
             nameTextField.setText("");
             dateTextField.setText("");
