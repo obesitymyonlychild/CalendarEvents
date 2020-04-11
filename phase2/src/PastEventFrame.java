@@ -13,6 +13,11 @@ public class PastEventFrame {
             for (int i=0;i<len;i++){
                 eventFrame.add(new TextField(oe.get(i).toString()));
             }
+            for (int i=0;i<len;i++){
+                int a = 600/len;
+                Button b = new Button(oe.get(i).getName());
+                b.setBounds(300,10+a*i,20,20);
+            }
         }
     }
 }
