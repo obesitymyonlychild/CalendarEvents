@@ -1,9 +1,10 @@
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class Calendar {
+public class Calendar implements Serializable {
 
     private String name;
     private boolean alertOn;
