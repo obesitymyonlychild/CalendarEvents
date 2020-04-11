@@ -223,10 +223,17 @@ public class Event implements java.io.Serializable, Comparable<Event> {
         }
     }
 
+    public boolean isAlertOn() {
+        return alertOn;
+    }
 
     public void addUser(String username) throws IOException, ClassNotFoundException {
         users.add(username);
         CalendarFacade.shareEventbetweenUser(name, username);
+    }
+
+    public ArrayList<String> getUsers() {
+        return users;
     }
 
     //use this method whenever we modify the Event

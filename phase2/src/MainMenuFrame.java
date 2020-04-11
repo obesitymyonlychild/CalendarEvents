@@ -21,7 +21,7 @@ public class MainMenuFrame extends JFrame implements ActionListener {
 
 
     MainMenuFrame(){
-        this.setTitle("Main Menu");
+        this.setTitle(CalendarFacade.getCurrentCalendar().getName());
         this.setVisible(true);
         this.setBounds(10, 10, 800, 800);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -85,12 +85,14 @@ public class MainMenuFrame extends JFrame implements ActionListener {
 
         if(e.getSource() == ongoingButton){
             //wrong spelling in class ongoing event frame.
-            OngingEventFrame ing = new OngingEventFrame();
+            OngoingEventFrame ing = new OngoingEventFrame();
         }
 
         if(e.getSource() == futureButton){
             FutureEventFrame fut = new FutureEventFrame();
         }
+
+        //if(e.getSource() == noTimeEventButton)
 
         if(e.getSource() == allEventButton){
             //
@@ -114,14 +116,14 @@ public class MainMenuFrame extends JFrame implements ActionListener {
 
 
         if (e.getSource() == logoutButton){
-            CalendarFacade.setCurrentUser(null);
+            CalendarFacade.setCurrentCalendar(null);
             this.dispose();
-            try {
-                LoginSystem.login();
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
+            ChooseCalendarFrame choose = new ChooseCalendarFrame(CalendarFacade.getCurrentUser());
         }
+
+        //go back to choosing calendar frame button needed
+
+        //no-time-event button
 
     }
 }

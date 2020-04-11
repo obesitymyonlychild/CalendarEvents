@@ -1,7 +1,7 @@
 import java.awt.*;
 import java.util.ArrayList;
 
-public class OngingEventFrame {
+public class OngoingEventFrame {
     public static void main(String[] args) {
         MyFrame eventFrame = new MyFrame("Events",400,400,400,600);
         ArrayList<Event> oe = CalendarFacade.showOngoingEvent();

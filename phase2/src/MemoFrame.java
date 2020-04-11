@@ -18,6 +18,7 @@ public class MemoFrame extends JFrame implements ActionListener, ListSelectionLi
     JButton backButton = new JButton("BACK");
     JLabel memoContentLabel = new JLabel("MEMO CONTENT");
     ArrayList<Event> events = new ArrayList<>();
+    ArrayList<Memo> memos = new ArrayList<>();
     Memo selectedMemo;
     Event selectedEvent;
 
@@ -30,7 +31,7 @@ public class MemoFrame extends JFrame implements ActionListener, ListSelectionLi
         setLocationAndSize();
         addComponentsToContainer();
         addActionEvent();
-        ArrayList<Memo> memos = CalendarFacade.showMemo();
+        memos = CalendarFacade.showMemo();
         String[] memoString = new String[memos.size()];
         for (int j = 0; j < memos.size(); j++) {
             memoString[j] = memos.get(j).toString();
