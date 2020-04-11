@@ -197,6 +197,7 @@ public class EditEventFrame extends JFrame implements ActionListener{
 
         if(e.getSource() == editEventButton){
             ModifyEventFrame mod = new ModifyEventFrame(event);
+            this.dispose();
         }
 
         if(e.getSource() == userButton){
