@@ -40,6 +40,7 @@ public class ModifyEventFrame extends InfoEventFrame implements ActionListener {
         //Coding part of go back button
         if (e.getSource() == backButton){
             this.dispose();
+            EditEventFrame ed = new EditEventFrame(event);
 
         }
 
@@ -58,6 +59,8 @@ public class ModifyEventFrame extends InfoEventFrame implements ActionListener {
                 ex.printStackTrace();
             }
             JOptionPane.showMessageDialog(this, "Event Modified!");
+            this.dispose();
+            EditEventFrame nf = new EditEventFrame(event);
         }
     }
 }

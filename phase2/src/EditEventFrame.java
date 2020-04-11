@@ -33,10 +33,6 @@ public class EditEventFrame extends JFrame implements ActionListener{
     ArrayList<Alert> alerts = new ArrayList<>();
     ArrayList<String> users = new ArrayList<>();
 
-    JTextField userText = new JTextField();
-    JTextField tagText = new JTextField();
-    JTextField alertText = new JTextField();
-
     JButton editEventButton = new JButton("EDIT");
     JButton deleteEventButton = new JButton("DELETE");
     JButton addTagButton = new JButton("ADD");
@@ -124,17 +120,17 @@ public class EditEventFrame extends JFrame implements ActionListener{
         deleteEventButton.setBounds(250, 140, 100, 30);
         viewMemoButton.setBounds(250, 190, 150, 30);
         alertLabel.setBounds(50, 270, 100, 30);
-        alertText.setBounds(50, 300, 200, 70);
+        alertList.setBounds(50, 300, 200, 70);
         addAlertButton.setBounds(250, 310, 80, 30);
         alertDeleteButton.setBounds(350, 310, 100, 30);
         onLabel.setBounds(270, 350, 100, 30);
         turnOnOrOffButton.setBounds(350, 350, 80, 30);
         tagLabel.setBounds(50, 400, 100, 30);
-        tagText.setBounds(50, 430, 200, 70);
+        tagList.setBounds(50, 430, 200, 70);
         addTagButton.setBounds(250, 440, 80, 30);
         tagDeleteButton.setBounds(250, 480, 100, 30);
         userLabel.setBounds(50, 530, 100, 30);
-        userText.setBounds(50, 560, 200, 70);
+        userList.setBounds(50, 560, 200, 70);
         userButton.setBounds(250,570 ,100, 30);
         backButton.setBounds(250, 700, 100, 30);
 
@@ -165,9 +161,6 @@ public class EditEventFrame extends JFrame implements ActionListener{
         container.add(viewMemoButton);
         container.add(userList);
         container.add(alertList);
-        container.add(userText);
-        container.add(alertText);
-        container.add(tagText);
         container.add(addTagButton);
         container.add(onLabel);
         container.add(addAlertButton);
@@ -192,11 +185,13 @@ public class EditEventFrame extends JFrame implements ActionListener{
 
         if (e.getSource() == deleteEventButton){
             CalendarFacade.getCurrentCalendar().deleteEvent(event.getName());
-            System.out.println("Event Deleted");
+            JOptionPane.showMessageDialog(this, "Event Deleted!");
+            this.dispose();
         }
 
         if(e.getSource() == editEventButton){
             ModifyEventFrame mod = new ModifyEventFrame(event);
+            this.dispose();
         }
 
         if(e.getSource() == userButton){
@@ -247,15 +242,14 @@ public class EditEventFrame extends JFrame implements ActionListener{
 
 
         if(e.getSource()==turnOnOrOffButton){
-            String res = "ON";
             if(event.isAlertOn()){
                 event.turnOffAlert();
-                res = "OFF";
             }
             else{
                 event.turnOnAlert();
             }
-            onLabel.setText(res);
+            this.dispose();
+            EditEventFrame ef = new EditEventFrame(event);
         }
 
         //update for all users regarding this event due to changes made.

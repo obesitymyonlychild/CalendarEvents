@@ -171,7 +171,7 @@ public class CalendarFacade {
         User user = (User) is.readObject();
         for (Event event: events){
             if (event.getName().equals(eventName))
-                user.getCalendars().get(0).addExistEvent(event);
+                user.getCalendars().get(0).addEvent(event);
         }
         ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(username));
         os.writeObject(user);
