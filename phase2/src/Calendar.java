@@ -20,6 +20,10 @@ public class Calendar {
         alertOn = true;
     }
 
+    public String getName(){
+        return name;
+    }
+
     public ArrayList<Event> getPastEvents() {
         return this.pastEvents;
     }
