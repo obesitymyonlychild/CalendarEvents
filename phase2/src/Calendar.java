@@ -203,7 +203,7 @@ public class Calendar {
         return null;
     }
 
-    public void addExistEvent(Event event){
+    public void addEvent(Event event){
         events.add(event);
     }
 
