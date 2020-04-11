@@ -8,88 +8,68 @@ import java.util.ArrayList;
 public class PastEventFrame extends JFrame implements ActionListener {
 
     Container container = getContentPane();
-    ArrayList<JButton> buttons = new ArrayList<JButton>();
-    ArrayList<Event> oe = CalendarFacade.showPastEvent();
-    JLabel NoEvent = new JLabel("There are no Past Event");
-    JButton back = new JButton("back");
-    ArrayList<JLabel> lable = new ArrayList<JLabel>();
+    JList<String> eventList = new JList<>();
+    JLabel eventLabel = new JLabel("Events");
+    JButton editButton = new JButton("EDIT");
+    JButton backButton = new JButton("BACK");
+    ArrayList<Event> events = CalendarFacade.showPastEvent();
 
-
-    PastEventFrame(){
-        this.createLabels();
-        this.createButton();
-        this.setTitle("Event");
+    PastEventFrame() {
         this.setVisible(true);
-        this.setBounds(10, 10, 450, 700);
+        this.setBounds(10, 10, 650, 550);
         this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-        this.setLocationAndSize();
-        this.addComponentsToContainer();
-        }
+        setLayoutManager();
+        setLocationAndSize();
+        addComponentsToContainer();
+        addActionEvent();
 
-    public void createLabels(){
-        int len = oe.size();
-        for (int i=0;i<len;i++){
-            JLabel event = new JLabel(oe.get(i).toString());
-            lable.add(i,event);
+        String[] eventString = new String[events.size()];
+        for (int j = 0; j < events.size(); j++) {
+            eventString[j] = events.get(j).getName();
         }
+        eventList.setListData(eventString);
     }
 
-    public void createButton(){
-        int len = oe.size();
-        for (int i=0;i<len;i++){
-            JButton button = new JButton("edit");
-            buttons.add(i,button);
-        }
+    private void setLayoutManager() {
+        container.setLayout(null);
     }
 
-    public void setLocationAndSize(){
-        back.setBounds(300,600,100,40);
-        if (oe.size()==0){
-        NoEvent.setBounds(100,50,200,50);
-        container.add(NoEvent);
-        }else{
-            for (int i=0;i<lable.size();i++){
-                lable.get(i).setBounds(10,10+i*(700-80)/oe.size(),300,(700-80)/oe.size());
-            }
-            for (int i=0;i<buttons.size();i++){
-                buttons.get(i).setBounds(350,10+i*(700-80)/oe.size(),30,(700-80)/oe.size());
-            }
-        }
+    private void setLocationAndSize() {
+        eventLabel.setBounds(30, 30, 100, 30);
+        eventList.setBounds(30, 60, 200, 250);
+        editButton.setBounds(460, 60, 100, 40);
+        backButton.setBounds(460, 120, 100, 40);
+
+    }
+
+    private void addComponentsToContainer() {
+        container.add(eventLabel);
+        container.add(eventList);
+        container.add(editButton);
+        container.add(backButton);
+    }
+
+    private void addActionEvent() {
+        editButton.addActionListener(this);
+        backButton.addActionListener(this);
     }
 
 
-    public void addComponentsToContainer() {
-        container.add(back);
-        if (oe.size() != 0){
-        for (int i=0;i<lable.size();i++){
-            container.add(lable.get(i));
-        }
-//            for (int i=0;i<buttons.size();i++){
-//                container.add(buttons.get(i));
-//            }
-           }
-        else{
-            container.add(NoEvent);
-        }
-    }
-
-    public void addActionEvent() {
-        for (int i=0;i<buttons.size();i++){
-            buttons.get(i).addActionListener(this);
-        }
-        back.addActionListener(this);
-
-    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == back){
+        if (e.getSource() == editButton) {
+            int i = eventList.getSelectedIndex();
+            EditEventFrame edit = new EditEventFrame(events.get(i));
             this.dispose();
+
         }
-        for (int i=0;i<buttons.size();i++){
-        if (e.getSource() == buttons.get(i)) {
-            EditEventFrame a = new EditEventFrame(oe.get(i));
+        if (e.getSource() == backButton) {
+            this.dispose();
+
         }
 
-    }}
+    }
+
+
 }

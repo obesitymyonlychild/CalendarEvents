@@ -11,6 +11,7 @@ public class MyFrame extends JFrame {
         container.setBackground(new Color(0xCCD1D2));
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setResizable(false);
         }
     }
 
