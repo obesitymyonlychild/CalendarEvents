@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.time.format.DateTimeFormatter;
 
 public class ModifyEventFrame extends InfoEventFrame implements ActionListener {
@@ -51,6 +52,11 @@ public class ModifyEventFrame extends InfoEventFrame implements ActionListener {
             this.event.setStartTime(startTime);
             this.event.setDuration(duration);
             this.event.setAddress(address);
+            try {
+                this.event.updateSharedEvent();
+            } catch (IOException | ClassNotFoundException ex) {
+                ex.printStackTrace();
+            }
             JOptionPane.showMessageDialog(this, "Event Modified!");
         }
     }

@@ -138,8 +138,8 @@ public class LoginFrame extends JFrame implements ActionListener {
                         User user = (User) is.readObject();
                         CalendarFacade.setCurrentUser(user);
                         JOptionPane.showMessageDialog(this, "Login Successful");
+                        ChooseCalendarFrame choose = new ChooseCalendarFrame(user);
                         this.dispose();
-                        MainMenuFrame main = new MainMenuFrame();
 
                     }
                     else{
