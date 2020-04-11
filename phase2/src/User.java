@@ -8,8 +8,8 @@ public class User implements Serializable{
     private ArrayList<Calendar> calendars = new ArrayList<Calendar>();
 
 
-    public User(String name, String psw){
-        name = name;
+    public User(String username, String psw){
+        name = username;
         password = psw;
         calendars.add(new Calendar("Default"));
     }
