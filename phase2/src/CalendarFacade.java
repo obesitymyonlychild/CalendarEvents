@@ -189,6 +189,9 @@ public class CalendarFacade {
             index++;
         }
         events.remove(index);
+        ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(username));
+        os.writeObject(user);
+        os.close();
     }
 
 }
