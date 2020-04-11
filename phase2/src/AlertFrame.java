@@ -45,9 +45,9 @@ public class AlertFrame extends JFrame implements ActionListener {
         formatLabel.setBounds(320, 220, 200, 30);
         countLabel.setBounds(50, 290, 100, 30);
         repeatLabel.setBounds(50, 360, 200, 30);
-        unitLabel.setBounds(320, 360, 200,30);
+        unitLabel.setBounds(250, 360, 350,30);
         countTextField.setBounds(150, 290, 150, 30);
-        repeatTextField.setBounds(150, 360, 100, 30);
+        repeatTextField.setBounds(150, 360, 80, 30);
         backButton.setBounds(50, 500, 100, 30);
         addButton.setBounds(150, 500, 100, 30);
 

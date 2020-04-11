@@ -59,6 +59,7 @@ public class ModifyEventFrame extends InfoEventFrame implements ActionListener {
                 ex.printStackTrace();
             }
             JOptionPane.showMessageDialog(this, "Event Modified!");
+            this.dispose();
             EditEventFrame nf = new EditEventFrame(event);
         }
     }

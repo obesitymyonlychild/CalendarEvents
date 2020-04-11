@@ -1,6 +1,9 @@
 import java.awt.*;
 import java.awt.event.*;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
@@ -27,7 +30,7 @@ public class ChooseCalendarFrame extends JFrame implements ActionListener {
         setLocationAndSize();
         addComponentsToContainer();
         addActionEvent();
-        calendars = user.getCalendars();
+        calendars = CalendarFacade.showCalendar();
         String[] calendarString = new String[calendars.size()];
         for (int j = 0; j < calendars.size(); j++) {
             calendarString[j] = calendars.get(j).getName();
@@ -62,6 +65,13 @@ public class ChooseCalendarFrame extends JFrame implements ActionListener {
         createButton.addActionListener(this);
     }
 
+    public static void main(String[] args) throws IOException {
+        String fileName =CalendarFacade.getCurrentUser().getName();
+        ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(fileName));
+        //os.writeObject(CalendarFacade.getCurrentUser());
+        //need to write calendars into the txt file
+        os.close();
+    }
 
 
     @Override
