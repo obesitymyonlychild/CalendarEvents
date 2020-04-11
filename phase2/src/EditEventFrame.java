@@ -4,7 +4,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.lang.reflect.Array;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -257,6 +259,23 @@ public class EditEventFrame extends JFrame implements ActionListener{
             try {
                 event.updateSharedEvent();
             } catch (IOException | ClassNotFoundException ex) {
+                ex.printStackTrace();
+            }
+            ObjectOutputStream os = null;
+            try {
+                os = new ObjectOutputStream(new FileOutputStream(CalendarFacade.getCurrentUser().getName()));
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+            try {
+                assert os != null;
+                os.writeObject(CalendarFacade.getCurrentUser());
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+            try {
+                os.close();
+            } catch (IOException ex) {
                 ex.printStackTrace();
             }
             this.dispose();

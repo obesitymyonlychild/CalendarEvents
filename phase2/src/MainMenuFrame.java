@@ -117,6 +117,23 @@ public class MainMenuFrame extends JFrame implements ActionListener {
 
         if (e.getSource() == logoutButton){
             CalendarFacade.setCurrentCalendar(null);
+            ObjectOutputStream os = null;
+            try {
+                os = new ObjectOutputStream(new FileOutputStream(CalendarFacade.getCurrentUser().getName()));
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+            try {
+                assert os != null;
+                os.writeObject(CalendarFacade.getCurrentUser());
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+            try {
+                os.close();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
             this.dispose();
             ChooseCalendarFrame choose = new ChooseCalendarFrame(CalendarFacade.getCurrentUser());
         }

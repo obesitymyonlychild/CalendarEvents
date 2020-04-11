@@ -1,6 +1,5 @@
 import java.awt.*;
 import java.awt.event.*;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
@@ -30,12 +29,19 @@ public class ChooseCalendarFrame extends JFrame implements ActionListener {
         setLocationAndSize();
         addComponentsToContainer();
         addActionEvent();
-        calendars = CalendarFacade.showCalendar();
+        calendars = user.getCalendars();
         String[] calendarString = new String[calendars.size()];
         for (int j = 0; j < calendars.size(); j++) {
             calendarString[j] = calendars.get(j).getName();
         }
         calendarList.setListData(calendarString);
+    }
+
+    public static void main(String[] args) throws IOException {
+        String fileName =CalendarFacade.getCurrentUser().getName();
+        ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(fileName));
+        os.writeObject(CalendarFacade.getCurrentUser());
+        os.close();
     }
 
     private void setLayoutManager() {
@@ -65,13 +71,6 @@ public class ChooseCalendarFrame extends JFrame implements ActionListener {
         createButton.addActionListener(this);
     }
 
-    public static void main(String[] args) throws IOException {
-        String fileName =CalendarFacade.getCurrentUser().getName();
-        ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(fileName));
-        //os.writeObject(CalendarFacade.getCurrentUser());
-        //need to write calendars into the txt file
-        os.close();
-    }
 
 
     @Override
@@ -82,11 +81,30 @@ public class ChooseCalendarFrame extends JFrame implements ActionListener {
             MainMenuFrame main = new MainMenuFrame();
             this.dispose();
 
+            //EditEventFrame targetEventFrame = new EditEventFrame(events.get(i));
+            // need to set some default
         }
         if (e.getSource() == backButton) {CalendarFacade.setCurrentUser(null);
             this.dispose();
             try {
                 LoginSystem.login();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+            ObjectOutputStream os = null;
+            try {
+                os = new ObjectOutputStream(new FileOutputStream(CalendarFacade.getCurrentUser().getName()));
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+            try {
+                assert os != null;
+                os.writeObject(CalendarFacade.getCurrentUser());
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+            try {
+                os.close();
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
@@ -96,6 +114,23 @@ public class ChooseCalendarFrame extends JFrame implements ActionListener {
             JFrame frame = new JFrame();
             String result = JOptionPane.showInputDialog(frame, "Enter new calendar name:");
             user.creatCalendar(result);
+            ObjectOutputStream os = null;
+            try {
+                os = new ObjectOutputStream(new FileOutputStream(CalendarFacade.getCurrentUser().getName()));
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+            try {
+                assert os != null;
+                os.writeObject(CalendarFacade.getCurrentUser());
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+            try {
+                os.close();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
             this.dispose();
             MainMenuFrame main = new MainMenuFrame();
 

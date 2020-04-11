@@ -73,19 +73,73 @@ public class AlertFrame extends JFrame implements ActionListener {
         addButton.addActionListener(this);
     }
 
+    public static Unit getUnit(String unit) throws Exception{
+        switch (unit){
+            case "MINUTE":{
+                return Unit.MINUTE;
+            }
+            case "HOUR":{
+                return Unit.HOUR;
+            }
+            case "DAY":{
+                return Unit.DAY;
+            }
+            case "WEEK":{
+                return Unit.WEEK;
+            }
+            case "MONTH":{
+                return Unit.MONTH;
+            }
+            case "YEAR":{
+                return Unit.YEAR;
+            }
+            case "ONETIME":{
+                return Unit.ONETIME;
+            }
+            default:{
+                throw new Exception();
+            }
+
+        }
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
 
         //Coding part of go back button
         if (e.getSource() == backButton){
+            ObjectOutputStream os = null;
+            try {
+                os = new ObjectOutputStream(new FileOutputStream(CalendarFacade.getCurrentUser().getName()));
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+            try {
+                assert os != null;
+                os.writeObject(CalendarFacade.getCurrentUser());
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+            try {
+                os.close();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
             this.dispose();
         }
         if(e.getSource()==addButton){
             String startTime = dateTextField.getText();
             int rep = Integer.parseInt(countTextField.getText());
-            Unit unit = Unit.valueOf(repeatTextField.getText());
-            event.setAlert(startTime, rep, unit);
-            JOptionPane.showMessageDialog(this, "Alert added!");
+            String unit = repeatTextField.getText();
+            try {
+                Unit u = getUnit(unit);
+                event.setAlert(startTime, rep, u);
+                JOptionPane.showMessageDialog(this, "Alert added!");
+            } catch (Exception ex) {
+                ex.printStackTrace();
+                JOptionPane.showMessageDialog(this,"Invalid Format");
+            }
+
             dateTextField.setText("");
             repeatTextField.setText("");
             countTextField.setText("");

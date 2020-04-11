@@ -2,25 +2,26 @@ import javax.swing.*;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Timer;
+import java.util.TimerTask;
 
 
 public class LoginSystem extends JFrame {
 
 
-    public static void login() throws IOException{
+    public static void login() throws IOException {
         LoginFrame frame = new LoginFrame();
 
     }
-    static ArrayList<String> Users = new ArrayList<String>();
+
     public static void main(String[] args) throws IOException, ClassNotFoundException {
-        LoginSystem.login();
 
         File file = new File("Users");
-        if (!file.exists()){
+        if (!file.exists()) {
             ObjectOutputStream users = new ObjectOutputStream(new FileOutputStream("Users"));
-            users.writeObject(Users);
-            users.close();}
-
+            users.writeObject(LoginFrame.Users);
+            users.close();
+        }
+        LoginSystem.login();
         java.util.Timer timer = new Timer();
         timer.schedule(new Updater(), 0, 5000);
     }
@@ -48,7 +49,7 @@ public class LoginSystem extends JFrame {
 //    }
 
 
-//    public static void createAccount() throws IOException, ClassNotFoundException {
+    //    public static void createAccount() throws IOException, ClassNotFoundException {
 //        ObjectInputStream is = new ObjectInputStream(new FileInputStream("Users"));
 //        Users = (ArrayList<String>) is.readObject();
 //        Scanner input = new Scanner(System.in);
