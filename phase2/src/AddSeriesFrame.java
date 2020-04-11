@@ -81,7 +81,7 @@ public class AddSeriesFrame extends JFrame implements ActionListener {
             ArrayList<Series> series = CalendarFacade.getCurrentCalendar().getSeries();
             String[] seriesString = new String[series.size()];
             for (int j = 0; j < series.size(); j++) {
-                seriesString[j] = series.get(j).toString();
+                seriesString[j] = series.get(j).getName();
             }
             SeriesFrame.seriesList.setListData(seriesString);
 
