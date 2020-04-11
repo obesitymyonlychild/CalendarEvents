@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.ArrayList;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -26,6 +27,10 @@ public class Event implements java.io.Serializable, Comparable<Event> {
 
     //the alert of the event
     private ArrayList<Alert> alerts = new ArrayList<>();
+
+    private ArrayList<String> users = new ArrayList<String>() {{
+        add(CalendarFacade.getCurrentUser().getName());
+    }};
 
     //a boolean indicates whether the alert of the event is on or off
     private boolean alertOn = true;
@@ -216,7 +221,22 @@ public class Event implements java.io.Serializable, Comparable<Event> {
         }else{
             return 1;
         }
+    }
 
+
+    public void addUser(String username) throws IOException, ClassNotFoundException {
+        users.add(username);
+        CalendarFacade.shareEventbetweenUser(name, username);
+    }
+
+    //use this method whenever we modify the Event
+    public void updateSharedEvent() throws IOException, ClassNotFoundException {
+        if (users.size() > 1){
+            for(String user: users){
+                CalendarFacade.deleteOldSharedEvent(name, user);
+                CalendarFacade.shareEventbetweenUser(name, user);
+            }
+        }
     }
 
 }

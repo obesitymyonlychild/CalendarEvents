@@ -1,6 +1,7 @@
+import javax.jws.soap.SOAPBinding;
 import javax.swing.*;
 import java.awt.image.AreaAveragingScaleFilter;
-import java.io.IOException;
+import java.io.*;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.time.LocalDateTime;
@@ -105,6 +106,13 @@ public class CalendarFacade {
         return currentCalendar.getEvents();
     }
 
+    public static ArrayList<String> getAllUsers() throws IOException, ClassNotFoundException {
+        ObjectInputStream is = new ObjectInputStream(new FileInputStream("Users"));
+        return (ArrayList<String>) is.readObject();
+    }
+
+
+
     public static ArrayList<Event> searchEventByTag(String para){
         return CalendarSearch.searchEventByTag(currentCalendar, para);
     }
@@ -157,5 +165,30 @@ public class CalendarFacade {
 
     }
 
+    public static void shareEventbetweenUser(String eventName, String username) throws IOException, ClassNotFoundException {
+        ArrayList<Event> events = currentCalendar.getEvents();
+        ObjectInputStream is = new ObjectInputStream(new FileInputStream(username));
+        User user = (User) is.readObject();
+        for (Event event: events){
+            if (event.getName().equals(eventName))
+                user.getCalendars().get(0).addExistEvent(event);
+        }
+        ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(username));
+        os.writeObject(user);
+        os.close();
+    }
+
+    public static void deleteOldSharedEvent(String eventName, String username) throws IOException, ClassNotFoundException {
+        ObjectInputStream is = new ObjectInputStream(new FileInputStream(username));
+        User user = (User) is.readObject();
+        int index = 0;
+        ArrayList<Event> events = user.getCalendars().get(0).getEvents();
+        for (Event event: events){
+            if (event.getName().equals(eventName))
+                break;
+            index++;
+        }
+        events.remove(index);
+    }
 
 }

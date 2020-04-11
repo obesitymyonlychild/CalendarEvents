@@ -199,8 +199,8 @@ public class Calendar {
         return null;
     }
 
-    public void addUserToEvent(){
-
+    public void addExistEvent(Event event){
+        events.add(event);
     }
 
 
