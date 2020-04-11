@@ -9,8 +9,9 @@ public class User implements Serializable{
 
 
     public User(String name, String psw){
-        this.name = name;
-        this.password = psw;
+        name = name;
+        password = psw;
+        calendars.add(new Calendar("Default"));
     }
     public String getName(){
         return this.name;
