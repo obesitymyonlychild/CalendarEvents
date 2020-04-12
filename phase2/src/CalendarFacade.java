@@ -171,14 +171,16 @@ public class CalendarFacade {
         User user = (User) is.readObject();
         for (Event event: events){
             if (event.getName().equals(eventName)){
+                Event newEvent = event.duplicate();
                 user.getCalendars().get(0).addEvent(event);
+                System.out.println("shareEventbetweenUser");
             }
 
         }
         ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(username));
         os.writeObject(user);
         os.close();
-        System.out.println("shareEventbetweenUser");
+
     }
 
     public static void deleteOldSharedEvent(String eventName, String username) throws IOException, ClassNotFoundException {
@@ -197,7 +199,7 @@ public class CalendarFacade {
         os.close();
     }
 
-    public void addToSeries(String seriesName, String eventName){
+    public static void addToSeries(String seriesName, String eventName){
         Series getSeries = new Series("idk");
         for (Series series: currentCalendar.getSeries()){
             if (series.getName().equals(seriesName)){
@@ -212,10 +214,6 @@ public class CalendarFacade {
                 getSeries.addToSeries(event);
             }
         }
-
-
-
-
 
     }
 
