@@ -95,7 +95,7 @@ public class MainMenuFrame extends JFrame implements ActionListener {
         //if(e.getSource() == noTimeEventButton)
 
         if(e.getSource() == allEventButton){
-            //
+            AllEventFrame all = new AllEventFrame();
         }
 
         if(e.getSource() == seriesButton){

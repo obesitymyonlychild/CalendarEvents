@@ -12,22 +12,10 @@ public class AllEventFrame extends JFrame implements ActionListener {
     JLabel eventLabel = new JLabel("Events");
     JButton editButton = new JButton("EDIT");
     JButton backButton = new JButton("BACK");
-    ArrayList<Event> events = CalendarFacade.showFutureEvent();
+    ArrayList<Event> events = CalendarFacade.showEvents();
 
-    public void createList(){
-        ArrayList<Event> pe = CalendarFacade.showPastEvent();
-        events = CalendarFacade.showOngoingEvent();
-        ArrayList<Event> fe = CalendarFacade.showFutureEvent();
-        for (int i=0;i<pe.size();i++){
-            events.add(events.size()+i,pe.get(i));
-        }
-        for (int i=0;i<fe.size();i++){
-            events.add(events.size()+i,fe.get(i));
-        }
-    }
 
     AllEventFrame() {
-        this.createList();
         this.setVisible(true);
         this.setBounds(10, 10, 650, 550);
         this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);

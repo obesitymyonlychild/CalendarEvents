@@ -94,9 +94,10 @@ public class ChooseCalendarFrame extends JFrame implements ActionListener {
             ObjectOutputStream os = null;
             try {
                 os = new ObjectOutputStream(new FileOutputStream(CalendarFacade.getCurrentUser().getName()));
-            } catch (IOException ex) {
+            } catch (IOException | NullPointerException ex) {
                 ex.printStackTrace();
             }
+
             try {
                 assert os != null;
                 os.writeObject(CalendarFacade.getCurrentUser());

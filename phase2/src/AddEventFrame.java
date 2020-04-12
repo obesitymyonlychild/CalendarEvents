@@ -52,8 +52,16 @@ public class AddEventFrame extends InfoEventFrame implements ActionListener {
             int duration = Integer.parseInt(durationTextField.getText());
             String address = addressTextField.getText();
             // we store currentCalendar rather than currentUser now --- by Oliver
-            CalendarFacade.getCurrentCalendar().createEvent(name, startTime, duration, address);
-            JOptionPane.showMessageDialog(this, "Event added!");
+            try {
+                CalendarFacade.getCurrentCalendar().createEvent(name, startTime, duration, address);
+                JOptionPane.showMessageDialog(this, "Event added!");
+                nameTextField.setText("");
+                dateTextField.setText("");
+                durationTextField.setText("");
+                addressTextField.setText("");
+            } catch (Exception e1){
+                JOptionPane.showMessageDialog(this, "Wrong input!");
+            }
             nameTextField.setText("");
             dateTextField.setText("");
             durationTextField.setText("");

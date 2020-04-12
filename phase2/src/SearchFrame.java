@@ -15,7 +15,7 @@ public class SearchFrame extends JFrame implements ActionListener {
     JButton backButton = new JButton("BACK");
     JButton goButton = new JButton("GO");
     JLabel tagLabel = new JLabel("tag");
-    JLabel dateLabel = new JLabel("date (yyyy-MM-dd HH:mm)");
+    JLabel dateLabel = new JLabel("date (yyyy-MM-dd)");
     JLabel memoLabel = new JLabel("memo");
     JLabel seriesLabel = new JLabel("series");
     JLabel eventLabel = new JLabel("event");
@@ -99,6 +99,7 @@ public class SearchFrame extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         String[] eventString;
+        int j = eventList.getSelectedIndex();
         if (e.getSource() == tagButton) {
             String tagName = tagTextField.getText();
             events = CalendarFacade.searchEventByTag(tagName);
@@ -142,8 +143,7 @@ public class SearchFrame extends JFrame implements ActionListener {
         eventList.setListData(eventString);
 
         if (e.getSource() == goButton) {
-            int i = eventList.getSelectedIndex();
-            EditEventFrame targetEventFrame = new EditEventFrame(events.get(i));
+            EditEventFrame targetEventFrame = new EditEventFrame(events.get(j));
             // need to set some default;
         }
 

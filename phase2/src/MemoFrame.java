@@ -16,6 +16,8 @@ public class MemoFrame extends JFrame implements ActionListener, ListSelectionLi
     JTextField memoContentTextField = new JTextField();
     JButton goButton = new JButton("GO");
     JButton backButton = new JButton("BACK");
+    JButton addMemoButton = new JButton("ADD MEMO");
+    JButton deleteMemoButton = new JButton("DELETE Memo");
     JLabel memoContentLabel = new JLabel("MEMO CONTENT");
     ArrayList<Event> events = new ArrayList<>();
     ArrayList<Memo> memos = new ArrayList<>();
@@ -51,6 +53,8 @@ public class MemoFrame extends JFrame implements ActionListener, ListSelectionLi
         eventList.setBounds(250, 60, 200, 250);
         goButton.setBounds(460, 60, 100, 40);
         backButton.setBounds(460, 120, 100, 40);
+        addMemoButton.setBounds(460, 180, 100, 40);
+        deleteMemoButton.setBounds(460, 240, 100, 40);
         memoContentLabel.setBounds(30, 320, 400, 50);
 
     }
@@ -64,18 +68,23 @@ public class MemoFrame extends JFrame implements ActionListener, ListSelectionLi
         container.add(backButton);
         container.add(memoContentTextField);
         container.add(memoContentLabel);
+        container.add(addMemoButton);
+        container.add(deleteMemoButton);
     }
 
     private void addActionEvent() {
         memoList.addListSelectionListener(this);
         goButton.addActionListener(this);
         backButton.addActionListener(this);
+        addMemoButton.addActionListener(this);
+        deleteMemoButton.addActionListener(this);
     }
 
 
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        String memoName = memoList.getSelectedValue();
         if (e.getSource() == goButton) {
             int i = eventList.getSelectedIndex();
             EditEventFrame targetEventFrame = new EditEventFrame(events.get(i));
@@ -84,6 +93,24 @@ public class MemoFrame extends JFrame implements ActionListener, ListSelectionLi
         if (e.getSource() == backButton) {
             this.dispose();
 
+        }
+        if (e.getSource() == addMemoButton) {
+            AddMemoFrame addMemoFrame = new AddMemoFrame();
+            memos = CalendarFacade.showMemo();
+            String[] memoString = new String[memos.size()];
+            for (int j = 0; j < memos.size(); j++) {
+                memoString[j] = memos.get(j).toString();
+            }
+            memoList.setListData(memoString);
+        }
+        if (e.getSource() == deleteMemoButton) {
+            CalendarFacade.getCurrentCalendar().deleteMemos(memoName);
+            memos = CalendarFacade.showMemo();
+            String[] memoString = new String[memos.size()];
+            for (int j = 0; j < memos.size(); j++) {
+                memoString[j] = memos.get(j).toString();
+            }
+            memoList.setListData(memoString);
         }
     }
 
