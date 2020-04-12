@@ -115,18 +115,12 @@ public class Calendar implements Serializable {
     }
 
     public void deleteMemos(String name){
-        boolean res = false;
-        for (Memo me: this.memos){
+
+        for (Memo me: memos){
             if(me.getName().equals(name)){
-                res = true;
                 this.memos.remove(me);
-                return;
             }
         }
-        if (!res){
-            System.out.println("No such memo exists!");
-        }
-
     }
 
     public void createEvent(String name, String startTime, int duration, String address){
