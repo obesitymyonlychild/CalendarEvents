@@ -54,7 +54,7 @@ public class MemoFrame extends JFrame implements ActionListener, ListSelectionLi
         goButton.setBounds(460, 60, 100, 40);
         backButton.setBounds(460, 120, 100, 40);
         addMemoButton.setBounds(460, 180, 100, 40);
-        deleteMemoButton.setBounds(460, 220, 100, 40);
+        deleteMemoButton.setBounds(460, 240, 100, 40);
         memoContentLabel.setBounds(30, 320, 400, 50);
 
     }
