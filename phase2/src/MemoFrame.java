@@ -6,7 +6,7 @@ import javax.swing.*;     // Using Swing components and containers
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-public class MemoFrame extends JFrame implements ActionListener, ListSelectionListener {
+public class MemoFrame extends JFrame implements ActionListener, ListSelectionListener{
 
     Container container = getContentPane();
     JList<String> memoList = new JList<>();
@@ -73,7 +73,6 @@ public class MemoFrame extends JFrame implements ActionListener, ListSelectionLi
         memoList.addListSelectionListener(this);
         goButton.addActionListener(this);
         backButton.addActionListener(this);
-        deleteMemoButton.addActionListener(this);
     }
 
 
@@ -100,6 +99,7 @@ public class MemoFrame extends JFrame implements ActionListener, ListSelectionLi
             }
             memoList.setListData(memoString);
         }
+
     }
 
     public void valueChanged(ListSelectionEvent e) {
@@ -110,6 +110,7 @@ public class MemoFrame extends JFrame implements ActionListener, ListSelectionLi
         for (int i = 0; i < events.size(); i++) {
             eventString[i] = events.get(i).toString();
         }
+        String memoName = memoList.getSelectedValue();
         eventList.setListData(eventString);
         memoContentTextField.setText(CalendarFacade.getMemoContent(targetMemoString));
 
