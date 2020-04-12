@@ -105,6 +105,10 @@ public class Series implements java.io.Serializable {
         events.add(e);
     }
 
+    public void addToSeries(Event event){
+        events.add(event);
+    }
+
     public String getName(){
         return this.name;
     }
