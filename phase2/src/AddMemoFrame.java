@@ -16,9 +16,10 @@ public class AddMemoFrame extends JFrame implements ActionListener {
     JTextField nameTextField = new JTextField();
     JLabel contentLabel = new JLabel("MEMO CONTENT");
     JTextField contextText = new JTextField();
+    Event event;
 
 
-    AddMemoFrame() {
+    AddMemoFrame(Event event) {
         this.setTitle("Add New Memo");
         this.setVisible(true);
         this.setBounds(10, 10, 500, 400);
@@ -84,7 +85,7 @@ public class AddMemoFrame extends JFrame implements ActionListener {
                 ex.printStackTrace();
             }
             this.dispose();
-            MemoFrame mf = new MemoFrame();
+            EditMemoInEventFrame ef = new EditMemoInEventFrame(event);
         }
 
         if(e.getSource() == addButton){

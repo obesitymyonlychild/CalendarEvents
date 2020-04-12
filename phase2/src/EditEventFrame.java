@@ -207,8 +207,8 @@ public class EditEventFrame extends JFrame implements ActionListener{
         }
 
         if(e.getSource() == viewMemoButton){
-            MemoFrame mf = new MemoFrame();
-            mf.memos = event.getMemos();
+            EditMemoInEventFrame ed = new EditMemoInEventFrame(event);
+
         }
 
         if (e.getSource() == tagDeleteButton){
@@ -231,7 +231,6 @@ public class EditEventFrame extends JFrame implements ActionListener{
         if(e.getSource() == addAlertButton){
             AlertFrame fr = new AlertFrame(event);
         }
-
 
         if (e.getSource()==alertDeleteButton){
             int i = alertList.getSelectedIndex();
