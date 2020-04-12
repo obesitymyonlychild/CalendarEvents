@@ -1,7 +1,6 @@
 import java.awt.*;        // Using AWT layouts
 import java.awt.event.*;  // Using AWT event classes and listener interfaces
 import java.util.ArrayList;
-import java.util.Calendar;
 import javax.swing.*;     // Using Swing components and containers
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -17,6 +16,7 @@ public class SeriesFrame extends JFrame implements ActionListener, ListSelection
     JButton goButton = new JButton("show events of series");
     JButton backButton = new JButton("back");
     JButton addEventButton = new JButton("add events to series");
+    JButton frequencyEventButton = new JButton("create events in frequency");
 
     JButton addSeriesButton = new JButton("add series");
     JButton deleteSeriesButton = new JButton("delete series");
@@ -59,6 +59,7 @@ public class SeriesFrame extends JFrame implements ActionListener, ListSelection
         addSeriesButton.setBounds(500, 150, 130, 30);
         deleteSeriesButton.setBounds(500, 210, 130, 30);
         addEventButton.setBounds(500, 270, 170, 30);
+        frequencyEventButton.setBounds(500, 330, 170, 30);
 
 
     }
@@ -73,6 +74,7 @@ public class SeriesFrame extends JFrame implements ActionListener, ListSelection
         container.add(addSeriesButton);
         container.add(deleteSeriesButton);
         container.add(addEventButton);
+        container.add(frequencyEventButton);
     }
 
     private void addActionEvent() {
@@ -82,6 +84,7 @@ public class SeriesFrame extends JFrame implements ActionListener, ListSelection
         addSeriesButton.addActionListener(this);
         deleteSeriesButton.addActionListener(this);
         addEventButton.addActionListener(this);
+        frequencyEventButton.addActionListener(this);
     }
 
     @Override
@@ -185,6 +188,14 @@ public class SeriesFrame extends JFrame implements ActionListener, ListSelection
             String seriesName = series.get(i).getName();
 
             AddEventToSeriesFrame a = new AddEventToSeriesFrame(seriesName);
+        }
+
+        if (e.getSource() == frequencyEventButton) {
+            ArrayList<Series> series = CalendarFacade.getCurrentCalendar().getSeries();
+            int i = seriesList.getSelectedIndex();
+            String seriesName = series.get(i).getName();
+
+            CreateFrequencyEventsFrame f = new CreateFrequencyEventsFrame(seriesName);
         }
 
 

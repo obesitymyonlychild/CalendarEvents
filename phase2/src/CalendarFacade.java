@@ -217,4 +217,17 @@ public class CalendarFacade {
 
     }
 
+//    public void createFrequencyEvent(String seriesName, String nameOfEvent, String startTime, int duration,
+//                                     String address, int num, int numOfHours) {
+//        Series getSeries = new Series("idk");
+//        for (Series series: currentCalendar.getSeries()){
+//            if (series.getName().equals(seriesName)){
+//                getSeries = series;
+//                break;
+//            }
+//        }
+//
+//        getSeries.createFrequencyEvent(nameOfEvent, startTime, duration, address, num, numOfHours);
+//    }
+
 }
