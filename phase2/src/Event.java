@@ -155,6 +155,10 @@ public class Event implements java.io.Serializable, Comparable<Event> {
         m.addEvent(this);
     }
 
+    public void addMemo(Memo memo){
+        memos.add(memo);
+    }
+
     public boolean deleteMemo(String nameOfMemo) {
         for (Memo m : memos){
             if (m.getName().equals(nameOfMemo)){
@@ -228,7 +232,8 @@ public class Event implements java.io.Serializable, Comparable<Event> {
     }
 
     public void addUser(String username) throws IOException, ClassNotFoundException {
-        users.add(username);
+        if (!users.contains(username))
+            users.add(username);
         CalendarFacade.shareEventbetweenUser(name, username);
     }
 
@@ -240,10 +245,40 @@ public class Event implements java.io.Serializable, Comparable<Event> {
     public void updateSharedEvent() throws IOException, ClassNotFoundException {
         if (users.size() > 1){
             for(String user: users){
-                CalendarFacade.deleteOldSharedEvent(name, user);
-                CalendarFacade.shareEventbetweenUser(name, user);
+                //CalendarFacade.deleteOldSharedEvent(name, user);
+                //CalendarFacade.shareEventbetweenUser(name, user);
             }
         }
+    }
+
+    public void setTagsForDuplicate(ArrayList<String> tagsInput){
+        tags = tagsInput;
+    }
+
+    public void setMemosForDuplicate(ArrayList<Memo> memosInput){
+        memos = memosInput;
+    }
+
+    public void setAlertsForDuplicate(ArrayList<Alert> alertsInput){
+        alerts = alertsInput;
+    }
+
+    public void setUsersForDuplicate(ArrayList<String> usersInput){
+        users = usersInput;
+    }
+
+
+
+    public Event duplicate(){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        String formattedDateTime = startTime.format(formatter);
+        Event newEvent = new Event(name, formattedDateTime ,duration, address);
+        newEvent.setTagsForDuplicate(tags);
+        newEvent.setMemosForDuplicate(memos);
+        newEvent.setAlertsForDuplicate(alerts);
+        newEvent.setUsersForDuplicate(users);
+        return newEvent;
+
     }
 
 }
