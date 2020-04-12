@@ -15,7 +15,7 @@ public class SearchFrame extends JFrame implements ActionListener {
     JButton backButton = new JButton("BACK");
     JButton goButton = new JButton("GO");
     JLabel tagLabel = new JLabel("tag");
-    JLabel dateLabel = new JLabel("date (yyyy-MM-dd HH:mm)");
+    JLabel dateLabel = new JLabel("date (yyyy-MM-dd)");
     JLabel memoLabel = new JLabel("memo");
     JLabel seriesLabel = new JLabel("series");
     JLabel eventLabel = new JLabel("event");
