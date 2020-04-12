@@ -24,8 +24,9 @@ public class AlertFrame extends JFrame implements ActionListener {
 
 
     AlertFrame(Event event) {
+        this.event = event;
         this.setVisible(true);
-        this.setBounds(10, 10, 500, 600);
+        this.setBounds(10, 10, 700, 600);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setResizable(false);
         setLayoutManager();
@@ -126,6 +127,7 @@ public class AlertFrame extends JFrame implements ActionListener {
                 ex.printStackTrace();
             }
             this.dispose();
+            EditEventFrame ed = new EditEventFrame(event);
         }
         if(e.getSource()==addButton){
             String startTime = dateTextField.getText();
@@ -135,9 +137,11 @@ public class AlertFrame extends JFrame implements ActionListener {
                 Unit u = getUnit(unit);
                 event.setAlert(startTime, rep, u);
                 JOptionPane.showMessageDialog(this, "Alert added!");
-            } catch (Exception ex) {
+            } catch (IOException ex) {
                 ex.printStackTrace();
                 JOptionPane.showMessageDialog(this,"Invalid Format");
+            } catch (Exception ignored){
+
             }
 
             dateTextField.setText("");

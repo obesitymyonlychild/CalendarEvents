@@ -25,7 +25,7 @@ public class EditEventFrame extends JFrame implements ActionListener{
     JLabel userLabel = new JLabel("users:");
     JLabel tagLabel = new JLabel("tags:");
     JLabel alertLabel = new JLabel("alerts");
-    JLabel onLabel = new JLabel();
+    JLabel onLabel = new JLabel("Alerts ON");
 
     JList<String> tagList = new JList<>();
     JList<String> alertList = new JList<>();
@@ -62,12 +62,13 @@ public class EditEventFrame extends JFrame implements ActionListener{
         addComponentsToContainer();
         addActionEvent();
 
+        if(event.getTags().size() != 0){
         tags = event.getTags();
         String[] tagString = new String[tags.size()];
         for (int j = 0; j < tags.size(); j++) {
             tagString[j] = tags.get(j);
         }
-        tagList.setListData(tagString);
+        tagList.setListData(tagString);}
 
         users = event.getUsers();
         String[] userString = new String[users.size()];
@@ -76,6 +77,7 @@ public class EditEventFrame extends JFrame implements ActionListener{
         }
         userList.setListData(userString);
 
+        if(event.getAlerts().size() != 0){
         alerts = event.getAlerts();
         String[] alertString = new String[alerts.size()];
         for (int j = 0; j < alerts.size(); j++) {
@@ -83,14 +85,13 @@ public class EditEventFrame extends JFrame implements ActionListener{
             String start = alerts.get(j).getStartTime().format(formatter);
             alertString[j] = start;
         }
-        alertList.setListData(alertString);
+        alertList.setListData(alertString);}
+
         boolean on = event.isAlertOn();
-        if (on) {
-            onLabel.setText("Alerts On");
+        if (!on) {
+            onLabel.setText("Alerts OFF");
         }
-        else{
-            onLabel.setText("Alerts Off");
-        }
+        
         name.setText(event.getName());
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         String time = event.getStartTime().format(formatter);
@@ -135,8 +136,6 @@ public class EditEventFrame extends JFrame implements ActionListener{
         userList.setBounds(50, 560, 200, 70);
         userButton.setBounds(250,570 ,100, 30);
         backButton.setBounds(250, 700, 100, 30);
-
-
     }
 
     public void addComponentsToContainer() {
@@ -207,6 +206,7 @@ public class EditEventFrame extends JFrame implements ActionListener{
         }
 
         if(e.getSource() == viewMemoButton){
+            this.dispose();
             EditMemoInEventFrame ed = new EditMemoInEventFrame(event);
 
         }
@@ -230,6 +230,7 @@ public class EditEventFrame extends JFrame implements ActionListener{
 
         if(e.getSource() == addAlertButton){
             AlertFrame fr = new AlertFrame(event);
+            this.dispose();
         }
 
         if (e.getSource()==alertDeleteButton){
