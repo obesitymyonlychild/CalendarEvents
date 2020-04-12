@@ -171,7 +171,7 @@ public class CalendarFacade {
         User user = (User) is.readObject();
         for (Event event: events){
             if (event.getName().equals(eventName)){
-                Event newEvent = event.duplicate();
+                //Event newEvent = event.duplicate();
                 user.getCalendars().get(0).addEvent(event);
                 System.out.println("shareEventbetweenUser");
             }

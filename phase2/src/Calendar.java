@@ -204,8 +204,24 @@ public class Calendar implements Serializable {
         return null;
     }
 
-    public void addEvent(Event event){
-        events.add(event);
+    public void addEvent(Event evt){
+        events.add(evt);
+        LocalDateTime start = evt.getStartTime();
+        LocalDateTime end = start.plusMinutes(evt.getDuration());
+        LocalDateTime now = LocalDateTime.now();
+        if(start.isAfter(now)){
+            this.futureEvents.add(evt);
+        }
+        else if(start.isBefore(now)){
+            if (end.isBefore(now)){
+                this.pastEvents.add(evt);
+            }
+            else{this.ongoingEvents.add(evt);
+            }
+        }
+        else{
+            this.ongoingEvents.add(evt);
+        }
     }
 
 
