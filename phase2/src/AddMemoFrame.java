@@ -50,6 +50,8 @@ public class AddMemoFrame extends JFrame implements ActionListener {
         container.add(backButton);
         container.add(nameLabel);
         container.add(nameTextField);
+        container.add(contentLabel);
+        container.add(contextText);
     }
 
     public void addActionEvent() {
