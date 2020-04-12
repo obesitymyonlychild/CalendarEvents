@@ -45,13 +45,12 @@ public class CalendarSearch {
     }
 
 
-    public static ArrayList<Event> searchEventByMemo(Calendar currentCalendar, String para){
+    public static ArrayList<Event> searchEventByMemo(Calendar currentCalendar, String memoName){
 
         ArrayList<Event> eventList = new ArrayList<Event>();
 
         for(Memo memo: currentCalendar.getMemos()){
-            if(memo.getContent().contains(para)){
-
+            if(memo.getName().equals(memoName)){
                 eventList.addAll(memo.getEvents());
             }
         }
