@@ -63,13 +63,13 @@ public class CreateFrequencyEventsFrame extends AddEventFrame implements ActionL
             int duration = Integer.parseInt(durationTextField.getText());
             String address = addressTextField.getText();
             int fre = Integer.parseInt(frequencyTextField.getText());
-            int hours = Integer.parseInt(frequencyTextField.getText());
+            int hours = Integer.parseInt(hoursApartTextField.getText());
 
             try {
                 CalendarFacade.getCurrentCalendar().createFrequencyEvent(seriesName, name, startTime, duration,
                         address, fre, hours);
 
-                JOptionPane.showMessageDialog(this, "Event added!");
+                JOptionPane.showMessageDialog(this, "Events added!");
                 nameTextField.setText("");
                 dateTextField.setText("");
                 durationTextField.setText("");
