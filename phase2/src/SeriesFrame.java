@@ -14,8 +14,9 @@ public class SeriesFrame extends JFrame implements ActionListener, ListSelection
     JLabel seriesLabel = new JLabel("series");
     JLabel eventsLabel = new JLabel("events");
     //    JTextField seriesContentTextField = new JTextField();
-    JButton goButton = new JButton("go to series");
+    JButton goButton = new JButton("show events of series");
     JButton backButton = new JButton("back");
+    JButton addEventButton = new JButton("add events to series");
 
     JButton addSeriesButton = new JButton("add series");
     JButton deleteSeriesButton = new JButton("delete series");
@@ -38,7 +39,7 @@ public class SeriesFrame extends JFrame implements ActionListener, ListSelection
         ArrayList<Series> series = CalendarFacade.getCurrentCalendar().getSeries();
         String[] seriesString = new String[series.size()];
         for (int j = 0; j < series.size(); j++) {
-            seriesString[j] = series.get(j).toString();
+            seriesString[j] = series.get(j).getName();
         }
         seriesList.setListData(seriesString);
     }
@@ -53,10 +54,11 @@ public class SeriesFrame extends JFrame implements ActionListener, ListSelection
 //        seriesContentTextField.setBounds(30, 450, 400, 90);
         seriesList.setBounds(30, 60, 200, 350);
         eventList.setBounds(270, 60, 200, 350);
-        goButton.setBounds(500, 30, 130, 30);
+        goButton.setBounds(500, 30, 170, 30);
         backButton.setBounds(500, 90, 130, 30);
         addSeriesButton.setBounds(500, 150, 130, 30);
         deleteSeriesButton.setBounds(500, 210, 130, 30);
+        addEventButton.setBounds(500, 270, 170, 30);
 
 
     }
@@ -70,7 +72,7 @@ public class SeriesFrame extends JFrame implements ActionListener, ListSelection
         container.add(backButton);
         container.add(addSeriesButton);
         container.add(deleteSeriesButton);
-//        container.add(seriesContentTextField);
+        container.add(addEventButton);
     }
 
     private void addActionEvent() {
@@ -79,6 +81,7 @@ public class SeriesFrame extends JFrame implements ActionListener, ListSelection
         backButton.addActionListener(this);
         addSeriesButton.addActionListener(this);
         deleteSeriesButton.addActionListener(this);
+        addEventButton.addActionListener(this);
     }
 
     @Override
@@ -104,16 +107,22 @@ public class SeriesFrame extends JFrame implements ActionListener, ListSelection
                 int i = seriesList.getSelectedIndex();
 //                for (Series value : series)
                 String seriesName = series.get(i).getName();
-                for (Series value : series) {
-                    if (value.getName().equals(seriesName)) {
-                        ArrayList<Event> events = value.getEvents();
-                        String[] eventsString = new String[events.size()];
-                        for (int j = 0; j < events.size(); j++) {
+//                for (Series value : series) {
+//                    if (value.getName().equals(seriesName)) {
+                ArrayList<Event> events = CalendarFacade.searchEventBySeriesName(seriesName);
+                String[] eventsString = new String[events.size()];
+                for (int j = 0; j < events.size(); j++) {
                             eventsString[j] = events.get(j).toString();
                         }
-                        eventList.setListData(eventsString);
-                    }
+                if (eventsString.length == 0){
+                    JOptionPane.showMessageDialog(this, "No events in this series so far");
                 }
+                else {
+
+                    eventList.setListData(eventsString);
+                }
+
+
 
 
             } catch (IndexOutOfBoundsException ee) {
@@ -168,6 +177,18 @@ public class SeriesFrame extends JFrame implements ActionListener, ListSelection
 
 
             }
+
+
+        if (e.getSource() == addEventButton) {
+            ArrayList<Series> series = CalendarFacade.getCurrentCalendar().getSeries();
+            int i = seriesList.getSelectedIndex();
+            String seriesName = series.get(i).getName();
+
+            AllEventFrame a = new AllEventFrame();
+        }
+
+
+
         }
 
 
