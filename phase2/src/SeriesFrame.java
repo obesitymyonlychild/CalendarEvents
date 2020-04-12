@@ -184,7 +184,7 @@ public class SeriesFrame extends JFrame implements ActionListener, ListSelection
             int i = seriesList.getSelectedIndex();
             String seriesName = series.get(i).getName();
 
-            AllEventFrame a = new AllEventFrame();
+            AddEventToSeriesFrame a = new AddEventToSeriesFrame(seriesName);
         }
 
 
