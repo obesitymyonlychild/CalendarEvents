@@ -80,7 +80,7 @@ public class Memo implements java.io.Serializable{
         for (Event event : this.events) {
             s.append(event.toString()).append("\n");
         }
-        return "This is a memo named as" + name + "with content" + content + "about" + s;
+        return name;
 
     }
 
