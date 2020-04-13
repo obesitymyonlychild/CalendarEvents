@@ -39,7 +39,7 @@ public class LoginFrame extends JFrame implements ActionListener {
         userTextField.setBounds(150, 150, 150, 30);
         passwordField.setBounds(150, 220, 150, 30);
         loginButton.setBounds(50, 300, 100, 30);
-        createButton.setBounds(200, 300, 200, 30);
+        createButton.setBounds(200, 300, 180, 30);
 
 
     }

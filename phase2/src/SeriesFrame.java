@@ -11,12 +11,14 @@ public class SeriesFrame extends JFrame implements ActionListener, ListSelection
     public static JList<String> seriesList = new JList<>();
     JList<String> eventList = new JList<>();
     JLabel seriesLabel = new JLabel("series");
-    JLabel eventsLabel = new JLabel("events");
+    JLabel eventsLabel = new JLabel("events of selected series");
     //    JTextField seriesContentTextField = new JTextField();
-    JButton goButton = new JButton("show events of series");
+    JButton goButton = new JButton("show events of selected series");
     JButton backButton = new JButton("back");
     JButton addEventButton = new JButton("add events to series");
-    JButton frequencyEventButton = new JButton("create events in frequency");
+    JButton frequencyEventButton = new JButton("<html>" + "create recurring events" + "<br>" + "for selected series");
+//    "<html>" + "This is a" + "<br><i>" + "swing button"
+//            + "</i></html>");
 
     JButton addSeriesButton = new JButton("add series");
     JButton deleteSeriesButton = new JButton("delete series");
@@ -49,17 +51,17 @@ public class SeriesFrame extends JFrame implements ActionListener, ListSelection
     }
 
     private void setLocationAndSize() {
-        seriesLabel.setBounds(110, 30, 100, 30);
-        eventsLabel.setBounds(355, 30, 100, 30);
+        seriesLabel.setBounds(60, 30, 100, 30);
+        eventsLabel.setBounds(220, 30, 150, 30);
 //        seriesContentTextField.setBounds(30, 450, 400, 90);
-        seriesList.setBounds(30, 60, 200, 350);
-        eventList.setBounds(270, 60, 200, 350);
-        goButton.setBounds(500, 30, 170, 30);
-        backButton.setBounds(500, 90, 130, 30);
-        addSeriesButton.setBounds(500, 150, 130, 30);
-        deleteSeriesButton.setBounds(500, 210, 130, 30);
-        addEventButton.setBounds(500, 270, 170, 30);
-        frequencyEventButton.setBounds(500, 330, 170, 30);
+        seriesList.setBounds(30, 60, 100, 350);
+        eventList.setBounds(150, 60, 300, 350);
+        goButton.setBounds(455, 30, 220, 30);
+        backButton.setBounds(455, 90, 130, 30);
+        addSeriesButton.setBounds(455, 150, 130, 30);
+        deleteSeriesButton.setBounds(455, 210, 130, 30);
+        addEventButton.setBounds(455, 270, 220, 30);
+        frequencyEventButton.setBounds(455, 330, 220, 60);
 
 
     }

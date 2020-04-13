@@ -15,7 +15,7 @@ public class ChooseCalendarFrame extends JFrame implements ActionListener {
     JLabel calendarLabel = new JLabel("My Calendars");
     JButton goButton = new JButton("GO");
     JButton backButton = new JButton("BACK");
-    JButton createButton = new JButton("CREATE NEW");
+    JButton createButton = new JButton("CREATE NEW CALENDAR");
     User user;
     ArrayList<Calendar> calendars = new ArrayList<>();
 
@@ -51,9 +51,9 @@ public class ChooseCalendarFrame extends JFrame implements ActionListener {
     private void setLocationAndSize() {
         calendarLabel.setBounds(30, 30, 100, 30);
         calendarList.setBounds(30, 60, 200, 250);
-        goButton.setBounds(460, 60, 100, 40);
-        backButton.setBounds(460, 120, 100, 40);
-        createButton.setBounds(460, 180, 100, 40);
+        goButton.setBounds(260, 60, 200, 40);
+        backButton.setBounds(260, 120, 200, 40);
+        createButton.setBounds(260, 180, 200, 40);
 
     }
 
