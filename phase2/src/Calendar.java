@@ -218,18 +218,7 @@ public class Calendar implements Serializable {
         }
     }
 
-    public void createFrequencyEvent(String seriesName, String nameOfEvent, String startTime, int duration,
-                                     String address, int num, int numOfHours) {
-        Series getSeries = new Series("idk");
-        for (Series s: series){
-            if (s.getName().equals(seriesName)){
-                getSeries = s;
-                break;
-            }
-        }
 
-        getSeries.createFrequencyEvent(nameOfEvent, startTime, duration, address, num, numOfHours);
-    }
 
 
 }

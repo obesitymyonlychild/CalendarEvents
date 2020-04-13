@@ -5,6 +5,8 @@ import java.awt.event.ActionListener;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 
@@ -13,11 +15,12 @@ public class CreateFrequencyEventsFrame extends AddEventFrame implements ActionL
     JTextField frequencyTextField = new JTextField();
     JLabel hoursApartLabel = new JLabel("How many hours between two adjacent events");
     JTextField hoursApartTextField = new JTextField();
-    String seriesName = null;
+    String seriesName;
 
     CreateFrequencyEventsFrame(String seriesName){
         super();
         this.setTitle("Add Frequency Event");
+        this.seriesName = seriesName;
 
         frequencyLabel.setBounds(50, 400, 150, 20);
         frequencyTextField.setBounds(210, 400, 40, 25);
@@ -66,14 +69,30 @@ public class CreateFrequencyEventsFrame extends AddEventFrame implements ActionL
             int hours = Integer.parseInt(hoursApartTextField.getText());
 
             try {
-                CalendarFacade.getCurrentCalendar().createFrequencyEvent(seriesName, name, startTime, duration,
-                        address, fre, hours);
+//                CalendarFacade.createFrequencyEvent(seriesName, name, startTime, duration,
+//                        address, fre, hours);
+
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+                LocalDateTime t = LocalDateTime.parse(startTime, formatter);
+
+                LocalDateTime time;
+                for (int i = 0; i < fre; i++) {
+                    int h = hours * i;
+                    time = t.plusHours(h);
+                    Event event = new Event(name, time.toString().replace("T", " "), duration, address);
+
+
+                    CalendarFacade.getCurrentCalendar().addEvent(event);
+                    CalendarFacade.addToSeries(seriesName, event);
+                }
 
                 JOptionPane.showMessageDialog(this, "Events added!");
                 nameTextField.setText("");
                 dateTextField.setText("");
                 durationTextField.setText("");
                 addressTextField.setText("");
+                frequencyTextField.setText("");
+                hoursApartTextField.setText("");
             } catch (Exception e1){
                 JOptionPane.showMessageDialog(this, "Wrong input!");
             }
@@ -83,6 +102,7 @@ public class CreateFrequencyEventsFrame extends AddEventFrame implements ActionL
             addressTextField.setText("");
             frequencyTextField.setText("");
             hoursApartTextField.setText("");
+            this.dispose();
         }
     }
 

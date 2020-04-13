@@ -27,18 +27,19 @@ public class Series implements java.io.Serializable {
 //        }
 //    }
 
-    private void createEventInHour(String nameOfEvent, LocalDateTime t, int duration, String address, int num,
-                                   int numOfHours){
-        LocalDateTime time;
-        for (int i = 0; i < num; i++){
-            int h = numOfHours * i ;
-            time = t.plusHours(h);
-            Event e = new Event(nameOfEvent, time.toString().replace("T", " "), duration, address);
-            events.add(e);
-            CalendarFacade.getCurrentCalendar().addEvent(e);
-//            Calendar.createEvent(nameOfEvent, time.toString().replace("T", " "), duration, address);
-        }
-    }
+//    public void createEventInHour(String nameOfEvent, LocalDateTime t, int duration, String address, int num,
+//                                   int numOfHours){
+//        LocalDateTime time;
+//        for (int i = 0; i < num; i++){
+//            int h = numOfHours * i ;
+//            time = t.plusHours(h);
+//            Event e = new Event(nameOfEvent, time.toString().replace("T", " "), duration, address);
+////            events.add(e);
+//            addToSeries(e);
+//            CalendarFacade.getCurrentCalendar().addEvent(e);
+////            Calendar.createEvent(nameOfEvent, time.toString().replace("T", " "), duration, address);
+//        }
+//    }
 
 //    private void createEventInDay(String nameOfEvent, LocalDateTime t, int duration, String address, int num){
 //        LocalDateTime time;
@@ -76,12 +77,12 @@ public class Series implements java.io.Serializable {
 //        }
 //    }
 
-    public void createFrequencyEvent(String nameOfEvent, String startTime, int duration, String address,
-                                     int num, int numOfHours) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-        LocalDateTime t = LocalDateTime.parse(startTime, formatter);
-        createEventInHour(nameOfEvent, t, duration, address, num, numOfHours);
-    }
+//    public void createFrequencyEvent(String nameOfEvent, String startTime, int duration, String address,
+//                                     int num, int numOfHours) {
+//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+//        LocalDateTime t = LocalDateTime.parse(startTime, formatter);
+//        createEventInHour(nameOfEvent, t, duration, address, num, numOfHours);
+//    }
 //        switch (unit){
 //            case MINUTE:
 //                createEventInMiniute(nameOfEvent, t, duration, address, num);

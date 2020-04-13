@@ -199,7 +199,7 @@ public class CalendarFacade {
         os.close();
     }
 
-    public static void addToSeries(String seriesName, String eventName){
+    public static void addToSeries(String seriesName, Event e){
         Series getSeries = new Series("idk");
         for (Series series: currentCalendar.getSeries()){
             if (series.getName().equals(seriesName)){
@@ -208,26 +208,16 @@ public class CalendarFacade {
             }
         }
 
-        Event getEvent;
-        for (Event event: currentCalendar.getEvents()){
-            if (event.getName().equals(eventName)){
-                getSeries.addToSeries(event);
-            }
-        }
+//        Event getEvent;
+//        for (Event event: currentCalendar.getEvents()){
+//            if (event.toString().equals(e.toString())){
+//                getSeries.addToSeries(event);
+//            }
+//        }
+        getSeries.addToSeries(e);
 
     }
 
-//    public void createFrequencyEvent(String seriesName, String nameOfEvent, String startTime, int duration,
-//                                     String address, int num, int numOfHours) {
-//        Series getSeries = new Series("idk");
-//        for (Series series: currentCalendar.getSeries()){
-//            if (series.getName().equals(seriesName)){
-//                getSeries = series;
-//                break;
-//            }
-//        }
-//
-//        getSeries.createFrequencyEvent(nameOfEvent, startTime, duration, address, num, numOfHours);
-//    }
+
 
 }

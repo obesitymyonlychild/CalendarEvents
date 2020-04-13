@@ -114,13 +114,13 @@ public class SeriesFrame extends JFrame implements ActionListener, ListSelection
 //                    if (value.getName().equals(seriesName)) {
                 ArrayList<Event> events = CalendarFacade.searchEventBySeriesName(seriesName);
                 String[] eventsString = new String[events.size()];
-                for (int j = 0; j < events.size(); j++) {
-                            eventsString[j] = events.get(j).toString();
-                        }
-                if (eventsString.length == 0){
+
+                if (events.size() == 0){
                     JOptionPane.showMessageDialog(this, "No events in this series so far");
                 }
-                else {
+                else {for (int j = 0; j < events.size(); j++) {
+                    eventsString[j] = events.get(j).toString();
+                }
 
                     eventList.setListData(eventsString);
                 }
@@ -133,8 +133,9 @@ public class SeriesFrame extends JFrame implements ActionListener, ListSelection
 
             }
             catch (NullPointerException n) {
-                JOptionPane.showMessageDialog(this, "No events in this series so far",
-                        "Error", JOptionPane.ERROR_MESSAGE);
+                n.printStackTrace();
+//                JOptionPane.showMessageDialog(this, "No events in this series so far",
+//                        "Error", JOptionPane.ERROR_MESSAGE);
             }
 
         }
@@ -177,7 +178,9 @@ public class SeriesFrame extends JFrame implements ActionListener, ListSelection
                         seriesString[j] = series.get(j).getName();
                     }
                     seriesList.setListData(seriesString);
-
+            ArrayList<Event> events = CalendarFacade.searchEventBySeriesName(seriesName);
+            String[] eventsString = new String[events.size()];
+            eventList.setListData(eventsString);
 
             }
 

@@ -80,7 +80,7 @@ public class CalendarSearch {
         ArrayList<Event> eventList = new ArrayList<Event>();
 
         for(Series series: currentCalendar.getSeries()){
-            if(series.getName().contains(para)){
+            if(series.getName().equals(para)){
 
                 eventList.addAll(series.getEvents());
             }

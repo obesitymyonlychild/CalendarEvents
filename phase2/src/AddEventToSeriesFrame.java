@@ -13,7 +13,7 @@ public class AddEventToSeriesFrame extends JFrame implements ActionListener {
     JButton addButton = new JButton("Add event");
     JButton backButton = new JButton("BACK");
     ArrayList<Event> events = CalendarFacade.getEvents();
-    String seriesName = null;
+    String seriesName ;
 
 
 //    public void createList(){
@@ -76,8 +76,8 @@ public class AddEventToSeriesFrame extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == addButton) {
             int i = eventList.getSelectedIndex();
-            String eventName = events.get(i).getName();
-            CalendarFacade.addToSeries(seriesName, eventName);
+            Event event = events.get(i);
+            CalendarFacade.addToSeries(seriesName, event);
             this.dispose();
 
         }
