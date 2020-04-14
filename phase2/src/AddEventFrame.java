@@ -24,23 +24,6 @@ public class AddEventFrame extends InfoEventFrame implements ActionListener {
 
         //Coding part of go back button
         if (e.getSource() == backButton){
-            ObjectOutputStream os = null;
-            try {
-                os = new ObjectOutputStream(new FileOutputStream(CalendarFacade.getCurrentUser().getName()));
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-            try {
-                assert os != null;
-                os.writeObject(CalendarFacade.getCurrentUser());
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-            try {
-                os.close();
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
             this.dispose();
 
 

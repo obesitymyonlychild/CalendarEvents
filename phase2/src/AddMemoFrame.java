@@ -20,6 +20,7 @@ public class AddMemoFrame extends JFrame implements ActionListener {
 
 
     AddMemoFrame(Event event) {
+        this.event = event;
         this.setTitle("Add New Memo");
         this.setVisible(true);
         this.setBounds(10, 10, 500, 400);
@@ -67,36 +68,19 @@ public class AddMemoFrame extends JFrame implements ActionListener {
 
         //Coding part of add and back button
         if (e.getSource() == backButton){
-            ObjectOutputStream os = null;
-            try {
-                os = new ObjectOutputStream(new FileOutputStream(CalendarFacade.getCurrentUser().getName()));
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-            try {
-                assert os != null;
-                os.writeObject(CalendarFacade.getCurrentUser());
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-            try {
-                os.close();
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-            this.dispose();
             EditMemoInEventFrame ef = new EditMemoInEventFrame(event);
+            this.dispose();
         }
 
         if(e.getSource() == addButton){
             String name = nameTextField.getText();
             String content = contextText.getText();
-            // we store currentCalendar in CalendarFacade now  --- by Oliver
-            CalendarFacade.getCurrentCalendar().createMemo(name, content);
+            Memo mm = CalendarFacade.getCurrentCalendar().createMemo(name, content);
+            mm.addEvent(event);
+            event.addMemo(mm);
             JOptionPane.showMessageDialog(this, "Memo added!");
             nameTextField.setText("");
             contextText.setText("");
-
         }
 
     }

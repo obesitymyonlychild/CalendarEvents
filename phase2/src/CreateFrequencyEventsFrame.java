@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 public class CreateFrequencyEventsFrame extends AddEventFrame implements ActionListener {
     JLabel frequencyLabel = new JLabel("Frequency of the event");
+    JLabel formatLabel = new JLabel("Repeat of times");
     JTextField frequencyTextField = new JTextField();
     JLabel hoursApartLabel = new JLabel("How many hours between two adjacent events");
     JTextField hoursApartTextField = new JTextField();
@@ -24,8 +25,10 @@ public class CreateFrequencyEventsFrame extends AddEventFrame implements ActionL
 
         frequencyLabel.setBounds(50, 400, 150, 20);
         frequencyTextField.setBounds(210, 400, 40, 25);
+        formatLabel.setBounds(255, 400, 150, 25);
         container.add(frequencyLabel);
         container.add(frequencyTextField);
+        container.add(formatLabel);
 
         hoursApartLabel.setBounds(50, 430, 300, 20);
         hoursApartTextField.setBounds(360, 430, 40, 25);

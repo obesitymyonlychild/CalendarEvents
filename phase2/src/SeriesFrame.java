@@ -52,7 +52,7 @@ public class SeriesFrame extends JFrame implements ActionListener, ListSelection
 
     private void setLocationAndSize() {
         seriesLabel.setBounds(60, 30, 100, 30);
-        eventsLabel.setBounds(220, 30, 150, 30);
+        eventsLabel.setBounds(220, 30, 250, 30);
 //        seriesContentTextField.setBounds(30, 450, 400, 90);
         seriesList.setBounds(30, 60, 100, 350);
         eventList.setBounds(150, 60, 300, 350);

@@ -15,7 +15,16 @@ public class EditMemoInEventFrame extends MemoFrame implements ActionListener, L
     EditMemoInEventFrame(Event event) {
         super();
         this.event = event;
-        memos = event.getMemos();
+        this.memos = event.getMemos();
+        try{
+        String[] memoString = new String[memos.size()];
+            for (int j = 0; j < memos.size(); j++) {
+                memoString[j] = memos.get(j).toString();
+            }
+            memoList.setListData(memoString);}
+        catch(NullPointerException ignored){
+        }
+
         container.add(addToButton);
         container.add(addMemoButton);
         addMemoButton.setText("Add A New Memo");
@@ -30,11 +39,10 @@ public class EditMemoInEventFrame extends MemoFrame implements ActionListener, L
         if (e.getSource() == goButton) {
             int i = eventList.getSelectedIndex();
             EditEventFrame targetEventFrame = new EditEventFrame(events.get(i));
-            // need to set some default
         }
         if (e.getSource() == backButton) {
-            this.dispose();
             EditEventFrame ed = new EditEventFrame(event);
+            this.dispose();
         }
         if (e.getSource() == addMemoButton) {
             AddMemoFrame addMemoFrame = new AddMemoFrame(event);
@@ -43,10 +51,9 @@ public class EditMemoInEventFrame extends MemoFrame implements ActionListener, L
 
         //delete this memo in this event and delete the event from that memo
         if (e.getSource() == deleteMemoButton) {
-            int i = eventList.getSelectedIndex();
-            event.deleteMemo(memos.get(i).getName());
-            this.dispose();
+            event.deleteMemo(memoName);
             EditMemoInEventFrame ed = new EditMemoInEventFrame(event);
+            this.dispose();
         }
 
         if(e.getSource() == addToButton){
@@ -56,16 +63,4 @@ public class EditMemoInEventFrame extends MemoFrame implements ActionListener, L
 
     }
 
-    public void valueChanged(ListSelectionEvent e) {
-        String targetMemoString = memoList.getSelectedValue();
-        events = CalendarFacade.searchEventByMemo(targetMemoString);
-        String[] eventString;
-        eventString = new String[events.size()];
-        for (int i = 0; i < events.size(); i++) {
-            eventString[i] = events.get(i).toString();
-        }
-        eventList.setListData(eventString);
-        memoContentTextField.setText(CalendarFacade.getMemoContent(targetMemoString));
-
-    }
 }

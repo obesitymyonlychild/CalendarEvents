@@ -109,18 +109,23 @@ public class Calendar implements Serializable {
         Collections.sort(this.ongoingEvents);
     }
 
-    public void createMemo(String name, String content){
+    public Memo createMemo(String name, String content){
         Memo mm = new Memo(name, content);
         this.memos.add(mm);
+        return mm;
     }
 
     public void deleteMemos(String name){
-
+        ArrayList<Memo> del = new ArrayList<>();
         for (Memo me: memos){
             if(me.getName().equals(name)){
-                this.memos.remove(me);
+                for(Event evt : me.getEvents()){
+                    evt.deleteMemo(me.getName());
+                }
+                del.add(me);
             }
         }
+        this.memos.removeAll(del);
     }
 
     public void createEvent(String name, String startTime, int duration, String address){

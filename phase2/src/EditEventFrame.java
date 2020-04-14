@@ -52,6 +52,7 @@ public class EditEventFrame extends JFrame implements ActionListener{
 
     EditEventFrame(Event event) {
         this.event = event;
+
         this.setTitle("Edit Event");
         this.setVisible(true);
         this.setBounds(10, 10, 500, 800);
@@ -91,13 +92,13 @@ public class EditEventFrame extends JFrame implements ActionListener{
         if (!on) {
             onLabel.setText("Alerts OFF");
         }
-        
-        name.setText(event.getName());
+
+        name.setText("Event name: " + event.getName());
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         String time = event.getStartTime().format(formatter);
-        start.setText(time);
-        duration.setText(Integer.toString(event.getDuration()));
-        ads.setText(event.getAddress());
+        start.setText("Start time:  "+time);
+        duration.setText("Duration in minutes: "+Integer.toString(event.getDuration()));
+        ads.setText("Address: "+event.getAddress());
 
     }
 
@@ -177,6 +178,7 @@ public class EditEventFrame extends JFrame implements ActionListener{
         backButton.addActionListener(this);
         viewMemoButton.addActionListener(this);
         addTagButton.addActionListener(this);
+        turnOnOrOffButton.addActionListener(this);
     }
 
     static ArrayList<String> Users = new ArrayList<String>();
@@ -238,46 +240,26 @@ public class EditEventFrame extends JFrame implements ActionListener{
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
             String start = alerts.get(i).getStartTime().format(formatter);
             event.deleteAlert(start);
-            this.dispose();
             EditEventFrame edit = new EditEventFrame(event);
+            this.dispose();
         }
 
 
         if(e.getSource()==turnOnOrOffButton){
             if(event.isAlertOn()){
                 event.turnOffAlert();
+                EditEventFrame ef = new EditEventFrame(event);
+                this.dispose();
             }
             else{
                 event.turnOnAlert();
+                EditEventFrame ef = new EditEventFrame(event);
+                this.dispose();
             }
-            this.dispose();
-            EditEventFrame ef = new EditEventFrame(event);
         }
 
         //update for all users regarding this event due to changes made.
         if(e.getSource() == backButton){
-            try {
-                event.updateSharedEvent();
-            } catch (IOException | ClassNotFoundException ex) {
-                ex.printStackTrace();
-            }
-            ObjectOutputStream os = null;
-            try {
-                os = new ObjectOutputStream(new FileOutputStream(CalendarFacade.getCurrentUser().getName()));
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-            try {
-                assert os != null;
-                os.writeObject(CalendarFacade.getCurrentUser());
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-            try {
-                os.close();
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
             this.dispose();
 
         }

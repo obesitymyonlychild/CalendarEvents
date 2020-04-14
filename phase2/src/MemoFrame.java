@@ -73,6 +73,7 @@ public class MemoFrame extends JFrame implements ActionListener, ListSelectionLi
         memoList.addListSelectionListener(this);
         goButton.addActionListener(this);
         backButton.addActionListener(this);
+        deleteMemoButton.addActionListener(this);
     }
 
 
@@ -110,7 +111,6 @@ public class MemoFrame extends JFrame implements ActionListener, ListSelectionLi
         for (int i = 0; i < events.size(); i++) {
             eventString[i] = events.get(i).toString();
         }
-        String memoName = memoList.getSelectedValue();
         eventList.setListData(eventString);
         memoContentTextField.setText(CalendarFacade.getMemoContent(targetMemoString));
 
