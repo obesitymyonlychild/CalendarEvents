@@ -8,6 +8,7 @@ public class Calendar implements Serializable {
 
     private String name;
     private boolean alertOn;
+    private boolean dark;
     private ArrayList<Event> pastEvents = new ArrayList<>();
     private ArrayList<Event> futureEvents = new ArrayList<>();
     private ArrayList<Event> ongoingEvents = new ArrayList<>();
@@ -19,6 +20,15 @@ public class Calendar implements Serializable {
     public Calendar(String Givename){
         name = Givename;
         alertOn = true;
+        dark  = false;
+    }
+
+    public boolean isDark() {
+        return dark;
+    }
+
+    public void setDark(boolean dark) {
+        this.dark = dark;
     }
 
     public String getName(){

@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 
-public class AddEventToSeriesFrame extends JFrame implements ActionListener {
+public class AddEventToSeriesFrame extends BasicFrame implements ActionListener {
 
     Container container = getContentPane();
     JList<String> eventList = new JList<>();
@@ -30,10 +30,9 @@ public class AddEventToSeriesFrame extends JFrame implements ActionListener {
 
     AddEventToSeriesFrame(String seriesName) {
 //        this.createList();
+        this.setTitle("Add Events to this series");
         this.seriesName = seriesName;
-        this.setVisible(true);
         this.setBounds(10, 10, 650, 550);
-        this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setLayoutManager();
         setLocationAndSize();
         addComponentsToContainer();

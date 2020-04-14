@@ -6,7 +6,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.concurrent.Future;
 
-public class MainMenuFrame extends JFrame implements ActionListener {
+public class MainMenuFrame extends BasicFrame implements ActionListener {
     Container container = getContentPane();
     JLabel todayEvents = new JLabel("Today's events");
     JButton pastButton = new JButton("Past Event");
@@ -18,14 +18,12 @@ public class MainMenuFrame extends JFrame implements ActionListener {
     JButton searchButton = new JButton("Search");
     JButton addEventButton = new JButton("Add Event");
     JButton logoutButton = new JButton("logout");
+    JButton colorButton = new JButton("DARK MODE");
 
 
     MainMenuFrame(){
-        this.setTitle(CalendarFacade.getCurrentCalendar().getName());
-        this.setVisible(true);
-        this.setBounds(10, 10, 800, 800);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setResizable(false);
+        this.setTitle("Calendar" + CalendarFacade.getCurrentCalendar().getName());
+        this.setBounds(10, 10, 800, 700);
         setLayoutManager();
         setLocationAndSize();
         addComponentsToContainer();
@@ -46,9 +44,10 @@ public class MainMenuFrame extends JFrame implements ActionListener {
         searchButton.setBounds(200, 450, 200, 50);
         addEventButton.setBounds(400, 450, 200, 50);
         logoutButton.setBounds(400, 600, 100, 20);
-        //ArrayList<Event> today = CalendarFacade.showTodayEvents();
-        //todayEvents.setText("Today's events: \n"+today.toString());
-        //todayEvents.setBounds(300, 700, 200, 30);
+        colorButton.setBounds(50,500, 170, 30);
+        ArrayList<Event> today = CalendarFacade.showTodayEvents();
+        todayEvents.setText("Today's events: \n"+today.toString());
+        todayEvents.setBounds(300, 700, 200, 30);
     }
 
     public void addComponentsToContainer(){
@@ -62,6 +61,7 @@ public class MainMenuFrame extends JFrame implements ActionListener {
         container.add(addEventButton);
         container.add(logoutButton);
         container.add(todayEvents);
+        container.add(colorButton);
     }
 
     public void addActionEvent(){
@@ -74,11 +74,24 @@ public class MainMenuFrame extends JFrame implements ActionListener {
         searchButton.addActionListener(this);
         addEventButton.addActionListener(this);
         logoutButton.addActionListener(this);
+        colorButton.addActionListener(this);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         //Coding part of past
+        if(e.getSource() == colorButton){
+            if(CalendarFacade.getCurrentCalendar().isDark()){
+                CalendarFacade.getCurrentCalendar().setDark(false);
+            }
+            else{
+                CalendarFacade.getCurrentCalendar().setDark(true);
+            }
+            this.dispose();
+            MainMenuFrame me = new MainMenuFrame();
+        }
+
+
         if(e.getSource() == pastButton){
             PastEventFrame past = new PastEventFrame();
         }
@@ -138,9 +151,7 @@ public class MainMenuFrame extends JFrame implements ActionListener {
             ChooseCalendarFrame choose = new ChooseCalendarFrame(CalendarFacade.getCurrentUser());
         }
 
-        //go back to choosing calendar frame button needed
 
-        //no-time-event button
 
     }
 }

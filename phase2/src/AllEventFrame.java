@@ -5,20 +5,20 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 
-public class AllEventFrame extends JFrame implements ActionListener {
+public class AllEventFrame extends BasicFrame implements ActionListener {
 
     Container container = getContentPane();
     JList<String> eventList = new JList<>();
     JLabel eventLabel = new JLabel("Events");
     JButton editButton = new JButton("EDIT");
     JButton backButton = new JButton("BACK");
-    ArrayList<Event> events = CalendarFacade.showEvents();
+    ArrayList<Event> events = new ArrayList<>();
 
 
     AllEventFrame() {
-        this.setVisible(true);
+        this.setTitle("All Events");
+        this.events = CalendarFacade.showEvents();
         this.setBounds(10, 10, 650, 550);
-        this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setLayoutManager();
         setLocationAndSize();
         addComponentsToContainer();
@@ -69,9 +69,6 @@ public class AllEventFrame extends JFrame implements ActionListener {
             this.dispose();
 
         }
-
     }
-
-
 }
 

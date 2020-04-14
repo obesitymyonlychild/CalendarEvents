@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import javax.swing.*;     // Using Swing components and containers
 
-public class SearchFrame extends JFrame implements ActionListener {
+public class SearchFrame extends BasicFrame implements ActionListener {
 
     Container container = getContentPane();
     JButton tagButton = new JButton("BY TAG");
@@ -29,9 +29,7 @@ public class SearchFrame extends JFrame implements ActionListener {
 
     SearchFrame() {
         this.setTitle("Search");
-        this.setVisible(true);
         this.setBounds(10, 10, 800, 600);
-        this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setLayoutManager();
         setLocationAndSize();
         addComponentsToContainer();

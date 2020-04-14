@@ -11,7 +11,7 @@ import java.lang.reflect.Array;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
-public class EditEventFrame extends JFrame implements ActionListener{
+public class EditEventFrame extends BasicFrame implements ActionListener{
 
 
     // i want this event info on this edit page or not
@@ -49,15 +49,10 @@ public class EditEventFrame extends JFrame implements ActionListener{
     JButton userButton = new JButton("INVITE");
 
 
-
     EditEventFrame(Event event) {
         this.event = event;
-
         this.setTitle("Edit Event");
-        this.setVisible(true);
         this.setBounds(10, 10, 500, 800);
-        this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-        this.setResizable(false);
         setLayoutManager();
         setLocationAndSize();
         addComponentsToContainer();

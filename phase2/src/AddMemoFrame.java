@@ -6,7 +6,7 @@ import java.io.*;
 import java.util.ArrayList;
 
 
-public class AddMemoFrame extends JFrame implements ActionListener {
+public class AddMemoFrame extends BasicFrame implements ActionListener {
 
     JButton addButton = new JButton("add");
     JButton backButton = new JButton("back");
@@ -22,10 +22,7 @@ public class AddMemoFrame extends JFrame implements ActionListener {
     AddMemoFrame(Event event) {
         this.event = event;
         this.setTitle("Add New Memo");
-        this.setVisible(true);
         this.setBounds(10, 10, 500, 400);
-        this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-        this.setResizable(false);
         setLayoutManager();
         setLocationAndSize();
         addComponentsToContainer();

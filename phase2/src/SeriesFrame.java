@@ -5,7 +5,7 @@ import javax.swing.*;     // Using Swing components and containers
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-public class SeriesFrame extends JFrame implements ActionListener, ListSelectionListener {
+public class SeriesFrame extends BasicFrame implements ActionListener, ListSelectionListener {
 
     Container container = getContentPane();
     public static JList<String> seriesList = new JList<>();
@@ -30,9 +30,7 @@ public class SeriesFrame extends JFrame implements ActionListener, ListSelection
 
     SeriesFrame() {
         this.setTitle("Series");
-        this.setVisible(true);
         this.setBounds(10, 10, 700, 550);
-        this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setLayoutManager();
         setLocationAndSize();
         addComponentsToContainer();

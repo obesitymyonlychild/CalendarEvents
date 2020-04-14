@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
-public class AlertFrame extends JFrame implements ActionListener {
+public class AlertFrame extends BasicFrame implements ActionListener {
 
     Container container = getContentPane();
     JLabel dateLabel = new JLabel("START TIME");
@@ -25,10 +25,7 @@ public class AlertFrame extends JFrame implements ActionListener {
 
     AlertFrame(Event event) {
         this.event = event;
-        this.setVisible(true);
         this.setBounds(10, 10, 700, 600);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setResizable(false);
         setLayoutManager();
         setLocationAndSize();
         addComponentsToContainer();

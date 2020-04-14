@@ -6,7 +6,7 @@ import java.io.*;
 import java.util.ArrayList;
 
 
-public class AddSeriesFrame extends JFrame implements ActionListener {
+public class AddSeriesFrame extends BasicFrame implements ActionListener {
 
     JButton addButton = new JButton("add");
     JButton backButton = new JButton("back");
@@ -20,10 +20,7 @@ public class AddSeriesFrame extends JFrame implements ActionListener {
 
     AddSeriesFrame() {
         this.setTitle("Add New Series");
-        this.setVisible(true);
         this.setBounds(10, 10, 500, 600);
-        this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-        this.setResizable(false);
         setLayoutManager();
         setLocationAndSize();
         addComponentsToContainer();

@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 
-public class SelectMemoFrame extends JFrame implements ActionListener {
+public class SelectMemoFrame extends BasicFrame implements ActionListener {
 
     Container container = getContentPane();
     JList<String> memoList = new JList<>();
@@ -16,9 +16,7 @@ public class SelectMemoFrame extends JFrame implements ActionListener {
     ArrayList<Memo> memos = CalendarFacade.showMemo();
 
     SelectMemoFrame(Event event) {
-        this.setVisible(true);
         this.setBounds(10, 10, 650, 550);
-        this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         this.event = event;
         setLayoutManager();
         setLocationAndSize();

@@ -6,7 +6,7 @@ import javax.swing.*;     // Using Swing components and containers
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-public class MemoFrame extends JFrame implements ActionListener, ListSelectionListener{
+public class MemoFrame extends BasicFrame implements ActionListener, ListSelectionListener{
 
     Container container = getContentPane();
     JList<String> memoList = new JList<>();
@@ -25,9 +25,7 @@ public class MemoFrame extends JFrame implements ActionListener, ListSelectionLi
 
     MemoFrame() {
         this.setTitle("Memo");
-        this.setVisible(true);
         this.setBounds(10, 10, 650, 550);
-        this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setLayoutManager();
         setLocationAndSize();
         addComponentsToContainer();
