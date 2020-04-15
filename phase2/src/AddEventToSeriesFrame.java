@@ -74,10 +74,16 @@ public class AddEventToSeriesFrame extends BasicFrame implements ActionListener 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == addButton) {
-            int i = eventList.getSelectedIndex();
-            Event event = events.get(i);
-            CalendarFacade.addToSeries(seriesName, event);
-            this.dispose();
+            try {
+                int i = eventList.getSelectedIndex();
+                Event event = events.get(i);
+                CalendarFacade.addToSeries(seriesName, event);
+                this.dispose();
+            }
+            catch (IndexOutOfBoundsException i){
+                JOptionPane.showMessageDialog(this, "please go back to the main menu and" +
+                        " add events to your calendar first");
+            }
 
         }
         if (e.getSource() == backButton) {

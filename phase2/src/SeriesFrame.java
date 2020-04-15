@@ -15,12 +15,12 @@ public class SeriesFrame extends BasicFrame implements ActionListener, ListSelec
     //    JTextField seriesContentTextField = new JTextField();
     JButton goButton = new JButton("show events of selected series");
     JButton backButton = new JButton("back");
-    JButton addEventButton = new JButton("add events to series");
+    JButton addEventButton = new JButton("add events to selected series");
     JButton frequencyEventButton = new JButton("<html>" + "create recurring events" + "<br>" + "for selected series");
 //    "<html>" + "This is a" + "<br><i>" + "swing button"
 //            + "</i></html>");
 
-    JButton addSeriesButton = new JButton("add series");
+    JButton addSeriesButton = new JButton("create series");
     JButton deleteSeriesButton = new JButton("delete series");
 
     ArrayList<Event> events = new ArrayList<>();
@@ -54,8 +54,8 @@ public class SeriesFrame extends BasicFrame implements ActionListener, ListSelec
 //        seriesContentTextField.setBounds(30, 450, 400, 90);
         seriesList.setBounds(30, 60, 100, 350);
         eventList.setBounds(150, 60, 300, 350);
-        goButton.setBounds(455, 30, 220, 30);
-        backButton.setBounds(455, 90, 130, 30);
+        goButton.setBounds(455, 90, 220, 30);
+        backButton.setBounds(455, 30, 130, 30);
         addSeriesButton.setBounds(455, 150, 130, 30);
         deleteSeriesButton.setBounds(455, 210, 130, 30);
         addEventButton.setBounds(455, 270, 220, 30);
@@ -134,8 +134,7 @@ public class SeriesFrame extends BasicFrame implements ActionListener, ListSelec
             }
             catch (NullPointerException n) {
                 n.printStackTrace();
-//                JOptionPane.showMessageDialog(this, "No events in this series so far",
-//                        "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "No events in this series so far");
             }
 
         }
@@ -186,22 +185,32 @@ public class SeriesFrame extends BasicFrame implements ActionListener, ListSelec
 
 
         if (e.getSource() == addEventButton) {
-            ArrayList<Series> series = CalendarFacade.getCurrentCalendar().getSeries();
-            int i = seriesList.getSelectedIndex();
-            String seriesName = series.get(i).getName();
+            try {
+                ArrayList<Series> series = CalendarFacade.getCurrentCalendar().getSeries();
+                int i = seriesList.getSelectedIndex();
+                String seriesName = series.get(i).getName();
 
-            AddEventToSeriesFrame a = new AddEventToSeriesFrame(seriesName);
+                AddEventToSeriesFrame a = new AddEventToSeriesFrame(seriesName);
+            }
+            catch(IndexOutOfBoundsException i) {
+                JOptionPane.showMessageDialog(this, "please select a series first or " +
+                        "create series first if no series exists" );
+            }
+
         }
 
         if (e.getSource() == frequencyEventButton) {
-            ArrayList<Series> series = CalendarFacade.getCurrentCalendar().getSeries();
-            int i = seriesList.getSelectedIndex();
-            String seriesName = series.get(i).getName();
+            try {
+                ArrayList<Series> series = CalendarFacade.getCurrentCalendar().getSeries();
+                int i = seriesList.getSelectedIndex();
+                String seriesName = series.get(i).getName();
 
-            CreateFrequencyEventsFrame f = new CreateFrequencyEventsFrame(seriesName);
+                CreateFrequencyEventsFrame f = new CreateFrequencyEventsFrame(seriesName);
+            }
+            catch(IndexOutOfBoundsException i){
+                JOptionPane.showMessageDialog(this, "Uh-oh! No series so far");
+            }
         }
-
-
 
         }
 
