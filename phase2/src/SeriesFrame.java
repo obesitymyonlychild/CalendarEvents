@@ -129,7 +129,8 @@ public class SeriesFrame extends BasicFrame implements ActionListener, ListSelec
 
 
             } catch (IndexOutOfBoundsException ee) {
-                JOptionPane.showMessageDialog(this, "Uh-oh! No series so far");
+                JOptionPane.showMessageDialog(this, "Uh-oh! No series so far, please " +
+                        "create series first");
 
             }
             catch (NullPointerException n) {
@@ -160,58 +161,60 @@ public class SeriesFrame extends BasicFrame implements ActionListener, ListSelec
 
         if (e.getSource() == deleteSeriesButton) {
             // we store currentCalendar rather than currentUser now --- by Oliver
-            ArrayList<Series> series = CalendarFacade.getCurrentCalendar().getSeries();
+            try {
+                ArrayList<Series> series = CalendarFacade.getCurrentCalendar().getSeries();
 
-            int i = seriesList.getSelectedIndex();
-            String seriesName = series.get(i).getName();
+                int i = seriesList.getSelectedIndex();
+                String seriesName = series.get(i).getName();
 
-            Series target = null;
-            for (Series value : series) {
-                if (value.getName().equals(seriesName)) {
-                    target = value;
+                Series target = null;
+                for (Series value : series) {
+                    if (value.getName().equals(seriesName)) {
+                        target = value;
+                    }
+                }
+                series.remove(target);
+                String[] seriesString = new String[series.size()];
+                for (int j = 0; j < series.size(); j++) {
+                    seriesString[j] = series.get(j).getName();
+                }
+                seriesList.setListData(seriesString);
+                ArrayList<Event> events = CalendarFacade.searchEventBySeriesName(seriesName);
+                String[] eventsString = new String[events.size()];
+                eventList.setListData(eventsString);
+            } catch (IndexOutOfBoundsException i) {
+                JOptionPane.showMessageDialog(this, "Uh-oh! No series so far, please create " +
+                        "series first");
+            }
+
+
+            if (e.getSource() == addEventButton) {
+                try {
+                    ArrayList<Series> series = CalendarFacade.getCurrentCalendar().getSeries();
+                    int i = seriesList.getSelectedIndex();
+                    String seriesName = series.get(i).getName();
+
+                    AddEventToSeriesFrame a = new AddEventToSeriesFrame(seriesName);
+                } catch (IndexOutOfBoundsException i) {
+                    JOptionPane.showMessageDialog(this, "please select a series first or " +
+                            "create series first if no series exists");
                 }
             }
-                series.remove(target);
-                    String[] seriesString = new String[series.size()];
-                    for (int j = 0; j < series.size(); j++) {
-                        seriesString[j] = series.get(j).getName();
-                    }
-                    seriesList.setListData(seriesString);
-            ArrayList<Event> events = CalendarFacade.searchEventBySeriesName(seriesName);
-            String[] eventsString = new String[events.size()];
-            eventList.setListData(eventsString);
-
-            }
-
-
-        if (e.getSource() == addEventButton) {
-            try {
-                ArrayList<Series> series = CalendarFacade.getCurrentCalendar().getSeries();
-                int i = seriesList.getSelectedIndex();
-                String seriesName = series.get(i).getName();
-
-                AddEventToSeriesFrame a = new AddEventToSeriesFrame(seriesName);
-            }
-            catch(IndexOutOfBoundsException i) {
-                JOptionPane.showMessageDialog(this, "please select a series first or " +
-                        "create series first if no series exists" );
-            }
-
         }
 
-        if (e.getSource() == frequencyEventButton) {
-            try {
-                ArrayList<Series> series = CalendarFacade.getCurrentCalendar().getSeries();
-                int i = seriesList.getSelectedIndex();
-                String seriesName = series.get(i).getName();
 
-                CreateFrequencyEventsFrame f = new CreateFrequencyEventsFrame(seriesName);
-            }
-            catch(IndexOutOfBoundsException i){
-                JOptionPane.showMessageDialog(this, "Uh-oh! No series so far");
-            }
-        }
+            if (e.getSource() == frequencyEventButton) {
+                try {
+                    ArrayList<Series> series = CalendarFacade.getCurrentCalendar().getSeries();
+                    int i = seriesList.getSelectedIndex();
+                    String seriesName = series.get(i).getName();
 
+                    CreateFrequencyEventsFrame f = new CreateFrequencyEventsFrame(seriesName);
+                } catch (IndexOutOfBoundsException i) {
+                    JOptionPane.showMessageDialog(this, "Uh-oh! No series so far, please create " +
+                            "series first");
+                }
+            }
         }
 
 
