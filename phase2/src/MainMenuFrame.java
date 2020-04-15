@@ -9,21 +9,23 @@ import java.util.concurrent.Future;
 public class MainMenuFrame extends BasicFrame implements ActionListener {
     Container container = getContentPane();
     JLabel todayEvents = new JLabel("Today's events");
-    JButton pastButton = new JButton("Past Event");
-    JButton ongoingButton = new JButton("Ongoing Event");
-    JButton futureButton = new JButton("Future Event");
-    JButton allEventButton = new JButton("All Event");
+    JButton pastButton = new JButton("Past Events");
+    JButton ongoingButton = new JButton("Ongoing Events");
+    JButton futureButton = new JButton("Future Events");
+    JButton allEventButton = new JButton("All Events");
     JButton seriesButton = new JButton("Series");
-    JButton memoButton = new JButton("Memo");
-    JButton searchButton = new JButton("Search");
+    JButton memoButton = new JButton("Memos");
+    JButton searchButton = new JButton("Search Events");
     JButton addEventButton = new JButton("Add Event");
-    JButton logoutButton = new JButton("logout");
+    JButton logoutButton = new JButton("BACK");
     JButton colorButton = new JButton("DARK MODE");
+    JLabel viewEvents = new JLabel("View Events");
+    JButton noTimeEventButton = new JButton("No-Time Events");
 
 
     MainMenuFrame(){
-        this.setTitle("Calendar" + CalendarFacade.getCurrentCalendar().getName());
-        this.setBounds(10, 10, 800, 700);
+        this.setTitle("Calendar: " + CalendarFacade.getCurrentCalendar().getName());
+        this.setBounds(10, 10, 800, 750);
         setLayoutManager();
         setLocationAndSize();
         addComponentsToContainer();
@@ -35,19 +37,21 @@ public class MainMenuFrame extends BasicFrame implements ActionListener {
     }
 
     public void setLocationAndSize(){
-        pastButton.setBounds(50, 150, 150, 30);
-        ongoingButton.setBounds(180, 150, 200, 30);
-        futureButton.setBounds(360, 150, 150, 30);
-        allEventButton.setBounds(550, 150, 150, 30);
-        seriesButton.setBounds(200, 300, 100, 30);
-        memoButton.setBounds(400, 300, 100, 30);
-        searchButton.setBounds(200, 450, 200, 50);
-        addEventButton.setBounds(400, 450, 200, 50);
-        logoutButton.setBounds(400, 600, 100, 20);
-        colorButton.setBounds(50,500, 170, 30);
-        ArrayList<Event> today = CalendarFacade.showTodayEvents();
-        todayEvents.setText("Today's events: \n"+today.toString());
-        todayEvents.setBounds(300, 700, 200, 30);
+        pastButton.setBounds(50, 100, 200, 50);
+        ongoingButton.setBounds(50, 160, 200, 50);
+        futureButton.setBounds(50, 220, 200, 50);
+        noTimeEventButton.setBounds(50, 280, 200, 50);
+        allEventButton.setBounds(50, 340, 200, 50);
+        seriesButton.setBounds(480, 165, 100, 50);
+        memoButton.setBounds(480, 245, 100, 50);
+        searchButton.setBounds(300, 150, 150, 80);
+        addEventButton.setBounds(300, 250, 150, 80);
+        logoutButton.setBounds(380, 600, 100, 30);
+        colorButton.setBounds(610,230, 160, 30);
+        //ArrayList<Event> today = CalendarFacade.showTodayEvents();
+       // todayEvents.setText("Today's events:");
+        //todayEvents.setBounds(50, 370, 200, 200);
+        viewEvents.setBounds(80, 50, 150, 30);
     }
 
     public void addComponentsToContainer(){
@@ -62,6 +66,8 @@ public class MainMenuFrame extends BasicFrame implements ActionListener {
         container.add(logoutButton);
         container.add(todayEvents);
         container.add(colorButton);
+        container.add(viewEvents);
+        container.add(noTimeEventButton);
     }
 
     public void addActionEvent(){
@@ -75,6 +81,7 @@ public class MainMenuFrame extends BasicFrame implements ActionListener {
         addEventButton.addActionListener(this);
         logoutButton.addActionListener(this);
         colorButton.addActionListener(this);
+        noTimeEventButton.addActionListener(this);
     }
 
     @Override
@@ -105,7 +112,9 @@ public class MainMenuFrame extends BasicFrame implements ActionListener {
             FutureEventFrame fut = new FutureEventFrame();
         }
 
-        //if(e.getSource() == noTimeEventButton)
+        if(e.getSource() == noTimeEventButton){
+            //connect the no time event frame
+        }
 
         if(e.getSource() == allEventButton){
             AllEventFrame all = new AllEventFrame();
@@ -129,7 +138,7 @@ public class MainMenuFrame extends BasicFrame implements ActionListener {
 
 
         if (e.getSource() == logoutButton){
-            CalendarFacade.setCurrentCalendar(null);
+            CalendarFacade.logout();
             ObjectOutputStream os = null;
             try {
                 os = new ObjectOutputStream(new FileOutputStream(CalendarFacade.getCurrentUser().getName()));
