@@ -20,7 +20,7 @@ public class CreateFrequencyEventsFrame extends AddEventFrame implements ActionL
 
     CreateFrequencyEventsFrame(String seriesName){
         super();
-        this.setTitle("Add Frequency Event");
+        this.setTitle("Create recurring events for the series you select");
         this.seriesName = seriesName;
 
         frequencyLabel.setBounds(50, 400, 150, 20);
@@ -64,6 +64,7 @@ public class CreateFrequencyEventsFrame extends AddEventFrame implements ActionL
         }
 
         if(e.getSource() == addButton){
+            try {
             String name = nameTextField.getText();
             String startTime = dateTextField.getText();
             int duration = Integer.parseInt(durationTextField.getText());
@@ -71,7 +72,7 @@ public class CreateFrequencyEventsFrame extends AddEventFrame implements ActionL
             int fre = Integer.parseInt(frequencyTextField.getText());
             int hours = Integer.parseInt(hoursApartTextField.getText());
 
-            try {
+
 //                CalendarFacade.createFrequencyEvent(seriesName, name, startTime, duration,
 //                        address, fre, hours);
 

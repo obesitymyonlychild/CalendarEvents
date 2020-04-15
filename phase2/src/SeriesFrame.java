@@ -17,15 +17,12 @@ public class SeriesFrame extends BasicFrame implements ActionListener, ListSelec
     JButton backButton = new JButton("back");
     JButton addEventButton = new JButton("add events to selected series");
     JButton frequencyEventButton = new JButton("<html>" + "create recurring events" + "<br>" + "for selected series");
-//    "<html>" + "This is a" + "<br><i>" + "swing button"
-//            + "</i></html>");
 
     JButton addSeriesButton = new JButton("create series");
     JButton deleteSeriesButton = new JButton("delete series");
 
     ArrayList<Event> events = new ArrayList<>();
-//    Series selectedSeries;
-//    Event selectedEvent;
+
 
 
     SeriesFrame() {
@@ -95,23 +92,12 @@ public class SeriesFrame extends BasicFrame implements ActionListener, ListSelec
             ArrayList<Series> series = CalendarFacade.getCurrentCalendar().getSeries();
 
 
-//            ArrayList<Event> events = CalendarFacade.searchEventBySeriesName(seriesName);
-//            String[] eventsString = new String[events.size()];
-//            for (int i = 0; i < events.size(); i++) {
-//                eventsString[i] = events.get(i).toString();
-//            }
-//            eventList.setListData(eventsString);
-//        }
 
-
-//            ArrayList<Series> series = CalendarFacade.getCurrentUser().getSeries();
             try {
-//                String seriesName = seriesList.getSelectedValue();
+
                 int i = seriesList.getSelectedIndex();
-//                for (Series value : series)
                 String seriesName = series.get(i).getName();
-//                for (Series value : series) {
-//                    if (value.getName().equals(seriesName)) {
+
                 ArrayList<Event> events = CalendarFacade.searchEventBySeriesName(seriesName);
                 String[] eventsString = new String[events.size()];
 
@@ -151,13 +137,6 @@ public class SeriesFrame extends BasicFrame implements ActionListener, ListSelec
         }
 
 
-//            ArrayList<Series> series = CalendarFacade.getCurrentUser().getSeries();
-//            String[] seriesString = new String[series.size()];
-//            for (int j = 0; j < series.size(); j++) {
-//                seriesString[j] = series.get(j).toString();
-//            }
-//            seriesList.setListData(seriesString);
-
 
         if (e.getSource() == deleteSeriesButton) {
             // we store currentCalendar rather than currentUser now --- by Oliver
@@ -186,6 +165,7 @@ public class SeriesFrame extends BasicFrame implements ActionListener, ListSelec
                 JOptionPane.showMessageDialog(this, "Uh-oh! No series so far, please create " +
                         "series first");
             }
+        }
 
 
             if (e.getSource() == addEventButton) {
@@ -200,7 +180,7 @@ public class SeriesFrame extends BasicFrame implements ActionListener, ListSelec
                             "create series first if no series exists");
                 }
             }
-        }
+
 
 
             if (e.getSource() == frequencyEventButton) {
