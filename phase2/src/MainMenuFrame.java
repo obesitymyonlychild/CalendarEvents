@@ -138,13 +138,22 @@ public class MainMenuFrame extends BasicFrame implements ActionListener {
 
 
         if (e.getSource() == logoutButton){
-            CalendarFacade.logout();
+//            CalendarFacade.logout();
             ObjectOutputStream os = null;
             try {
                 os = new ObjectOutputStream(new FileOutputStream(CalendarFacade.getCurrentUser().getName()));
-            } catch (IOException ex) {
+            }
+
+            catch (IOException ex) {
                 ex.printStackTrace();
             }
+            catch(NullPointerException n){
+
+                    this.dispose();
+                    ChooseCalendarFrame choose = new ChooseCalendarFrame(CalendarFacade.getCurrentUser());
+
+            }
+
             try {
                 assert os != null;
                 os.writeObject(CalendarFacade.getCurrentUser());
@@ -156,6 +165,7 @@ public class MainMenuFrame extends BasicFrame implements ActionListener {
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
+//            CalendarFacade.logout();
             this.dispose();
             ChooseCalendarFrame choose = new ChooseCalendarFrame(CalendarFacade.getCurrentUser());
         }

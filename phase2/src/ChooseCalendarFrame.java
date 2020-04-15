@@ -84,7 +84,8 @@ public class ChooseCalendarFrame extends JFrame implements ActionListener {
             //EditEventFrame targetEventFrame = new EditEventFrame(events.get(i));
             // need to set some default
         }
-        if (e.getSource() == backButton) {CalendarFacade.setCurrentUser(null);
+        if (e.getSource() == backButton) {
+            CalendarFacade.setCurrentUser(null);
             this.dispose();
             try {
                 LoginSystem.login();
@@ -94,8 +95,14 @@ public class ChooseCalendarFrame extends JFrame implements ActionListener {
             ObjectOutputStream os = null;
             try {
                 os = new ObjectOutputStream(new FileOutputStream(CalendarFacade.getCurrentUser().getName()));
-            } catch (IOException | NullPointerException ex) {
+            } catch (IOException ex) {
                 ex.printStackTrace();
+            } catch (NullPointerException n) {
+                try {
+                    LoginSystem.login();
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
             }
 
             try {
@@ -103,14 +110,27 @@ public class ChooseCalendarFrame extends JFrame implements ActionListener {
                 os.writeObject(CalendarFacade.getCurrentUser());
             } catch (IOException ex) {
                 ex.printStackTrace();
+            } catch (NullPointerException n) {
+                try {
+                    LoginSystem.login();
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
             }
             try {
                 os.close();
             } catch (IOException ex) {
                 ex.printStackTrace();
+            } catch (NullPointerException n) {
+                try {
+                    LoginSystem.login();
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
             }
-
         }
+
+
         if (e.getSource() == createButton){
             JFrame frame = new JFrame();
             String result = JOptionPane.showInputDialog(frame, "Enter new calendar name:");
